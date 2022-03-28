@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/private/controllers/Home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/controllers/Login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/controllers/Signup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/controllers/Students.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/core/App.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/core/Controller.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/core/autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/core/config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/core/database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/404.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/home.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/includes/footer.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/includes/header.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/login.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/signup.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/all.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="26ymJcxPXdSXQ99KFOCu1Jpqz9k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\openserver\OSPanel\domains\school.php\public\assets" />
+      <recent name="C:\openserver\OSPanel\domains\school.php\public" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="" />
+      <created>1648404129322</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648404129322</updated>
+      <workItem from="1648404130459" duration="5461000" />
+      <workItem from="1648478303667" duration="11398000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="712" y="243" key="NewPhpClassDialog" timestamp="1648409507721">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648409507721" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1648494158336">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648494158336" />
+  </component>
+</project>
