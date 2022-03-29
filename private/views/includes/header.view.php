@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="<?=ROOT;?>/assets/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?=ROOT;?>/assets/all.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=ROOT;?>/assets/style.css" type="text/css">
 </head>
 <body>
 
