@@ -2,3 +2,11 @@
     margin-right: 40px;
     font-size: 30px;
 }
+
+.profile {
+    max-width: 1000px;
+}
+
+img.profile-photo {
+    max-width: 150px;
+}
