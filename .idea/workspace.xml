@@ -11,15 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/core/Model.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/models/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/Model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/core/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/home.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="26ymJcxPXdSXQ99KFOCu1Jpqz9k" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,7 +38,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/php/PHP-7.2-x64/php.exe" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -62,6 +60,7 @@
       <workItem from="1648478303667" duration="11640000" />
       <workItem from="1648565177264" duration="6517000" />
       <workItem from="1648652239089" duration="5212000" />
+      <workItem from="1648743548874" duration="5640000" />
     </task>
     <servers />
   </component>
@@ -81,6 +80,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="540" y="175" key="#CLI_Interpreters" timestamp="1648746939410">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="175" key="#CLI_Interpreters/0.0.1920.1040@0.0.1920.1040" timestamp="1648746939410" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648746931699">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648746931699" />
     <state x="712" y="243" key="NewPhpClassDialog" timestamp="1648664950460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -89,5 +96,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648578848511" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1648746957945">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1648746957945" />
   </component>
 </project>
