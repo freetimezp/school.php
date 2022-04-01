@@ -2,7 +2,9 @@
 
 class Model extends Database
 {
-    function __construct()
+    public $errors = array();
+
+    public function __construct()
     {
         if(!property_exists($this, 'table')) {
             $this->table = strtolower(get_class($this)) . "s";

@@ -21,4 +21,9 @@ class Controller
 
         return $model;
     }
+
+    public function redirect($link) {
+        header("Location: " . ROOT . "/" . trim($link, "/"));
+        die;
+    }
 }
