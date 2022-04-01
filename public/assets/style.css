@@ -1,6 +1,20 @@
 .navbar .navbar-brand {
-    margin-right: 40px;
+    margin-right: 100px;
     font-size: 30px;
+}
+
+.navbar .nav-item {
+    width: 130px;
+    text-align: center;
+    border: 1px solid #ccc;
+    transition: all 0.6s ease;
+    background: #fff;
+    color: rgba(0,0,0,.55);
+}
+
+.navbar .nav-item:hover {
+    background: rgba(0,0,0,.08);
+    color: #fff;
 }
 
 .profile {
