@@ -31,6 +31,10 @@ class User extends Model
             $this->errors['password'] = "The passwords do not match!";
         }
 
+        if(strlen($data['password']) < 10) {
+            $this->errors['password'] = "Password must be at least 10 symbols long!";
+        }
+
         if(count($this->errors) == 0) {
             return true;
         }
