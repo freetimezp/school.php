@@ -10,17 +10,9 @@ class Signup extends Controller
             $user = new User();
 
             if($user->validate($_POST)) {
-                $arr['firstname'] = $_POST['firstname'];
-                $arr['lastname'] = $_POST['lastname'];
-                $arr['email'] = $_POST['email'];
-                $arr['date'] = date("Y-m-d H:i:s");
-                $arr['user_id'] = '';
-                $arr['gender'] = $_POST['gender'];
-                $arr['school_id'] = '';
-                $arr['rank'] = $_POST['rank'];
-                $arr['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $_POST['date'] = date("Y-m-d H:i:s");
 
-                $user->insert($arr);
+                $user->insert($_POST);
                 $this->redirect('login');
             }else{
                 $errors = $user->errors;
