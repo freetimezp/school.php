@@ -2,7 +2,7 @@
 
 class Schools extends Controller
 {
-    function index()
+    public function index()
     {
         if(!Auth::logged_in()) {
             $this->redirect('login');
@@ -11,5 +11,20 @@ class Schools extends Controller
         $school = new School();
         $data = $school->findAll();
         $this->view('schools', ['rows' => $data]);
+    }
+
+    public function add()
+    {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $errors = array();
+
+        $school = new School();
+        $data = $school->findAll();
+        $this->view('schools.add', [
+            'errors' => $errors
+        ]);
     }
 }
