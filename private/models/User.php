@@ -33,6 +33,10 @@ class User extends Model
             $this->errors['email'] = "Email is not valid!";
         }
 
+        if($this->where('email', $data['email'])) {
+            $this->errors['email'] = "Email is already in use!";
+        }
+
         $genders = ['female', 'male'];
         if(empty($data['gender']) || !in_array($data['gender'], $genders)) {
             $this->errors['gender'] = "Gender is not valid!";

@@ -12,7 +12,13 @@
                 <a class="nav-link" href="<?=ROOT;?>">DASHBOARD</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="<?=ROOT?>/users">USERS</a>
+                <a class="nav-link" href="<?=ROOT?>/schools">SCHOOLS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=ROOT?>/users">STAFF</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=ROOT?>/students">STUDENTS</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?=ROOT?>/classes">CLASSES</a>
