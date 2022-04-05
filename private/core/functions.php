@@ -32,3 +32,7 @@ function random_string($length) {
     return $text;
 }
 
+function get_date($date){
+    return date("jS F, Y", strtotime($date));
+}
+

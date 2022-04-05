@@ -15,14 +15,37 @@ class Model extends Database
         $column = addslashes($column);
 
         $query = "SELECT * FROM $this->table WHERE $column = :value";
-        return $this->query($query, [
+        $data = $this->query($query, [
             'value' => $value
         ]);
+
+        //run function after select
+        if(is_array($data)) {
+            if(property_exists($this,'afterSelect')) {
+                foreach($this->afterSelect as $func) {
+                    $data = $this->$func($data);
+                }
+            }
+        }
+
+        return $data;
+
     }
 
     public function findAll() {
         $query = "SELECT * FROM $this->table";
-        return $this->query($query);
+        $data = $this->query($query);
+
+        //run function after select
+        if(is_array($data)) {
+            if(property_exists($this,'afterSelect')) {
+                foreach($this->afterSelect as $func) {
+                    $data = $this->$func($data);
+                }
+            }
+        }
+
+        return $data;
     }
 
     public function insert($data) {
