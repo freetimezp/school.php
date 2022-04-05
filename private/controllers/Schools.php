@@ -21,8 +21,19 @@ class Schools extends Controller
 
         $errors = array();
 
-        $school = new School();
-        $data = $school->findAll();
+        if(count($_POST) > 0) {
+            $school = new School();
+
+            if($school->validate($_POST)) {
+                $_POST['date'] = date("Y-m-d H:i:s");
+
+                $school->insert($_POST);
+                $this->redirect('schools');
+            }else{
+                $errors = $school->errors;
+            }
+        }
+
         $this->view('schools.add', [
             'errors' => $errors
         ]);

@@ -14,17 +14,23 @@ $this->view('includes/nav');
                     </a>
                 </th>
             </tr>
-        </table>
 
         <?php if($rows): ?>
             <?php foreach ($rows as $row): ?>
-
+                <tr>
+                    <td><?=$row->school;?></td><td><?=$row->user_id;?></td><td><?=$row->date;?></td>
+                    <td>
+                        <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <div>
                 No schools
             </div>
         <?php endif; ?>
+        </table>
     </div>
 </div>
 

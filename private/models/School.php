@@ -27,7 +27,9 @@ class School extends Model
     }
 
     public function make_user_id($data) {
-        $data['user_id'] = random_string(60);
+        if(isset($_SESSION['USER']->user_id)) {
+            $data['user_id'] = $_SESSION['USER']->user_id;
+        }
 
         return $data;
     }
