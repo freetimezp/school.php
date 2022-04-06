@@ -20,8 +20,12 @@ $this->view('includes/nav');
                 <tr>
                     <td><?=$row->school;?></td><td><?=$row->user->firstname . ' ' . $row->user->lastname;?></td><td><?=get_date($row->date);?></td>
                     <td>
-                        <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                        <a href="<?=ROOT;?>/schools/edit/<?=$row->id;?>">
+                            <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
+                        </a>
+                        <a href="<?=ROOT;?>/schools/delete/<?=$row->id;?>">
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

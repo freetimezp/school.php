@@ -2,8 +2,7 @@
 
 class Schools extends Controller
 {
-    public function index()
-    {
+    public function index() {
         if(!Auth::logged_in()) {
             $this->redirect('login');
         }
@@ -13,8 +12,7 @@ class Schools extends Controller
         $this->view('schools', ['rows' => $data]);
     }
 
-    public function add()
-    {
+    public function add() {
         if(!Auth::logged_in()) {
             $this->redirect('login');
         }
@@ -38,4 +36,32 @@ class Schools extends Controller
             'errors' => $errors
         ]);
     }
+
+    public function edit($id = null) {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $errors = array();
+
+        $school = new School();
+
+        if(count($_POST) > 0) {
+            if($school->validate($_POST)) {
+                $school->update($id, $_POST);
+                $this->redirect('schools');
+            }else{
+                $errors = $school->errors;
+            }
+        }
+
+        $row = $school->where('id', $id);
+
+        $this->view('schools.edit', [
+            'row' => $row,
+            'errors' => $errors
+        ]);
+    }
+
+
 }
