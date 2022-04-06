@@ -26,6 +26,10 @@ $this->view('includes/nav');
                         <a href="<?=ROOT;?>/schools/delete/<?=$row->id;?>">
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
                         </a>
+                        <a href="<?=ROOT;?>/switch_school/<?=$row->id;?>">
+                            <button class="btn btn-sm btn-success">Switch to <i class="fa fa-chevron-right"></i></button>
+                        </a>
+
                     </td>
                 </tr>
             <?php endforeach; ?>
