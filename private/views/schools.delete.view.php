@@ -8,22 +8,13 @@ $this->view('includes/nav');
     <?php if($row): ?>
         <div class="card-group">
             <form method="post">
-                <h4>Edit school</h4>
+                <h4>Are you sure you want to delete school?</h4>
 
-                <?php if(count($errors) > 0): ?>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Errors:</strong><br>
-                        <?php foreach ($errors as $error): ?>
-                            <?=$error . "<br>"; ?>
-                        <?php endforeach; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endif; ?>
-
-                <input autofocus class="form-control" value="<?=get_var('school', $row[0]->school);?>" type="text" name="school" placeholder="School name">
+                <input disabled class="form-control" value="<?=get_var('school', $row[0]->school);?>" type="text" name="school" placeholder="School name">
                 <br>
 
-                <input class="btn btn-primary float-end" type="submit" value="Save">
+                <input type="hidden" name="id">
+                <input class="btn btn-danger float-end" type="submit" value="Delete">
 
                 <a href="<?=ROOT;?>/schools">
                     <input class="btn btn-secondary text-white" type="button" value="Cancel">
@@ -44,4 +35,5 @@ $this->view('includes/nav');
 <?php
 $this->view('includes/footer');
 ?>
+
 

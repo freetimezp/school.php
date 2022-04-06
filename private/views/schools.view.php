@@ -3,7 +3,7 @@ $this->view('includes/header');
 $this->view('includes/nav');
 ?>
 <div class="container-fluid p-4 profile mx-auto shadow">
-    <?php $this->view('includes/crumbs'); ?>
+    <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
     <div class="card-group">
         <table class="table table-striped table-hover">
             <tr>
