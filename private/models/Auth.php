@@ -50,10 +50,9 @@ class Auth
                 $row = $row[0];
                 $arr['school_id'] = $row->school_id;
 
-                if($user->update($_SESSION['USER']->id, $arr)) {
-                    $_SESSION['USER']->school_id = $row->school_id;
-                    $_SESSION['USER']->school_name = $row->school;
-                }
+                $user->update($_SESSION['USER']->id, $arr);
+                $_SESSION['USER']->school_id = $row->school_id;
+                $_SESSION['USER']->school_name = $row->school;
             }
 
             return true;
