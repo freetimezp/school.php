@@ -11,7 +11,13 @@ class Users extends Controller
         $user = new User();
         $school_id = Auth::getSchool_id();
 
+        $crumbs[] = ['Dashboard', ''];
+        $crumbs[] = ['Staff', 'users'];
+
         $data = $user->query("SELECT * FROM users WHERE school_id = :school_id", ['school_id' => $school_id]);
-        $this->view('users', ['rows' => $data]);
+        $this->view('users', [
+            'rows' => $data,
+            'crumbs' => $crumbs
+        ]);
     }
 }

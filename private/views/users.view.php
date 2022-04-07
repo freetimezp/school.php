@@ -3,12 +3,12 @@ $this->view('includes/header');
 $this->view('includes/nav');
 ?>
     <div class="container-fluid p-4 profile mx-auto shadow">
-        <?php $this->view('includes/crumbs'); ?>
+        <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
         <a href="<?=ROOT;?>/signup">
             <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></u>Add new</button>
         </a>
         <hr>
-        <div class="card-group">
+        <div class="card-group justify-content-center">
             <?php if($rows): ?>
                 <?php foreach ($rows as $row): ?>
                     <div class="card m-2 shadow-lg" style="max-width: 14rem;min-width: 14rem;">
@@ -17,7 +17,7 @@ $this->view('includes/nav');
                         <div class="card-body">
                             <h5 class="card-title"><?=$row->firstname;?> <?=$row->lastname;?></h5>
                             <p class="card-text">Rank: <?=str_replace("_", " ", $row->rank);?> </p>
-                            <a href="#" class="btn btn-primary">Profile</a>
+                            <a href="<?=ROOT;?>/profile/<?=$row->user_id;?>" class="btn btn-primary">Profile</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

@@ -4,7 +4,7 @@ $this->view('includes/nav');
 ?>
 
 <div class="container-fluid p-4 profile mx-auto shadow">
-    <?php $this->view('includes/crumbs'); ?>
+    <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
     <h4>Profile</h4>
     <div class="row mb-4">
         <div class="col-sm-4 col-md-3">

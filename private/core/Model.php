@@ -32,6 +32,29 @@ class Model extends Database
 
     }
 
+    public function first($column, $value) {
+        $column = addslashes($column);
+
+        $query = "SELECT * FROM $this->table WHERE $column = :value";
+        $data = $this->query($query, [
+            'value' => $value
+        ]);
+
+        //run function after select
+        if(is_array($data)) {
+            if(property_exists($this,'afterSelect')) {
+                foreach($this->afterSelect as $func) {
+                    $data = $this->$func($data);
+                }
+            }
+
+            $data = $data[0];
+        }
+
+        return $data;
+
+    }
+
     public function findAll() {
         $query = "SELECT * FROM $this->table";
         $data = $this->query($query);
