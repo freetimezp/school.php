@@ -4,6 +4,10 @@ $this->view('includes/nav');
 ?>
     <div class="container-fluid p-4 profile mx-auto shadow">
         <?php $this->view('includes/crumbs'); ?>
+        <a href="<?=ROOT;?>/signup">
+            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></u>Add new</button>
+        </a>
+        <hr>
         <div class="card-group">
             <?php if($rows): ?>
                 <?php foreach ($rows as $row): ?>

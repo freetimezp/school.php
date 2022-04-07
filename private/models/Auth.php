@@ -52,6 +52,7 @@ class Auth
 
                 if($user->update($_SESSION['USER']->id, $arr)) {
                     $_SESSION['USER']->school_id = $row->school_id;
+                    $_SESSION['USER']->school_name = $row->school;
                 }
             }
 
