@@ -14,7 +14,7 @@ class Users extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Staff', 'users'];
 
-        $data = $user->query("SELECT * FROM users WHERE school_id = :school_id", ['school_id' => $school_id]);
+        $data = $user->query("SELECT * FROM users WHERE school_id = :school_id AND rank NOT IN ('student')", ['school_id' => $school_id]);
         $this->view('users', [
             'rows' => $data,
             'crumbs' => $crumbs
