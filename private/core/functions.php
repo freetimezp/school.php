@@ -36,3 +36,14 @@ function get_date($date){
     return date("jS F, Y", strtotime($date));
 }
 
+function get_image($image, $gender = 'male') {
+    if(!file_exists($image)) {
+        $image = ASSETS . '/img/female.png';
+        if($gender == 'male') {
+            $image = ASSETS . '/img/male.png';
+        }
+    }
+
+    return $image;
+}
+
