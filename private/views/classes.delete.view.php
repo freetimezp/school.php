@@ -8,24 +8,24 @@ $this->view('includes/nav');
     <?php if($row): ?>
         <div class="card-group">
             <form method="post">
-                <h4>Are you sure you want to delete school?</h4>
+                <h4>Are you sure you want to delete class?</h4>
 
-                <input disabled class="form-control" value="<?=get_var('school', $row[0]->school);?>" type="text" name="school" placeholder="School name">
+                <input disabled class="form-control" value="<?=get_var('class', $row[0]->class);?>" type="text" name="class" placeholder="Class name">
                 <br>
 
                 <input type="hidden" name="id">
                 <input class="btn btn-danger float-end" type="submit" value="Delete">
 
-                <a href="<?=ROOT;?>/schools">
+                <a href="<?=ROOT;?>/classes">
                     <input class="btn btn-secondary text-white" type="button" value="Cancel">
                 </a>
             </form>
         </div>
     <?php else: ?>
         <div class="card-group d-block">
-            <span class="mb-4 d-block">That school was not found!</span>
+            <span class="mb-4 d-block">That class was not found!</span>
 
-            <a href="<?=ROOT;?>/schools">
+            <a href="<?=ROOT;?>/classes">
                 <input class="btn btn-secondary text-white" type="button" value="Cancel">
             </a>
         </div>

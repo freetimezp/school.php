@@ -8,7 +8,7 @@ $this->view('includes/nav');
     <?php if($row): ?>
         <div class="card-group">
             <form method="post">
-                <h4>Edit school</h4>
+                <h4>Edit class</h4>
 
                 <?php if(count($errors) > 0): ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -20,12 +20,12 @@ $this->view('includes/nav');
                     </div>
                 <?php endif; ?>
 
-                <input autofocus class="form-control" value="<?=get_var('school', $row[0]->school);?>" type="text" name="school" placeholder="School name">
+                <input autofocus class="form-control" value="<?=get_var('class', $row[0]->class);?>" type="text" name="class" placeholder="Class name">
                 <br>
 
                 <input class="btn btn-primary float-end" type="submit" value="Save">
 
-                <a href="<?=ROOT;?>/schools">
+                <a href="<?=ROOT;?>/classes">
                     <input class="btn btn-secondary text-white" type="button" value="Cancel">
                 </a>
             </form>
