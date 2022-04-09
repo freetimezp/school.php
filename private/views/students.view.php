@@ -3,6 +3,7 @@ $this->view('includes/header');
 $this->view('includes/nav');
 ?>
 <div class="container-fluid p-4 profile mx-auto shadow">
+    <h4>Students room</h4>
     <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
 
     <nav class="navbar navbar-light bg-light">
