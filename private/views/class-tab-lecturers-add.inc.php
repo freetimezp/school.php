@@ -3,6 +3,9 @@
     <input class="form-control" type="text" name="name" placeholder="Lecturer name">
     <hr>
     <button class="btn btn-primary">Search</button>
+    <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=lecturers"">
+        <button type="button" class="btn btn-danger">Cancel</button>
+    </a>
 </form>
 
 <div class="container-fluid">
