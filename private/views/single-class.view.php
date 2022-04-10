@@ -40,22 +40,22 @@ $this->view('includes/nav');
             <?php
                 switch($page_tab) {
                     case 'lecturers':
-                        $this->view('class-tab-lecturers', ['row' => $row]);
+                        include(views_path('class-tab-lecturers'));
                         break;
                     case 'students':
-                        $this->view('class-tab-students');
+                        include(views_path('class-tab-students'));
                         break;
                     case 'tests':
-                        $this->view('class-tab-tests');
+                        include(views_path('class-tab-tests'));
                         break;
-                    case 'lecturers-add':
-                        $this->view('class-tab-lecturers-add');
+                    case 'lecturer-add':
+                        include(views_path('class-tab-lecturers-add'));
                         break;
-                    case 'students-add':
-                        $this->view('class-tab-students-add');
+                    case 'student-add':
+                        include(views_path('class-tab-students-add'));
                         break;
-                    case 'tests-add':
-                        $this->view('class-tab-tests-add');
+                    case 'test-add':
+                        include(views_path('class-tab-tests-add'));
                         break;
                     default:
                         break;

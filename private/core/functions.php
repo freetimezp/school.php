@@ -47,3 +47,11 @@ function get_image($image, $gender = 'male') {
     return $image;
 }
 
+function views_path($view) {
+    if(file_exists('../private/views/' . $view . '.inc.php')) {
+        return ('../private/views/' . $view . '.inc.php');
+    }else{
+        return ('../private/views/404.view.php');
+    }
+}
+
