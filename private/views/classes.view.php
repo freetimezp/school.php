@@ -11,7 +11,7 @@ $this->view('includes/nav');
                 <th></th><th>Class name</th><th>Created by</th><th>Date</th>
                 <th>
                     <a href="<?=ROOT;?>/classes/add">
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></u>Add new</button>
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
                     </a>
                 </th>
             </tr>

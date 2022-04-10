@@ -29,10 +29,10 @@ $this->view('includes/nav');
                         <th>Gender:</th><td><?=esc($row->gender);?></td>
                     </tr>
                     <tr>
-                        <th>Gender:</th><td><?=esc($row->email);?></td>
+                        <th>Email:</th><td><?=esc($row->email);?></td>
                     </tr>
                     <tr>
-                        <th>Gender:</th><td><?=ucfirst(str_replace("_", " ", $row->rank));?></td>
+                        <th>Rank:</th><td><?=ucfirst(str_replace("_", " ", $row->rank));?></td>
                     </tr>
                     <tr>
                         <th>Date Created:</th><td><?=get_date($row->date);?></td>

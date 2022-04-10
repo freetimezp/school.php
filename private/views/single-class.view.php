@@ -37,16 +37,30 @@ $this->view('includes/nav');
                 </li>
             </ul>
 
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i>&nbsp;</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
-                    </div>
-                </form>
-            </nav>
+            <?php
+                switch($page_tab) {
+                    case 'lecturers':
+                        $this->view('class-tab-lecturers', ['row' => $row]);
+                        break;
+                    case 'students':
+                        $this->view('class-tab-students');
+                        break;
+                    case 'tests':
+                        $this->view('class-tab-tests');
+                        break;
+                    case 'lecturers-add':
+                        $this->view('class-tab-lecturers-add');
+                        break;
+                    case 'students-add':
+                        $this->view('class-tab-students-add');
+                        break;
+                    case 'tests-add':
+                        $this->view('class-tab-tests-add');
+                        break;
+                    default:
+                        break;
+                }
+            ?>
 
         <?php else: ?>
             <h4>That class was not found!</h4>

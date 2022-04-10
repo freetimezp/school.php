@@ -14,8 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/private/views/class-tab-lecturers-add.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/class-tab-lecturers.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/class-tab-students.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/class-tab-tests.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/classes.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/classes.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/profile.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/schools.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/schools.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/single-class.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/single-class.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/students.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/students.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/users.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/users.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +92,7 @@
       <workItem from="1649337134362" duration="7138000" />
       <workItem from="1649423755520" duration="10068000" />
       <workItem from="1649502959639" duration="10181000" />
-      <workItem from="1649589455510" duration="1146000" />
+      <workItem from="1649589455510" duration="4166000" />
     </task>
     <servers />
   </component>
@@ -175,10 +184,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649524842653" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1649525180689">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1649602460401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649525180689" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649602460401" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1648922607708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -187,10 +196,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648921125820" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1649351912880">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1649602109033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649351912880" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649602109033" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1649089512771">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -17,7 +17,7 @@ $this->view('includes/nav');
         </form>
 
         <a href="<?=ROOT;?>/signup?mode=students">
-            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></u>Add new</button>
+            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
         </a>
     </nav>
 
