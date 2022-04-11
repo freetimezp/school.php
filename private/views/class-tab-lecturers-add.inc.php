@@ -9,25 +9,19 @@
     <hr>
 </form>
 
-<div class="container-fluid">
-    <?php if(isset($results) && $results): ?>
-        <table class="table table-striped table-hover">
-            <tr><th>Name</th><th>Rank</th><th>Action</th></tr>
-
+<div class="card-group justify-content-center">
+    <form method="post">
+        <?php if(isset($results) && $results): ?>
             <?php foreach ($results as $row): ?>
-                <tr>
-                    <td><?=$row->firstname;?> <?=$row->lastname;?></td>
-                    <td><?=$row->rank;?></td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">Add</button>
-                    </td>
-                </tr>
+
+                <?php include(views_path('user'));?>
+
             <?php endforeach; ?>
-        </table>
-    <?php else: ?>
-        <?php if(count($_POST) > 0): ?>
-            <hr>
-            <h4>No lecturers were found</h4>
+        <?php else: ?>
+            <?php if(count($_POST) > 0): ?>
+                <hr>
+                <h4>No lecturers were found</h4>
+            <?php endif; ?>
         <?php endif; ?>
-    <?php endif; ?>
+    </form>
 </div>

@@ -7,6 +7,13 @@ $image = get_image($row->image, $row->gender);
     <div class="card-body">
         <h5 class="card-title"><?=$row->firstname;?> <?=$row->lastname;?></h5>
         <p class="card-text">Rank: <?=str_replace("_", " ", $row->rank);?> </p>
-        <a href="<?=ROOT;?>/profile/<?=$row->user_id;?>" class="btn btn-primary">Profile</a>
+
+        <div class="card-group justify-content-between">
+            <a href="<?=ROOT;?>/profile/<?=$row->user_id;?>" class="btn btn-primary">Profile</a>
+
+            <?php if(isset($_GET['select'])): ?>
+                <button name="selected" value="<?=$row->user_id;?>" class="btn btn-success">Select</button>
+            <?php endif; ?>
+        </div>
     </div>
 </div>

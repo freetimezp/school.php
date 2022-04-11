@@ -20,13 +20,23 @@ class Single_class extends Controller
         $results = false;
 
         if($page_tab == 'lecturer-add' && count($_POST) > 0) {
-            $user = new User();
-            $name = "%" . $_POST['name'] . "%";
-            $query = "SELECT * FROM users WHERE (firstname LIKE :fname OR lastname LIKE :lname) AND rank = 'lecturer' LIMIT 10 ";
-            $results = $user->query("$query", [
-                'fname' => $name,
-                'lname' => $name
-            ]);
+            if(isset($_POST['search'])) {
+                //find lecturer
+                $user = new User();
+                $name = "%" . trim($_POST['name']) . "%";
+                $query = "SELECT * FROM users WHERE (firstname LIKE :fname OR lastname LIKE :lname) AND rank = 'lecturer' LIMIT 10 ";
+                $results = $user->query("$query", [
+                    'fname' => $name,
+                    'lname' => $name
+                ]);
+            }else{
+
+            }
+
+            if(isset($_POST['selected'])) {
+                //add lecturer
+
+            }
         }
 
         $this->view('single-class', [
