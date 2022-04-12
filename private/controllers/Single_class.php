@@ -4,6 +4,8 @@ class Single_class extends Controller
 {
     function index($id = '')
     {
+        $errors = array();
+
         if(!Auth::logged_in()) {
             $this->redirect('login');
         }
@@ -20,37 +22,55 @@ class Single_class extends Controller
 
         $page_tab = isset($_GET['tab']) ? $_GET['tab'] : 'lecturers';
 
+        $lect = new Lecturers_model();
         $results = false;
 
         if($page_tab == 'lecturer-add' && count($_POST) > 0) {
             if(isset($_POST['search'])) {
                 //find lecturer
-                $user = new User();
-                $name = "%" . trim($_POST['name']) . "%";
-                $query = "SELECT * FROM users WHERE (firstname LIKE :fname OR lastname LIKE :lname) AND rank = 'lecturer' LIMIT 10 ";
-                $results = $user->query("$query", [
-                    'fname' => $name,
-                    'lname' => $name
-                ]);
+                if(!empty(trim($_POST['name']))) {
+                    $user = new User();
+                    $name = "%" . trim($_POST['name']) . "%";
+                    $query = "SELECT * FROM users WHERE (firstname LIKE :fname OR lastname LIKE :lname) AND rank = 'lecturer' LIMIT 10 ";
+                    $results = $user->query("$query", [
+                        'fname' => $name,
+                        'lname' => $name
+                    ]);
+                }else {
+                    $errors[] = "Please type a name to find!";
+
+                }
             }elseif(isset($_POST['selected'])) {
                 //add lecturer
-                $arr = array();
-                $arr['class_id'] = $id;
-                $arr['disabled'] = 0;
-                $arr['date'] = date("Y-m-d H:i:s");
+                $query = "SELECT id FROM class_lecturers WHERE user_id = :user_id AND class_id = :class_id LIMIT 1";
+                if(!$lect->query($query, [
+                    'user_id' => $_POST['selected'],
+                    'class_id' => $id
+                ])) {
+                    $arr = array();
+                    $arr['user_id'] = $_POST['selected'];
+                    $arr['class_id'] = $id;
+                    $arr['disabled'] = 0;
+                    $arr['date'] = date("Y-m-d H:i:s");
 
-                $lect = new Lecturers_model();
-                $lect->insert($arr);
+                    $lect->insert($arr);
 
-                $this->redirect('single_class/' . $id . '?tab=lecturers');
+                    $this->redirect('single_class/' . $id . '?tab=lecturers');
+                }else{
+                    $errors[] = "This lecturer already belong to this class";
+                }
             }
+        }elseif ($page_tab == 'lecturers') {
+            $lecturers = $lect->where('class_id', $id);
+            $data['lecturers'] = $lecturers;
         }
 
-        $this->view('single-class', [
-            'row' => $row,
-            'page_tab' => $page_tab,
-            'crumbs' => $crumbs,
-            'results' => $results
-        ]);
+        $data['row'] = $row;
+        $data['page_tab'] = $page_tab;
+        $data['crumbs'] = $crumbs;
+        $data['results'] = $results;
+        $data['errors'] = $errors;
+
+        $this->view('single-class', $data);
     }
 }

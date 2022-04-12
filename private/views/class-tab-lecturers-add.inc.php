@@ -1,5 +1,16 @@
 <form method="post">
     <h4>Add lecturer</h4>
+
+    <?php if(count($errors) > 0): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Errors:</strong><br>
+            <?php foreach ($errors as $error): ?>
+                <?=$error . "<br>"; ?>
+            <?php endforeach; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
     <input class="form-control" type="text" value="<?=get_var('name');?>" name="name" placeholder="Lecturer name">
     <hr>
     <button class="btn btn-primary" name="search">Search</button>

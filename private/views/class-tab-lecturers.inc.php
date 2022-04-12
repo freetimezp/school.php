@@ -12,3 +12,12 @@
         <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add lecturer</button>
     </a>
 </nav>
+
+<div class="card-group justify-content-center">
+    <?php if(is_array($lecturers)): ?>
+        <?php foreach ($lecturers as $lecturer): ?>
+            <?php $row = $lecturer->user; ?>
+            <?php include (views_path('user')); ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
