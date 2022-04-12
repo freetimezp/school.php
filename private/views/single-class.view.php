@@ -51,6 +51,9 @@ $this->view('includes/nav');
                     case 'lecturer-add':
                         include(views_path('class-tab-lecturers-add'));
                         break;
+                    case 'lecturer-remove':
+                        include(views_path('class-tab-lecturers-remove'));
+                        break;
                     case 'student-add':
                         include(views_path('class-tab-students-add'));
                         break;

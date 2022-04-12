@@ -8,9 +8,14 @@
         </div>
     </form>
 
-    <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=lecturer-add&select=true">
-        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add lecturer</button>
-    </a>
+    <div>
+        <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=lecturer-add&select=true">
+            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
+        </a>
+        <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=lecturer-remove&select=true">
+            <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i>Remove</button>
+        </a>
+    </div>
 </nav>
 
 <div class="card-group justify-content-center">
@@ -19,5 +24,7 @@
             <?php $row = $lecturer->user; ?>
             <?php include (views_path('user')); ?>
         <?php endforeach; ?>
+    <?php else: ?>
+        <h5>No lectures are selected to this class.</h5>
     <?php endif; ?>
 </div>

@@ -25,7 +25,7 @@ class Single_class extends Controller
         $lect = new Lecturers_model();
         $results = false;
 
-        if($page_tab == 'lecturer-add' && count($_POST) > 0) {
+        if(($page_tab == 'lecturer-add' || $page_tab == 'lecturer-remove')  && count($_POST) > 0) {
             if(isset($_POST['search'])) {
                 //find lecturer
                 if(!empty(trim($_POST['name']))) {
@@ -42,26 +42,45 @@ class Single_class extends Controller
                 }
             }elseif(isset($_POST['selected'])) {
                 //add lecturer
-                $query = "SELECT id FROM class_lecturers WHERE user_id = :user_id AND class_id = :class_id LIMIT 1";
-                if(!$lect->query($query, [
-                    'user_id' => $_POST['selected'],
-                    'class_id' => $id
-                ])) {
-                    $arr = array();
-                    $arr['user_id'] = $_POST['selected'];
-                    $arr['class_id'] = $id;
-                    $arr['disabled'] = 0;
-                    $arr['date'] = date("Y-m-d H:i:s");
+                $query = "SELECT id FROM class_lecturers WHERE user_id = :user_id AND class_id = :class_id AND disabled = 0 LIMIT 1";
 
-                    $lect->insert($arr);
+                if($page_tab == 'lecturer-add') {
+                    if(!$lect->query($query, [
+                        'user_id' => $_POST['selected'],
+                        'class_id' => $id
+                    ])) {
+                        $arr = array();
+                        $arr['user_id'] = $_POST['selected'];
+                        $arr['class_id'] = $id;
+                        $arr['disabled'] = 0;
+                        $arr['date'] = date("Y-m-d H:i:s");
 
-                    $this->redirect('single_class/' . $id . '?tab=lecturers');
-                }else{
-                    $errors[] = "This lecturer already belong to this class";
+                        $lect->insert($arr);
+
+                        $this->redirect('single_class/' . $id . '?tab=lecturers');
+                    }else{
+                        $errors[] = "This lecturer already belong to this class";
+                    }
+                }elseif($page_tab == 'lecturer-remove') {
+                    if($row = $lect->query($query, [
+                        'user_id' => $_POST['selected'],
+                        'class_id' => $id
+                    ])) {
+                        $arr = array();
+                        $arr['disabled'] = 1;
+
+                        $lect->update($row[0]->id, $arr);
+
+                        $this->redirect('single_class/' . $id . '?tab=lecturers');
+                    }else{
+                        $errors[] = "That lecturer was not found in this class!";
+                    }
                 }
+
             }
         }elseif ($page_tab == 'lecturers') {
-            $lecturers = $lect->where('class_id', $id);
+            $query = "SELECT * FROM class_lecturers WHERE class_id = :class_id AND disabled = 0";
+            $lecturers = $lect->query($query, ['class_id' => $id]);
             $data['lecturers'] = $lecturers;
         }
 
