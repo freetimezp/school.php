@@ -4,8 +4,11 @@ class Single_class extends Controller
 {
     function index($id = '')
     {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $classes = new Classes_model();
-        $user = new User();
 
         $row = $classes->first('class_id', $id);
 
@@ -29,13 +32,17 @@ class Single_class extends Controller
                     'fname' => $name,
                     'lname' => $name
                 ]);
-            }else{
-
-            }
-
-            if(isset($_POST['selected'])) {
+            }elseif(isset($_POST['selected'])) {
                 //add lecturer
+                $arr = array();
+                $arr['class_id'] = $id;
+                $arr['disabled'] = 0;
+                $arr['date'] = date("Y-m-d H:i:s");
 
+                $lect = new Lecturers_model();
+                $lect->insert($arr);
+
+                $this->redirect('single_class/' . $id . '?tab=lecturers');
             }
         }
 
