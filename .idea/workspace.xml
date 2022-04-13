@@ -14,13 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/views/class-tab-lecturers-remove.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Single_class.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Single_class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/models/Lecturers_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/models/Lecturers_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/class-tab-lecturers.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/class-tab-lecturers.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/single-class.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/single-class.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +87,7 @@
       <workItem from="1649589455510" duration="9103000" />
       <workItem from="1649691180078" duration="10140000" />
       <workItem from="1649772809654" duration="11344000" />
+      <workItem from="1649869519297" duration="2825000" />
     </task>
     <servers />
   </component>
