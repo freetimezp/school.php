@@ -8,7 +8,24 @@
         </div>
     </form>
 
-    <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=student-add">
-        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add student</button>
-    </a>
+    <div>
+        <a href="<?=ROOT;?>/single_class/studentadd/<?=$row->class_id;?>?select=true">
+            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
+        </a>
+        <a href="<?=ROOT;?>/single_class/studentremove/<?=$row->class_id;?>?select=true">
+            <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i>Remove</button>
+        </a>
+    </div>
 </nav>
+
+<div class="card-group justify-content-center">
+    <?php if(is_array($students)): ?>
+        <?php foreach ($students as $student): ?>
+            <?php $row = $student->user; ?>
+            <?php include (views_path('user')); ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <h5>No students are selected to this class.</h5>
+    <?php endif; ?>
+</div>
+
