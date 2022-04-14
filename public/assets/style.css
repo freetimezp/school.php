@@ -29,3 +29,31 @@ img.profile-photo {
 .fa {
     margin-right: 4px;
 }
+
+.home-page {
+    max-width: 1000px;
+}
+
+.home-page h1 {
+    font-size: 80px;
+    color: #0a53be;
+}
+
+.home-page .card-header {
+    font-weight: 700;
+}
+
+.home-page .dash-main-link {
+    text-decoration: none;
+    color: #06357a;
+    text-align: center;
+}
+
+.home-page .dash-main-item {
+    box-shadow: 7px 3px 1px #dfe8f5;
+    transition: all 0.5s ease;
+}
+
+.home-page .dash-main-item:hover {
+    box-shadow: 7px 3px 1px #95bbf6;
+}
