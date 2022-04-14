@@ -283,7 +283,6 @@ class Single_class extends Controller
                     ]);
                 }else {
                     $errors[] = "Please type a name to find!";
-
                 }
             }elseif(isset($_POST['selected'])) {
                 //remove lecturer

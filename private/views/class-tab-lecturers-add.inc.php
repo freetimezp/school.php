@@ -20,8 +20,8 @@
     <hr>
 </form>
 
-<div class="card-group justify-content-center">
-    <form method="post">
+<form method="post">
+    <div class="card-group justify-content-center">
         <?php if(isset($results) && $results): ?>
             <?php foreach ($results as $row): ?>
 
@@ -34,5 +34,5 @@
                 <h4>No lecturers were found</h4>
             <?php endif; ?>
         <?php endif; ?>
-    </form>
-</div>
+    </div>
+</form>

@@ -1,5 +1,5 @@
 <form method="post">
-    <h4>Add student</h4>
+    <h4>Remove student</h4>
 
     <?php if(count($errors) > 0): ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -14,7 +14,7 @@
     <input class="form-control" type="text" value="<?=get_var('name');?>" name="name" placeholder="Student name">
     <hr>
     <button class="btn btn-primary" name="search">Search</button>
-    <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=students"">
+    <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=students">
         <button type="button" class="btn btn-danger">Cancel</button>
     </a>
     <hr>

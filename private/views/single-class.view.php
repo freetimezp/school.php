@@ -42,20 +42,23 @@ $this->view('includes/nav');
                     case 'lecturers':
                         include(views_path('class-tab-lecturers'));
                         break;
-                    case 'students':
-                        include(views_path('class-tab-students'));
-                        break;
-                    case 'tests':
-                        include(views_path('class-tab-tests'));
-                        break;
                     case 'lecturer-add':
                         include(views_path('class-tab-lecturers-add'));
                         break;
                     case 'lecturer-remove':
                         include(views_path('class-tab-lecturers-remove'));
                         break;
+                    case 'students':
+                        include(views_path('class-tab-students'));
+                        break;
                     case 'student-add':
                         include(views_path('class-tab-students-add'));
+                        break;
+                    case 'student-remove':
+                        include(views_path('class-tab-students-remove'));
+                        break;
+                    case 'tests':
+                        include(views_path('class-tab-tests'));
                         break;
                     case 'test-add':
                         include(views_path('class-tab-tests-add'));
