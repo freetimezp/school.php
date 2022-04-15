@@ -23,12 +23,17 @@ class Profile extends Controller
         //get more information depending on tab
         $data['page_tab'] = isset($_GET['tab']) ? $_GET['tab'] : 'info';
 
-        if($data['page_tab'] == 'classes') {
+        if($data['page_tab'] == 'classes' && $row) {
             $class = new Classes_model();
 
-            $stud = new Students_model();
-            $query = "SELECT * FROM class_students WHERE user_id = :user_id AND disabled = 0";
-            $data['stud_classes'] = $stud->query($query, ['user_id' => $id]);
+            $myTable = "class_students";
+
+            if($row->rank == 'lecturer') {
+                $myTable = "class_lecturers";
+            }
+
+            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0";
+            $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
 
             $data['student_classes'] = array();
 
