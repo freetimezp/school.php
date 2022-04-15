@@ -8,6 +8,8 @@ class Profile extends Controller
             $this->redirect('login');
         }
 
+        $data = array();
+
         $user = new User();
         $id = trim($id == '') ? Auth::getUser_id() : $id;
         $row = $user->first('user_id', $id);
@@ -18,9 +20,11 @@ class Profile extends Controller
             $crumbs[] = [$row->firstname, 'profile'];
         }
 
-        $this->view('profile', [
-            'row' => $row,
-            'crumbs' => $crumbs
-        ]);
+        //get more information depending on tab
+        $data['page_tab'] = isset($_GET['tab']) ? $_GET['tab'] : 'info';
+        $data['row'] = $row;
+        $data['crumbs'] = $crumbs;
+
+        $this->view('profile', $data);
     }
 }

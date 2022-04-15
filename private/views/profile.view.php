@@ -44,26 +44,32 @@ $this->view('includes/nav');
         <div class="container-fluid">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Basic Info</a>
+                    <a class="nav-link <?=$page_tab=='info'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=info">Basic Info</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Classes</a>
+                    <a class="nav-link <?=$page_tab=='classes'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=classes">Classes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tests</a>
+                    <a class="nav-link <?=$page_tab=='tests'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=tests">Tests</a>
                 </li>
             </ul>
 
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i>&nbsp;</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
-                    </div>
-                </form>
-            </nav>
+            <?php
+                switch ($page_tab) {
+                    case 'info':
+                        include(views_path('profile-tab-info'));
+                        break;
+                    case 'classes':
+                        include(views_path('profile-tab-classes'));
+                        break;
+                    case 'tests':
+                        include(views_path('profile-tab-tests'));
+                        break;
+                    default:
+                        break;
+                }
+            ?>
+
         </div>
     <?php else: ?>
         <h4>That profile was not found!</h4>

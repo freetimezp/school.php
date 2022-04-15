@@ -12,7 +12,9 @@ class Classes extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Classes', 'classes'];
 
-        $data = $classes->findAll();
+        $school_id = Auth::getSchool_id();
+        $data = $classes->query("SELECT * FROM classes WHERE school_id = :school_id ORDER BY id DESC", ['school_id' => $school_id]);
+
         $this->view('classes', [
             'rows' => $data,
             'crumbs' => $crumbs
