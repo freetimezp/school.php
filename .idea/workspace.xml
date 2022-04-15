@@ -14,13 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/views/profile-tab-classes.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/views/profile-tab-info.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/views/profile-tab-tests.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/classes.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/controllers/Classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Classes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/profile.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/profile.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/classes.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/classes.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/profile-tab-classes.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/profile-tab-classes.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,7 @@
       <workItem from="1649772809654" duration="11344000" />
       <workItem from="1649869519297" duration="5156000" />
       <workItem from="1649948197645" duration="7265000" />
-      <workItem from="1650024957005" duration="4867000" />
+      <workItem from="1650024957005" duration="7640000" />
     </task>
     <servers />
   </component>
@@ -181,14 +179,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1649793536263" />
-    <state x="712" y="243" key="NewPhpClassDialog" timestamp="1649702563184">
+    <state x="712" y="243" key="NewPhpClassDialog" timestamp="1650038003653">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649702563184" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1650032837984">
+    <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1650038003653" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1650038013575">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1650032837983" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1650038013575" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1648922607708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
