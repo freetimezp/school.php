@@ -4,7 +4,12 @@ class Profile extends Controller
 {
     function index($id = '')
     {
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
         $user = new User();
+        $id = trim($id == '') ? Auth::getUser_id() : $id;
         $row = $user->first('user_id', $id);
 
         $crumbs[] = ['Dashboard', ''];

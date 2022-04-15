@@ -15,8 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/controllers/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/core/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/App.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/home.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/includes/nav.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/includes/nav.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +92,7 @@
       <workItem from="1649772809654" duration="11344000" />
       <workItem from="1649869519297" duration="5156000" />
       <workItem from="1649948197645" duration="7265000" />
+      <workItem from="1650024957005" duration="1752000" />
     </task>
     <servers />
   </component>

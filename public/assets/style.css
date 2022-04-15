@@ -50,10 +50,11 @@ img.profile-photo {
 }
 
 .home-page .dash-main-item {
-    box-shadow: 7px 3px 1px #dfe8f5;
+    box-shadow: 7px 4px 1px #dfe8f5;
     transition: all 0.5s ease;
+    min-width: 250px;
 }
 
 .home-page .dash-main-item:hover {
-    box-shadow: 7px 3px 1px #95bbf6;
+    box-shadow: 7px 4px 1px #95bbf6;
 }
