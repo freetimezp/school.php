@@ -19,12 +19,14 @@
                     </td>
                     <td><?=$row->class;?></td><td><?=$row->user->firstname . ' ' . $row->user->lastname;?></td><td><?=get_date($row->date);?></td>
                     <td>
-                        <a href="<?=ROOT;?>/classes/edit/<?=$row->id;?>">
-                            <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
-                        </a>
-                        <a href="<?=ROOT;?>/classes/delete/<?=$row->id;?>">
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
-                        </a>
+                        <?php if(Auth::access('lecturer')): ?>
+                            <a href="<?=ROOT;?>/classes/edit/<?=$row->id;?>">
+                                <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
+                            </a>
+                            <a href="<?=ROOT;?>/classes/delete/<?=$row->id;?>">
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                            </a>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -60,7 +60,7 @@ class Classes extends Controller
 
         $classes = new Classes_model();
 
-        if(count($_POST) > 0) {
+        if(count($_POST) > 0 && Auth::access('lecturer')) {
             if($classes->validate($_POST)) {
                 $classes->update($id, $_POST);
                 $this->redirect('classes');
@@ -75,11 +75,15 @@ class Classes extends Controller
         $crumbs[] = ['Classes', 'classes'];
         $crumbs[] = ['Edit', 'classes/edit'];
 
-        $this->view('classes.edit', [
-            'row' => $row,
-            'errors' => $errors,
-            'crumbs' => $crumbs
-        ]);
+        if(Auth::access('lecturer')) {
+            $this->view('classes.edit', [
+                'row' => $row,
+                'errors' => $errors,
+                'crumbs' => $crumbs
+            ]);
+        }else{
+            $this->view('access-denied');
+        }
     }
 
     public function delete($id = null) {
@@ -91,7 +95,7 @@ class Classes extends Controller
 
         $classes = new Classes_model();
 
-        if(count($_POST) > 0) {
+        if(count($_POST) > 0 && Auth::access('lecturer')) {
             $classes->delete($id);
             $this->redirect('classes');
         }
@@ -102,10 +106,13 @@ class Classes extends Controller
         $crumbs[] = ['Classes', 'classes'];
         $crumbs[] = ['Delete', 'classes/delete'];
 
-        $this->view('classes.delete', [
-            'row' => $row,
-            'crumbs' => $crumbs
-        ]);
+        if(Auth::access('lecturer')) {
+            $this->view('classes.delete', [
+                'row' => $row,
+                'crumbs' => $crumbs
+            ]);
+        }else{
+            $this->view('access-denied');
+        }
     }
-
 }
