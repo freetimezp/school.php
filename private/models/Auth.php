@@ -84,4 +84,27 @@ class Auth
 
         return false;
     }
+
+    public static function i_own_content($row = false) {
+        if(!isset($_SESSION['USER'])) {
+            return false;
+        }
+
+        if(isset($row->user_id)) {
+            if($_SESSION['USER']->user_id == $row->user_id) {
+
+
+                return true;
+            }
+        }
+
+        $allowed[] = 'admin';
+        $allowed[] = 'super_admin';
+
+        if(in_array($_SESSION['USER']->rank, $allowed)) {
+            return true;
+        }
+
+        return false;
+    }
 }

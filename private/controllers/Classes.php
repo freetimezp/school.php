@@ -59,8 +59,9 @@ class Classes extends Controller
         $errors = array();
 
         $classes = new Classes_model();
+        $row = $classes->where('id', $id);
 
-        if(count($_POST) > 0 && Auth::access('lecturer')) {
+        if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row)) {
             if($classes->validate($_POST)) {
                 $classes->update($id, $_POST);
                 $this->redirect('classes');
@@ -69,13 +70,11 @@ class Classes extends Controller
             }
         }
 
-        $row = $classes->where('id', $id);
-
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Classes', 'classes'];
         $crumbs[] = ['Edit', 'classes/edit'];
 
-        if(Auth::access('lecturer')) {
+        if(Auth::access('lecturer') && Auth::i_own_content($row)) {
             $this->view('classes.edit', [
                 'row' => $row,
                 'errors' => $errors,
@@ -95,18 +94,18 @@ class Classes extends Controller
 
         $classes = new Classes_model();
 
-        if(count($_POST) > 0 && Auth::access('lecturer')) {
+        $row = $classes->where('id', $id);
+
+        if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row)) {
             $classes->delete($id);
             $this->redirect('classes');
         }
-
-        $row = $classes->where('id', $id);
 
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Classes', 'classes'];
         $crumbs[] = ['Delete', 'classes/delete'];
 
-        if(Auth::access('lecturer')) {
+        if(Auth::access('lecturer') && Auth::i_own_content($row)) {
             $this->view('classes.delete', [
                 'row' => $row,
                 'crumbs' => $crumbs

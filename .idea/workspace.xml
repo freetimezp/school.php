@@ -14,11 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/views/access-denied.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Classes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/models/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/models/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/classes.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/classes.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
       <workItem from="1649869519297" duration="5156000" />
       <workItem from="1649948197645" duration="7265000" />
       <workItem from="1650024957005" duration="8743000" />
-      <workItem from="1650108639523" duration="3607000" />
+      <workItem from="1650108639523" duration="5978000" />
     </task>
     <servers />
   </component>
@@ -208,5 +206,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649776336663" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/private/models/Auth.php</url>
+          <line>93</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
