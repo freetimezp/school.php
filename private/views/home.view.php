@@ -6,21 +6,25 @@ $this->view('includes/nav');
 <div class="container-fluid p-2 mx-auto shadow home-page">
     <div class="row justify-content-center">
 
-        <div class="dash-main-item col-2 border rounded m-4 p-0">
-            <a href="<?=ROOT;?>/schools" class="dash-main-link">
-                <div class="card-header">SCHOOLS</div>
-                <h1 class="text-center"><i class="fa fa-graduation-cap"></i></h1>
-                <div class="card-footer">View schools</div>
-            </a>
-        </div>
+        <?php if(Auth::access('super_admin')): ?>
+            <div class="dash-main-item col-2 border rounded m-4 p-0">
+                <a href="<?=ROOT;?>/schools" class="dash-main-link">
+                    <div class="card-header">SCHOOLS</div>
+                    <h1 class="text-center"><i class="fa fa-graduation-cap"></i></h1>
+                    <div class="card-footer">View schools</div>
+                </a>
+            </div>
+        <?php endif; ?>
 
-        <div class="dash-main-item col-2 border rounded m-4 p-0">
-            <a href="<?=ROOT;?>/users" class="dash-main-link">
-                <div class="card-header">STAFF</div>
-                <h1 class="text-center"><i class="fa fa-chalkboard-teacher"></i></h1>
-                <div class="card-footer">View members</div>
-            </a>
-        </div>
+        <?php if(Auth::access('admin')): ?>
+            <div class="dash-main-item col-2 border rounded m-4 p-0">
+                <a href="<?=ROOT;?>/users" class="dash-main-link">
+                    <div class="card-header">STAFF</div>
+                    <h1 class="text-center"><i class="fa fa-chalkboard-teacher"></i></h1>
+                    <div class="card-footer">View members</div>
+                </a>
+            </div>
+        <?php endif; ?>
 
         <div class="dash-main-item col-2 border rounded m-4 p-0">
             <a href="<?=ROOT;?>/students" class="dash-main-link">
