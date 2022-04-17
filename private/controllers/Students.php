@@ -14,7 +14,16 @@ class Students extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Students', 'students'];
 
-        $data = $user->query("SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') ORDER BY id DESC", ['school_id' => $school_id]);
+        $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') ORDER BY id DESC";
+        $arr['school_id'] = $school_id;
+
+        if(isset($_GET['find'])) {
+            $find = '%' . $_GET['find'] . '%';
+            $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') AND (firstname LIKE :find OR lastname LIKE :find)  ORDER BY id DESC";
+            $arr['find'] = $find;
+        }
+
+        $data = $user->query($query, $arr);
 
         if(Auth::access('reception')) {
             $this->view('students', [
