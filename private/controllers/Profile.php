@@ -47,6 +47,10 @@ class Profile extends Controller
         $data['row'] = $row;
         $data['crumbs'] = $crumbs;
 
-        $this->view('profile', $data);
+        if(Auth::access('reception') || Auth::i_own_content($row)){
+            $this->view('profile', $data);
+        }else{
+            $this->view('access-denied');
+        }
     }
 }

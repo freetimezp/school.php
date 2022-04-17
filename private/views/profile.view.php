@@ -46,12 +46,15 @@ $this->view('includes/nav');
                 <li class="nav-item">
                     <a class="nav-link <?=$page_tab=='info'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=info">Basic Info</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?=$page_tab=='classes'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=classes">Classes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?=$page_tab=='tests'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=tests">Tests</a>
-                </li>
+
+                <?php if(Auth::access('lecturer') || Auth::i_own_content($row)): ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?=$page_tab=='classes'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=classes">Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?=$page_tab=='tests'?'active':'';?>" href="<?=ROOT;?>/profile/<?=$row->user_id;?>?tab=tests">Tests</a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <?php
@@ -60,10 +63,18 @@ $this->view('includes/nav');
                         include(views_path('profile-tab-info'));
                         break;
                     case 'classes':
-                        include(views_path('profile-tab-classes'));
+                        if(Auth::access('lecturer') || Auth::i_own_content($row)) {
+                            include(views_path('profile-tab-classes'));
+                        }else{
+                            include(views_path('access-denied'));
+                        }
                         break;
                     case 'tests':
-                        include(views_path('profile-tab-tests'));
+                        if(Auth::access('lecturer') || Auth::i_own_content($row)) {
+                            include(views_path('profile-tab-tests'));
+                        }else{
+                            include(views_path('access-denied'));
+                        }
                         break;
                     default:
                         break;
