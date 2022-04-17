@@ -26,13 +26,16 @@ $this->view('includes/nav');
             </div>
         <?php endif; ?>
 
-        <div class="dash-main-item col-2 border rounded m-4 p-0">
-            <a href="<?=ROOT;?>/students" class="dash-main-link">
-                <div class="card-header">STUDENTS</div>
-                <h1 class="text-center"><i class="fa fa-user-graduate"></i></h1>
-                <div class="card-footer">View students</div>
-            </a>
-        </div>
+        <?php if(Auth::access('reception')): ?>
+            <div class="dash-main-item col-2 border rounded m-4 p-0">
+                <a href="<?=ROOT;?>/students" class="dash-main-link">
+                    <div class="card-header">STUDENTS</div>
+                    <h1 class="text-center"><i class="fa fa-user-graduate"></i></h1>
+                    <div class="card-footer">View students</div>
+                </a>
+            </div>
+        <?php endif; ?>
+
 
         <div class="dash-main-item col-2 border rounded m-4 p-0">
             <a href="<?=ROOT;?>/classes" class="dash-main-link">
@@ -50,21 +53,26 @@ $this->view('includes/nav');
             </a>
         </div>
 
-        <div class="dash-main-item col-2 border rounded m-4 p-0">
-            <a href="<?=ROOT;?>/statistics" class="dash-main-link">
-                <div class="card-header">STATISTICS</div>
-                <h1 class="text-center"><i class="fa fa-chart-pie"></i></h1>
-                <div class="card-footer">View statistics</div>
-            </a>
-        </div>
+        <?php if(Auth::access('admin')): ?>
+            <div class="dash-main-item col-2 border rounded m-4 p-0">
+                <a href="<?=ROOT;?>/statistics" class="dash-main-link">
+                    <div class="card-header">STATISTICS</div>
+                    <h1 class="text-center"><i class="fa fa-chart-pie"></i></h1>
+                    <div class="card-footer">View statistics</div>
+                </a>
+            </div>
+        <?php endif; ?>
 
-        <div class="dash-main-item col-2 border rounded m-4 p-0">
-            <a href="<?=ROOT;?>/settings" class="dash-main-link">
-                <div class="card-header">SETTINGS</div>
-                <h1 class="text-center"><i class="fa fa-cogs"></i></h1>
-                <div class="card-footer">View settings</div>
-            </a>
-        </div>
+
+        <?php if(Auth::access('admin')): ?>
+            <div class="dash-main-item col-2 border rounded m-4 p-0">
+                <a href="<?=ROOT;?>/settings" class="dash-main-link">
+                    <div class="card-header">SETTINGS</div>
+                    <h1 class="text-center"><i class="fa fa-cogs"></i></h1>
+                    <div class="card-footer">View settings</div>
+                </a>
+            </div>
+        <?php endif; ?>
 
         <div class="dash-main-item col-2 border rounded m-4 p-0">
             <a href="<?=ROOT;?>/logout" class="dash-main-link">

@@ -24,9 +24,12 @@
                 </li>
             <?php endif; ?>
 
-            <li class="nav-item">
-                <a class="nav-link" href="<?=ROOT?>/students">STUDENTS</a>
-            </li>
+            <?php if(Auth::access('reception')): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=ROOT?>/students">STUDENTS</a>
+                </li>
+            <?php endif; ?>
+
             <li class="nav-item">
                 <a class="nav-link" href="<?=ROOT?>/classes">CLASSES</a>
             </li>

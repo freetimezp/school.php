@@ -13,7 +13,28 @@ class Classes extends Controller
         $crumbs[] = ['Classes', 'classes'];
 
         $school_id = Auth::getSchool_id();
-        $data = $classes->query("SELECT * FROM classes WHERE school_id = :school_id ORDER BY id DESC", ['school_id' => $school_id]);
+
+        if(Auth::access('admin')) {
+            $data = $classes->query("SELECT * FROM classes WHERE school_id = :school_id ORDER BY id DESC", ['school_id' => $school_id]);
+        }else{
+            $class = new Classes_model();
+            $myTable = "class_students";
+
+            if(Auth::getRank() == 'lecturer') {
+                $myTable = "class_lecturers";
+            }
+
+            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0";
+            $arr['stud_classes'] = $class->query($query, ['user_id' => Auth::getUser_id()]);
+
+            $data = array();
+
+            if($arr['stud_classes']) {
+                foreach ($arr['stud_classes'] as $key => $arow) {
+                    $data[] = $class->first('class_id', $arow->class_id);
+                }
+            }
+        }
 
         $this->view('classes', [
             'rows' => $data,

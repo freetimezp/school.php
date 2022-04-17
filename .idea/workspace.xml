@@ -15,13 +15,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/controllers/Schools.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Schools.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/controllers/Classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Classes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Signup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/controllers/Switch_school.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Switch_school.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/controllers/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/controllers/Students.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Students.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/classes.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/classes.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/home.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/includes/nav.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/includes/nav.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/users.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/users.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +95,7 @@
       <workItem from="1649948197645" duration="7265000" />
       <workItem from="1650024957005" duration="8743000" />
       <workItem from="1650108639523" duration="9425000" />
+      <workItem from="1650199414823" duration="2592000" />
     </task>
     <servers />
   </component>
