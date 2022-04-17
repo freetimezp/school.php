@@ -3,11 +3,7 @@
         <tr>
             <th></th><th>Class name</th><th>Created by</th><th>Date</th>
             <th>
-                <?php if(Auth::access('lecturer')): ?>
-                    <a href="<?=ROOT;?>/classes/add">
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
-                    </a>
-                <?php endif; ?>
+
             </th>
         </tr>
 

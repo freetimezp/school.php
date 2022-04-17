@@ -15,7 +15,16 @@ class Classes extends Controller
         $school_id = Auth::getSchool_id();
 
         if(Auth::access('admin')) {
-            $data = $classes->query("SELECT * FROM classes WHERE school_id = :school_id ORDER BY id DESC", ['school_id' => $school_id]);
+            $arr['school_id'] = $school_id;
+            $query = "SELECT * FROM classes WHERE school_id = :school_id ORDER BY id DESC";
+
+            if(isset($_GET['find'])) {
+                $find = '%' . $_GET['find'] . '%';
+                $query = "SELECT * FROM classes WHERE school_id = :school_id AND class LIKE :find ORDER BY id DESC";
+                $arr['find'] = $find;
+            }
+
+            $data = $classes->query($query, $arr);
         }else{
             $class = new Classes_model();
             $myTable = "class_students";
