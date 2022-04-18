@@ -14,12 +14,17 @@ class Students extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Students', 'students'];
 
-        $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') ORDER BY id DESC";
+        $limit = 1;
+        $page_number = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $page_number = $page_number < 1 ? 1 : $page_number;
+        $offset = ($page_number - 1) * $limit;
+
+        $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') ORDER BY id DESC LIMIT $limit OFFSET $offset";
         $arr['school_id'] = $school_id;
 
         if(isset($_GET['find'])) {
             $find = '%' . $_GET['find'] . '%';
-            $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') AND (firstname LIKE :find OR lastname LIKE :find)  ORDER BY id DESC";
+            $query = "SELECT * FROM users WHERE school_id = :school_id AND rank IN ('student') AND (firstname LIKE :find OR lastname LIKE :find)  ORDER BY id DESC LIMIT $limit OFFSET $offset";
             $arr['find'] = $find;
         }
 
