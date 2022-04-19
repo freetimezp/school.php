@@ -21,7 +21,7 @@ $this->view('includes/nav');
         </a>
     </nav>
 
-    <hr>
+    <hr class="clearfix">
 
     <div class="card-group justify-content-center">
         <?php if($rows): ?>
@@ -35,15 +35,10 @@ $this->view('includes/nav');
         <?php endif; ?>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <hr class="clearfix">
+
+    <?php $pager->display(); ?>
+
 </div>
 
 <?php

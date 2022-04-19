@@ -21,7 +21,7 @@ $this->view('includes/nav');
             </a>
         </nav>
 
-        <hr>
+        <hr class="clearfix">
 
         <div class="card-group justify-content-center">
             <?php if($rows): ?>
@@ -36,6 +36,11 @@ $this->view('includes/nav');
                 </div>
             <?php endif; ?>
         </div>
+
+        <hr class="clearfix">
+
+        <?php $pager->display(); ?>
+
     </div>
 
 <?php
