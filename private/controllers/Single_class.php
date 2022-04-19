@@ -20,17 +20,21 @@ class Single_class extends Controller
             $crumbs[] = [$row->class, ''];
         }
 
+        $limit = 3;
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
         $page_tab = isset($_GET['tab']) ? $_GET['tab'] : 'lecturers';
 
         $lect = new Lecturers_model();
         $results = false;
 
         if ($page_tab == 'lecturers') {
-            $query = "SELECT * FROM class_lecturers WHERE class_id = :class_id AND disabled = 0 ORDER BY id DESC";
+            $query = "SELECT * FROM class_lecturers WHERE class_id = :class_id AND disabled = 0 ORDER BY id DESC LIMIT $limit OFFSET $offset";
             $lecturers = $lect->query($query, ['class_id' => $id]);
             $data['lecturers'] = $lecturers;
         }elseif ($page_tab == 'students') {
-            $query = "SELECT * FROM class_students WHERE class_id = :class_id AND disabled = 0 ORDER BY id DESC";
+            $query = "SELECT * FROM class_students WHERE class_id = :class_id AND disabled = 0 ORDER BY id DESC LIMIT $limit OFFSET $offset";
             $students = $lect->query($query, ['class_id' => $id]);
             $data['students'] = $students;
         }
@@ -40,6 +44,7 @@ class Single_class extends Controller
         $data['crumbs'] = $crumbs;
         $data['results'] = $results;
         $data['errors'] = $errors;
+        $data['pager'] = $pager;
 
         $this->view('single-class', $data);
     }

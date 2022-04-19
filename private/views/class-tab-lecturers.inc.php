@@ -18,6 +18,8 @@
     </div>
 </nav>
 
+<hr class="clearfix">
+
 <div class="card-group justify-content-center">
     <?php if(is_array($lecturers)): ?>
         <?php foreach ($lecturers as $lecturer): ?>
@@ -27,4 +29,10 @@
     <?php else: ?>
         <h5>No lectures are selected to this class.</h5>
     <?php endif; ?>
+</div>
+
+<hr class="clearfix">
+
+<div>
+    <?=$pager->display();?>
 </div>

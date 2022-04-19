@@ -16,6 +16,8 @@
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Single_class.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Single_class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/class-tab-lecturers.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/class-tab-lecturers.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/class-tab-students.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/class-tab-students.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,7 @@
       <workItem from="1650108639523" duration="9425000" />
       <workItem from="1650199414823" duration="7910000" />
       <workItem from="1650290789248" duration="4891000" />
-      <workItem from="1650376041436" duration="9436000" />
+      <workItem from="1650376041436" duration="10293000" />
     </task>
     <servers />
   </component>
