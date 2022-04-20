@@ -15,6 +15,19 @@ $this->view('includes/nav');
             <div class="col-sm-4 col-md-3">
                 <img class="profile-photo rounded-circle d-block mx-auto" src="<?=$image;?>" alt="user photo">
                 <h3 class="text-center"><?=esc($row->firstname);?> <?=esc($row->lastname);?></h3>
+
+                <hr class="clearfix">
+
+                <?php if(Auth::access('reception') || Auth::i_own_content($row)): ?>
+                    <div class="text-center">
+                        <a href="<?=ROOT;?>/profile/edit/<?=$row->user_id;?>">
+                            <button class="btn btn-sm btn-success">Edit</button>
+                        </a>
+                        <a href="<?=ROOT;?>/profile/delete/<?=$row->user_id;?>">
+                            <button class="btn btn-sm btn-warning">Delete</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="col-sm-8 col-md-9 p-2">
