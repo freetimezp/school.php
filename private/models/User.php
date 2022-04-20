@@ -18,7 +18,11 @@ class User extends Model
         'hash_password'
     ];
 
-    public function validate($data) {
+    protected $beforeUpdate = [
+        'hash_password'
+    ];
+
+    public function validate($data, $id = '') {
         $this->errors = array();
 
         if(empty($data['firstname']) || !preg_match('/^[a-zA-Z]+$/', $data['firstname'])) {
@@ -29,12 +33,20 @@ class User extends Model
             $this->errors['lastname'] = "Only letters allowed in last name!";
         }
 
+        //check for email
         if(empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = "Email is not valid!";
         }
 
-        if($this->where('email', $data['email'])) {
-            $this->errors['email'] = "Email is already in use!";
+        //check if email exist
+        if(trim($id) == '') {
+            if($this->where('email', $data['email'])) {
+                $this->errors['email'] = "Email is already in use!";
+            }
+        }else{
+            if($this->query("SELECT email FROM $this->table WHERE email = :email AND user_id != :id", ['email' => $data['email'], 'id' => $id])) {
+                $this->errors['email'] = "Email is already in use!";
+            }
         }
 
         $genders = ['female', 'male'];
@@ -47,12 +59,14 @@ class User extends Model
             $this->errors['rank'] = "Rank is not valid!";
         }
 
-        if(empty($data['password']) || $data['password'] != $data['password2']) {
-            $this->errors['password'] = "The passwords do not match!";
-        }
+        if(isset($data['password'])) {
+            if(empty($data['password']) || $data['password'] !== $data['password2']) {
+                $this->errors['password'] = "The passwords do not match!";
+            }
 
-        if(strlen($data['password']) < 10) {
-            $this->errors['password'] = "Password must be at least 10 symbols long!";
+            if(strlen($data['password']) < 10) {
+                $this->errors['password'] = "Password must be at least 10 symbols long!";
+            }
         }
 
         if(count($this->errors) == 0) {
@@ -81,7 +95,10 @@ class User extends Model
     }
 
     public function hash_password($data) {
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        if(isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
+
         return $data;
     }
 }

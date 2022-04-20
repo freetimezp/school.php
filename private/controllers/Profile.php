@@ -64,6 +64,30 @@ class Profile extends Controller
 
         $user = new User();
         $id = trim($id == '') ? Auth::getUser_id() : $id;
+
+        if(count($_POST) > 0 && Auth::access('reception')) {
+            if(trim($_POST['password']) == "") {
+                unset($_POST['password']);
+                unset($_POST['password2']);
+            }
+
+            if($user->validate($_POST, $id)) {
+                if($_POST['rank'] == 'super_admin' && $_SESSION['USER']->rank != 'super_admin') {
+                   $_POST['rank'] = 'admin';
+                }
+
+                $myRow = $user->first('user_id', $id);
+                if(is_object($myRow)) {
+                    $user->update($myRow->id, $_POST);
+                }
+
+                $redirect = 'profile/edit/' . $id;
+                $this->redirect($redirect);
+            }else{
+                $errors = $user->errors;
+            }
+        }
+
         $row = $user->first('user_id', $id);
 
         $data['row'] = $row;
