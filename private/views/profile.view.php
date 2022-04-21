@@ -18,7 +18,7 @@ $this->view('includes/nav');
 
                 <hr class="clearfix">
 
-                <?php if(Auth::access('reception') || Auth::i_own_content($row)): ?>
+                <?php if(Auth::access('admin') || (Auth::access('reception') && $row->rank == 'student')): ?>
                     <div class="text-center">
                         <a href="<?=ROOT;?>/profile/edit/<?=$row->user_id;?>">
                             <button class="btn btn-sm btn-success">Edit</button>
