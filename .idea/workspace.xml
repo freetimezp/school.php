@@ -16,8 +16,10 @@
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/profile-edit.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/profile-edit.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/img/female-1.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +99,7 @@
       <workItem from="1650290789248" duration="4891000" />
       <workItem from="1650376041436" duration="10293000" />
       <workItem from="1650462907883" duration="10878000" />
+      <workItem from="1650535415890" duration="5446000" />
     </task>
     <servers />
   </component>
@@ -204,10 +207,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649602109033" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1650221479631">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1650549452917">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650221479631" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650549452917" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1649776336663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
