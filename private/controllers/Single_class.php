@@ -344,4 +344,49 @@ class Single_class extends Controller
 
         $this->view('single-class', $data);
     }
+
+    public function testadd($id = '') {
+        $errors = array();
+
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $classes = new Classes_model();
+
+        $row = $classes->first('class_id', $id);
+
+        $crumbs[] = ['Dashboard', ''];
+        $crumbs[] = ['Classes', 'classes'];
+        if($row) {
+            $crumbs[] = [$row->class, ''];
+        }
+
+        $page_tab = 'test-add';
+
+        $test_class = new Tests_model();
+
+        if(count($_POST) > 0) {
+            if(isset($_POST['test'])) {
+                $arr = array();
+                $arr['test'] = $_POST['test'];
+                $arr['description'] = $_POST['description'];
+                $arr['class_id'] = $id;
+                $arr['disabled'] = 0;
+                $arr['date'] = date("Y-m-d H:i:s");
+
+                $test_class->insert($arr);
+
+                $this->redirect('single_class/' . $id . '?tab=tests');
+            }
+        }
+
+        $data['row'] = $row;
+        $data['page_tab'] = $page_tab;
+        $data['crumbs'] = $crumbs;
+        $data['errors'] = $errors;
+
+        $this->view('single-class', $data);
+    }
+
 }
