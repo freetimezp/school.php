@@ -31,10 +31,10 @@
                     <td><?=$row->test;?></td><td><?=$row->user->firstname . ' ' . $row->user->lastname;?></td><td><?=$row->disabled?'no':'yes';?></td><td><?=get_date($row->date);?></td>
                     <td>
                         <?php if(Auth::access('lecturer')): ?>
-                            <a href="<?=ROOT;?>/single_class/testedit/<?=$row->id;?>?tab=tests">
+                            <a href="<?=ROOT;?>/single_class/testedit/<?=$row->class_id;?>/<?=$row->test_id;?>?tab=tests">
                                 <button class="btn btn-sm btn-info text-white"><i class="fa fa-edit"></i></button>
                             </a>
-                            <a href="<?=ROOT;?>/single_class/testdelete/<?=$row->id;?>?tab=tests">
+                            <a href="<?=ROOT;?>/single_class/testdelete/<?=$row->class_id;?>/<?=$row->test_id;?>?tab=tests">
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
                             </a>
                         <?php endif; ?>

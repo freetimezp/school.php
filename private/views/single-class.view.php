@@ -63,6 +63,9 @@ $this->view('includes/nav');
                     case 'test-add':
                         include(views_path('class-tab-tests-add'));
                         break;
+                    case 'test-edit':
+                        include(views_path('class-tab-tests-edit'));
+                        break;
                     default:
                         break;
                 }
