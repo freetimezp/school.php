@@ -37,6 +37,11 @@ class Single_class extends Controller
             $query = "SELECT * FROM class_students WHERE class_id = :class_id AND disabled = 0 ORDER BY id DESC LIMIT $limit OFFSET $offset";
             $students = $lect->query($query, ['class_id' => $id]);
             $data['students'] = $students;
+        }elseif ($page_tab == 'tests') {
+            //display tests
+            $query = "SELECT * FROM tests WHERE class_id = :class_id ORDER BY id DESC LIMIT $limit OFFSET $offset";
+            $tests = $lect->query($query, ['class_id' => $id]);
+            $data['tests'] = $tests;
         }
 
         $data['row'] = $row;

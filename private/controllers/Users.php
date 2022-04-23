@@ -14,7 +14,7 @@ class Users extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Staff', 'users'];
 
-        $limit = 3;
+        $limit = 4;
         $pager = new Pager($limit);
         $offset = $pager->offset;
 

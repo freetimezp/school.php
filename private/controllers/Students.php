@@ -14,7 +14,7 @@ class Students extends Controller
         $crumbs[] = ['Dashboard', ''];
         $crumbs[] = ['Students', 'students'];
 
-        $limit = 2;
+        $limit = 4;
         $pager = new Pager($limit);
         $offset = $pager->offset;
 
