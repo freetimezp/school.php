@@ -14,12 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/controllers/Single_test.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/views/single-test.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/views/test-tab-view.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/class-tab-tests.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/class-tab-tests.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/tests.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/tests.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/single-test.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/single-test.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/test-tab-view.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/test-tab-view.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +99,7 @@
       <workItem from="1650535415890" duration="10970000" />
       <workItem from="1650630622601" duration="7158000" />
       <workItem from="1650712485521" duration="10118000" />
-      <workItem from="1650801904783" duration="1937000" />
+      <workItem from="1650801904783" duration="4761000" />
     </task>
     <servers />
   </component>

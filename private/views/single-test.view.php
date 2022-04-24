@@ -13,13 +13,27 @@ $this->view('includes/nav');
             <div class="col-sm-8 col-md-9 p-2">
                 <table class="table table-striped table-hover">
                     <tr>
+                        <th>Go to class:</th>
+                        <td>
+                            <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
+                                <button class="btn btn-sm btn-success">VIEW CLASS</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Test Name:</th><td><?=esc($row->test);?></td>
+                    </tr>
+                    <tr>
+                        <th>Description:</th><td><?=esc($row->description);?></td>
                     </tr>
                     <tr>
                         <th>Created by:</th><td><?=esc($row->user->firstname);?> <?=esc($row->user->lastname);?></td>
                     </tr>
                     <tr>
                         <th>Date Created:</th><td><?=get_date($row->date);?></td>
+                    </tr>
+                    <tr>
+                        <th>Active:</th><td><?=$row->disabled?'No':'Yes';?></td>
                     </tr>
                 </table>
             </div>
@@ -49,6 +63,4 @@ $this->view('includes/nav');
     <?php endif; ?>
 </div>
 
-<?php
-$this->view('includes/footer');
-?>
+<?php $this->view('includes/footer'); ?>
