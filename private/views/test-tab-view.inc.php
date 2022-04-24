@@ -8,18 +8,18 @@
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addmultiple/<?=$row->test_id;?>">
                         Add multiple choice question
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addobjective/<?=$row->test_id;?>">
                         Add objective question
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>">
                         Add subjective question
                     </a>
                 </li>
