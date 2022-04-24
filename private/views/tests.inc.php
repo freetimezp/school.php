@@ -11,7 +11,7 @@
             <?php foreach ($rows as $row): ?>
                 <tr>
                     <td>
-                        <a href="<?=ROOT;?>/test/<?=$row->class_id;?>">
+                        <a href="<?=ROOT;?>/single_test/<?=$row->class_id;?>">
                             <button class="btn btn-sm btn-primary">Details <i class="fa fa-chevron-right"></i></button>
                         </a>
                     </td>
