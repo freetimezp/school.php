@@ -28,12 +28,16 @@ class Single_test extends Controller
 
         $results = false;
 
+        $quest = new Questions_model();
+        $questions = $quest->where('test_id', $id);
+
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
         $data['crumbs'] = $crumbs;
         $data['results'] = $results;
         $data['errors'] = $errors;
         $data['pager'] = $pager;
+        $data['questions'] = $questions;
 
         $this->view('single-test', $data);
     }
@@ -62,9 +66,9 @@ class Single_test extends Controller
 
         $page_tab = 'add-subjective';
 
-        if(count($_POST) > 0) {
-            $quest = new Questions_model();
+        $quest = new Questions_model();
 
+        if(count($_POST) > 0) {
             if($quest->validate($_POST)) {
                 $_POST['date'] = date("Y-m-d H:i:s");
                 $_POST['question_type'] = 'subjective';
