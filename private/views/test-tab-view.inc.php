@@ -30,17 +30,21 @@
     <hr>
 
     <?php if(isset($questions) && is_array($questions)): ?>
-        <?php $num = 0; ?>
+        <?php $num = ($total_questions + 1); ?>
         <?php foreach($questions as $question): ?>
-            <?php $num++; ?>
+            <?php $num--; ?>
             <div class="card mb-3 shadow">
-                <div class="card-header text-center">
+                <div class="card-header text-center p-3">
                     <span class="bg-secondary col-3 p-2 rounded-1 text-white">Question #<?=$num;?></span>
                     <span class="bg-success p-2 rounded-1 text-white"><?=date('F jS, Y H:i:s a');?></span>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?=esc($question->question);?></h5>
                     <p class="card-text">1 point</p>
+                </div>
+                <div class="card-footer p-3">
+                    <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i>Delete</button>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -30,6 +30,7 @@ class Single_test extends Controller
 
         $quest = new Questions_model();
         $questions = $quest->where('test_id', $id);
+        $total_questions = count($questions);
 
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
@@ -38,6 +39,7 @@ class Single_test extends Controller
         $data['errors'] = $errors;
         $data['pager'] = $pager;
         $data['questions'] = $questions;
+        $data['total_questions'] = $total_questions;
 
         $this->view('single-test', $data);
     }

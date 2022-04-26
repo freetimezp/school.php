@@ -27,6 +27,9 @@ $this->view('includes/nav');
                         <th>Description:</th><td><?=esc($row->description);?></td>
                     </tr>
                     <tr>
+                        <th>Total questions:</th><td><?=$total_questions;?></td>
+                    </tr>
+                    <tr>
                         <th>Created by:</th><td><?=esc($row->user->firstname);?> <?=esc($row->user->lastname);?></td>
                     </tr>
                     <tr>
