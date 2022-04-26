@@ -30,6 +30,12 @@ class Questions_model extends Model
             $this->errors['question'] = "You must add question name!";
         }
 
+        if(isset($data['correct_answer'])) {
+            if(empty($data['correct_answer'])) {
+                $this->errors['correct_answer'] = "You must write correct answer!";
+            }
+        }
+
         if(count($this->errors) == 0) {
             return true;
         }

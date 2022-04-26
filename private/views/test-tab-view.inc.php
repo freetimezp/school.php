@@ -8,12 +8,12 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addmultiple/<?=$row->test_id;?>">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>">
                         Add multiple choice question
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addobjective/<?=$row->test_id;?>">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>?type=objective">
                         Add objective question
                     </a>
                 </li>
@@ -37,6 +37,7 @@
                 <div class="card-header text-center p-3">
                     <span class="bg-secondary col-3 p-2 rounded-1 text-white">Question #<?=$num;?></span>
                     <span class="bg-success p-2 rounded-1 text-white"><?=date('F jS, Y H:i:s a', strtotime($question->date));?></span>
+                    <span class="bg-primary col-3 p-2 rounded-1 text-white"><?=$question->question_type;?></span>
                 </div>
                 <div class="card-body mb-3">
                     <h5 class="card-title mb-3"><?=esc($question->question);?></h5>
@@ -46,6 +47,10 @@
                     <?php endif; ?>
 
                     <p class="card-text"><?=esc($question->comment);?></p>
+
+                    <?php if($question->question_type == 'objective'): ?>
+                        <p class="card-text">Answer: <?=esc($question->correct_answer);?></p>
+                    <?php endif; ?>
                 </div>
                 <div class="card-footer p-3">
                     <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
