@@ -13,13 +13,13 @@
 
     <label class="mb-1">Question:</label>
     <textarea class="form-control mb-3" name="question" placeholder="Type your question here"></textarea>
+    <input type="text" class="form-control mb-3" name="comment" placeholder="Type your comment here">
 
     <label class="mb-1">Upload your image for question if you need:</label>
     <div class="input-group mb-3">
         <label class="input-group-text btn-success" for="inputGroupFile01"><i class="fa fa-image"></i>Image</label>
-        <input type="file" class="form-control" id="inputGroupFile01">
+        <input type="file" name="image" class="form-control" id="inputGroupFile01">
     </div>
-
     <div class="text-center">
         <button class="btn btn-primary">Save</button>
         <a href="<?=ROOT;?>/single_test/<?=$row->test_id;?>">

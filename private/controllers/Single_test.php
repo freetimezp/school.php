@@ -72,6 +72,11 @@ class Single_test extends Controller
 
         if(count($_POST) > 0) {
             if($quest->validate($_POST)) {
+                //check for uploaded files
+                if($myImage = upload_image($_FILES)) {
+                    $_POST['image'] = $myImage;
+                }
+
                 $_POST['date'] = date("Y-m-d H:i:s");
                 $_POST['question_type'] = 'subjective';
                 $_POST['test_id'] = $id;

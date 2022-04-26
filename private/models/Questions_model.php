@@ -6,6 +6,7 @@ class Questions_model extends Model
 
     protected $allowedColumns = [
         'question',
+        'comment',
         'date',
         'question_type',
         'test_id',

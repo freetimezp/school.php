@@ -15,8 +15,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/controllers/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Single_test.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Single_test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/single-test.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/single-test.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/models/Questions_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/models/Questions_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/test-tab-add-subjective.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/test-tab-add-subjective.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/test-tab-view.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/test-tab-view.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +105,7 @@
       <workItem from="1650712485521" duration="10118000" />
       <workItem from="1650801904783" duration="7577000" />
       <workItem from="1650893661167" duration="7065000" />
-      <workItem from="1650972597462" duration="2556000" />
+      <workItem from="1650972597462" duration="6596000" />
     </task>
     <servers />
   </component>

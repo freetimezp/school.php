@@ -58,3 +58,23 @@ function views_path($view) {
     }
 }
 
+function upload_image($FILES) {
+    if(count($FILES) > 0) {
+        $allowed[] = "image/jpeg";
+        $allowed[] = "image/png";
+
+        if($FILES['image']['error'] == 0 && in_array($FILES['image']['type'], $allowed)) {
+            $folder = "uploads/";
+
+            if(!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+
+            $destination = $folder . time() . '_' . $FILES['image']['name'];
+            move_uploaded_file($FILES['image']['tmp_name'], $destination);
+            return $destination;
+        }
+    }
+
+    return false;
+}
