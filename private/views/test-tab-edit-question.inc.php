@@ -25,8 +25,8 @@
 
         <label class="mb-1">Upload your image for question if you need:</label>
         <div class="input-group mb-3">
-            <label class="input-group-text btn-success"><i class="fa fa-image"></i>Image</label>
-            <input type="file" name="image" class="form-control">
+            <label for="imageUploadQuestion" class="input-group-text btn-success"><i class="fa fa-image"></i>Image</label>
+            <input type="file" name="image" class="form-control" id="imageUploadQuestion">
         </div>
 
         <?php if(file_exists($question->image)): ?>

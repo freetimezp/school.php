@@ -137,6 +137,10 @@ class Single_test extends Controller
                 //check for uploaded files
                 if($myImage = upload_image($_FILES)) {
                     $_POST['image'] = $myImage;
+                    //save and delete old image
+                    if($old_image = $question->image) {
+                        unlink($old_image);
+                    }
                 }
 
                 //check question type
@@ -146,9 +150,65 @@ class Single_test extends Controller
                 }
 
                 $quest->update($question->id, $_POST);
+
                 $this->redirect('single_test/editquestion/' . $id . '/' . $quest_id . $type);
             }else{
                 $errors = $quest->errors;
+            }
+        }
+
+        $results = false;
+
+        $data['row'] = $row;
+        $data['page_tab'] = $page_tab;
+        $data['crumbs'] = $crumbs;
+        $data['results'] = $results;
+        $data['errors'] = $errors;
+        $data['pager'] = $pager;
+        $data['question'] = $question;
+
+        $this->view('single-test', $data);
+    }
+
+    public function deletequestion($id = '', $quest_id = '')
+    {
+        $errors = array();
+
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $tests = new Tests_model();
+
+        $row = $tests->first('test_id', $id);
+
+        $crumbs[] = ['Dashboard', ''];
+        $crumbs[] = ['Tests', 'tests'];
+        if($row) {
+            $crumbs[] = [$row->test, ''];
+        }
+
+        $limit = 10;
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
+        $page_tab = 'delete-question';
+
+        $quest = new Questions_model();
+        $question = $quest->first('id', $quest_id);
+
+        if(count($_POST) > 0) {
+            if(Auth::access('lecturer')) {
+                $old_image = $question->image;
+
+                $quest->delete($question->id);
+
+                //save and delete old image
+                if($old_image) {
+                    unlink($old_image);
+                }
+
+                $this->redirect('single_test/' . $id );
             }
         }
 

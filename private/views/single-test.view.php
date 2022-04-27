@@ -53,8 +53,8 @@ $this->view('includes/nav');
                 case 'edit-question':
                     include(views_path('test-tab-edit-question'));
                     break;
-                case 'add-multiple':
-                    include(views_path('test-tab-add-multiple'));
+                case 'delete-question':
+                    include(views_path('test-tab-delete-question'));
                     break;
                 case 'edit':
                     include(views_path('test-tab-edit'));
