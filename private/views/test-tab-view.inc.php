@@ -8,7 +8,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>?type=multiple">
                         Add multiple choice question
                     </a>
                 </li>

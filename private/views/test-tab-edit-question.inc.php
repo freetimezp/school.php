@@ -2,8 +2,10 @@
 
     <?php if(isset($_GET['type']) && $_GET['type'] == 'objective'): ?>
         <h4 class="text-center">Edit objective question</h4>
-    <?php else: ?>
+    <?php elseif(isset($_GET['type']) && $_GET['type'] == 'subjective'): ?>
         <h4 class="text-center">Edit subjective question</h4>
+    <?php else: ?>
+        <h4 class="text-center">Edit multiple question</h4>
     <?php endif; ?>
 
     <form method="post" enctype="multipart/form-data">

@@ -1,7 +1,9 @@
 <?php if(isset($_GET['type']) && $_GET['type'] == 'objective'): ?>
     <h4 class="text-center">Add objective question</h4>
-<?php else: ?>
+<?php elseif(isset($_GET['type']) && $_GET['type'] == 'subjective'): ?>
     <h4 class="text-center">Add subjective question</h4>
+<?php else: ?>
+    <h4 class="text-center">Add multiple question</h4>
 <?php endif; ?>
 
 <form method="post" enctype="multipart/form-data">
@@ -34,6 +36,23 @@
         </div>
     <?php endif; ?>
 
+    <?php if(isset($_GET['type']) && $_GET['type'] == 'multiple'): ?>
+        <div class="card mb-3">
+            <div class="card-header bg-secondary text-white">
+                <span class="me-3">Multiple choices for answer:</span><button type="button" onclick="add_choice()" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>Add new choice</button>
+            </div>
+            <ul class="list-group list-group-flush choice-list">
+                <li class="list-group-item">
+                    <span>A :</span><input type="text" class="form-control mb-1" name="choice0" placeholder="Type your answer">
+                    <input type="radio" name="correct_answer"><span> Correct answer</span>
+                </li>
+                <li class="list-group-item">
+                    <span>B :</span><input type="text" class="form-control mb-1" name="choice1" placeholder="Type your answer">
+                    <input type="radio" name="correct_answer"><span> Correct answer</span>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
 
     <div class="text-center">
         <button class="btn btn-primary">Save</button>
@@ -42,3 +61,21 @@
         </a>
     </div>
 </form>
+
+<script>
+    let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+
+    function add_choice() {
+        let choices = document.querySelector('.choice-list');
+
+        if(choices.children.length < letters.length) {
+            choices.innerHTML += `
+            <li class="list-group-item">
+                <span>${letters[choices.children.length]} :</span><input type="text" class="form-control mb-1" name="choice${choices.children.length}" placeholder="Type your answer">
+                <input type="radio" name="correct_answer"><span> Correct answer</span>
+            </li>
+        `;
+        }
+    }
+</script>
