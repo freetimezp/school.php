@@ -8,18 +8,18 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>">
                         Add multiple choice question
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>?type=objective">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>?type=objective">
                         Add objective question
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addsubjective/<?=$row->test_id;?>">
+                    <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>">
                         Add subjective question
                     </a>
                 </li>
@@ -48,13 +48,20 @@
 
                     <p class="card-text"><?=esc($question->comment);?></p>
 
+                    <?php $type = ''; ?>
+
                     <?php if($question->question_type == 'objective'): ?>
+                        <?php $type = '?type=objective'; ?>
                         <p class="card-text">Answer: <?=esc($question->correct_answer);?></p>
                     <?php endif; ?>
                 </div>
                 <div class="card-footer p-3">
-                    <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
-                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i>Delete</button>
+                    <a href="<?=ROOT;?>/single_test/editquestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
+                        <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
+                    </a>
+                    <a href="<?=ROOT;?>/single_test/deletequestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i>Delete</button>
+                    </a>
                 </div>
             </div>
         <?php endforeach; ?>

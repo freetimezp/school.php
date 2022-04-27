@@ -47,14 +47,14 @@ $this->view('includes/nav');
                 case 'view':
                     include(views_path('test-tab-view'));
                     break;
-                case 'add-subjective':
-                    include(views_path('test-tab-add-subjective'));
+                case 'add-question':
+                    include(views_path('test-tab-add-question'));
+                    break;
+                case 'edit-question':
+                    include(views_path('test-tab-edit-question'));
                     break;
                 case 'add-multiple':
                     include(views_path('test-tab-add-multiple'));
-                    break;
-                case 'add-objective':
-                    include(views_path('test-tab-add-objective'));
                     break;
                 case 'edit':
                     include(views_path('test-tab-edit'));

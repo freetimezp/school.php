@@ -44,7 +44,7 @@ class Single_test extends Controller
         $this->view('single-test', $data);
     }
 
-    public function addsubjective($id = '')
+    public function addquestion($id = '')
     {
         $errors = array();
 
@@ -66,7 +66,7 @@ class Single_test extends Controller
         $pager = new Pager($limit);
         $offset = $pager->offset;
 
-        $page_tab = 'add-subjective';
+        $page_tab = 'add-question';
 
         $quest = new Questions_model();
 
@@ -104,4 +104,65 @@ class Single_test extends Controller
 
         $this->view('single-test', $data);
     }
+
+    public function editquestion($id = '', $quest_id = '')
+    {
+        $errors = array();
+
+        if(!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        $tests = new Tests_model();
+
+        $row = $tests->first('test_id', $id);
+
+        $crumbs[] = ['Dashboard', ''];
+        $crumbs[] = ['Tests', 'tests'];
+        if($row) {
+            $crumbs[] = [$row->test, ''];
+        }
+
+        $limit = 10;
+        $pager = new Pager($limit);
+        $offset = $pager->offset;
+
+        $page_tab = 'edit-question';
+
+        $quest = new Questions_model();
+        $question = $quest->first('id', $quest_id);
+
+        if(count($_POST) > 0) {
+            if($quest->validate($_POST)) {
+                //check for uploaded files
+                if($myImage = upload_image($_FILES)) {
+                    $_POST['image'] = $myImage;
+                }
+
+                //check question type
+                $type = '';
+                if($question->question_type == 'objective') {
+                    $type = '?type=objective';
+                }
+
+                $quest->update($question->id, $_POST);
+                $this->redirect('single_test/editquestion/' . $id . '/' . $quest_id . $type);
+            }else{
+                $errors = $quest->errors;
+            }
+        }
+
+        $results = false;
+
+        $data['row'] = $row;
+        $data['page_tab'] = $page_tab;
+        $data['crumbs'] = $crumbs;
+        $data['results'] = $results;
+        $data['errors'] = $errors;
+        $data['pager'] = $pager;
+        $data['question'] = $question;
+
+        $this->view('single-test', $data);
+    }
+
 }
