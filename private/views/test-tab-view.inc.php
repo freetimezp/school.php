@@ -67,7 +67,7 @@
                                 <?php foreach ($choices as $key => $choice): ?>
                                     <li class="list-group-item">
                                         <?=$key;?>: <?=$choice;?>
-                                        
+
                                         <?php if(trim($key) == trim($question->correct_answer)): ?>
                                             <i class="fa fa-check"></i>
                                         <?php endif; ?>

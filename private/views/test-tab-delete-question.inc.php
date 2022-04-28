@@ -1,6 +1,7 @@
 <?php if(is_object($question)): ?>
 
     <h4 class="text-center">Delete question</h4>
+    <h5 class="text-center">Are you sure?</h5>
 
     <form method="post" enctype="multipart/form-data">
         <?php if(count($errors) > 0): ?>
