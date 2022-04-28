@@ -22,10 +22,10 @@
         <label class="mb-1">Question:</label>
         <textarea class="form-control mb-3" name="question" placeholder="Type your question here"><?=get_var('question', $question->question)?></textarea>
 
-        <label class="mb-1">Comment:</label>
+        <label class="mb-1">Comment (option):</label>
         <input type="text" value="<?=get_var('comment', $question->comment)?>" class="form-control mb-3" name="comment" placeholder="Type your comment here">
 
-        <label class="mb-1">Upload your image for question if you need:</label>
+        <label class="mb-1">Upload your image for question if you need (option):</label>
         <div class="input-group mb-3">
             <label for="imageUploadQuestion" class="input-group-text btn-success"><i class="fa fa-image"></i>Image</label>
             <input type="file" name="image" class="form-control" id="imageUploadQuestion">

@@ -25,9 +25,23 @@ class Questions_model extends Model
 
     public function validate($data) {
         $this->errors = array();
+
+        //check for question name
         //[a-z A-Z0-9]  allowed letters, numbers and spaces; if [a-zA-Z] - allowed only letters
         if(empty($data['question'])) {
             $this->errors['question'] = "You must add question name!";
+        }
+
+        //check for multiple answers
+        $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+        $num = 0;
+        foreach($data as $key => $value) {
+            if(strstr($key, 'choice')) {
+                if(empty($value)) {
+                    $this->errors['choice' . $num] = "You must add answer to choice - " . $letters[$num];
+                }
+                $num++;
+            }
         }
 
         if(isset($data['correct_answer'])) {
