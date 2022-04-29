@@ -85,11 +85,11 @@ function upload_image($FILES) {
     return false;
 }
 
-function has_taken_test($test_id) {
+function has_taken_test($my_test_id) {
     return "no";
 }
 
-function can_take_test($test_id) {
+function can_take_test($my_test_id) {
     $class = new Classes_model();
 
     $myTable = "class_students";
@@ -122,7 +122,15 @@ function can_take_test($test_id) {
     $tests = $tests_model->query($query);
 
     $data['test_rows'] = $tests;
+    $my_tests = [];
 
-    var_dump($tests);
+    foreach ($tests as $key => $test) {
+        $my_tests[] = $test->test_id;
+    }
+
+    if(in_array($my_test_id, $my_tests)) {
+        return true;
+    }
+
     return false;
 }

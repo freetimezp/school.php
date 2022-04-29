@@ -18,7 +18,9 @@
                     <td><?=$test_row->test;?></td><td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td><td><?=$test_row->disabled?'no':'yes';?></td><td><?=get_date($test_row->date);?></td>
                     <td>
                         <?php if(can_take_test($test_row->test_id)): ?>
-                            <button class="btn btn-sm btn-primary">Start test</button>
+                            <a href="<?=ROOT;?>/take_test/<?=$test_row->test_id;?>">
+                                <button class="btn btn-sm btn-primary">Start test</button>
+                            </a>
                         <?php endif; ?>
                     </td>
                 </tr>

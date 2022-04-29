@@ -1,12 +1,12 @@
 <?php
 
-class Single_test extends Controller
+class Take_test extends Controller
 {
     public function index($id = '')
     {
         $errors = array();
 
-        if(!Auth::access('lecturer')) {
+        if(!Auth::access('student')) {
             $this->redirect('access_denied');
         }
 
@@ -30,7 +30,7 @@ class Single_test extends Controller
 
         $quest = new Questions_model();
         $questions = $quest->where('test_id', $id);
-        $total_questions = count($questions);
+        $total_questions = is_array($questions) ? count($questions) : 0;
 
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
@@ -41,7 +41,7 @@ class Single_test extends Controller
         $data['questions'] = $questions;
         $data['total_questions'] = $total_questions;
 
-        $this->view('single-test', $data);
+        $this->view('take-test', $data);
     }
 
     public function addquestion($id = '')
