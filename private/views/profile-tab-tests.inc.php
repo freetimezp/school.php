@@ -10,3 +10,8 @@
     </form>
 </nav>
 
+<hr>
+
+<?php include (views_path('tests')); ?>
+
+

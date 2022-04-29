@@ -54,7 +54,7 @@ class Tests extends Controller
         }
 
         $this->view('tests', [
-            'rows' => $data,
+            'test_rows' => $data,
             'crumbs' => $crumbs
         ]);
     }

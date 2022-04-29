@@ -1,5 +1,11 @@
 <?php
 
+function show($data) {
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+}
+
 function get_var($key, $default = '') {
     if(isset($_POST[$key])) {
         return $_POST[$key];
@@ -76,5 +82,47 @@ function upload_image($FILES) {
         }
     }
 
+    return false;
+}
+
+function has_taken_test($test_id) {
+    return "no";
+}
+
+function can_take_test($test_id) {
+    $class = new Classes_model();
+
+    $myTable = "class_students";
+
+    if(Auth::getRank() != 'student') {
+        return false;
+    }
+
+    $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0";
+    $data['stud_classes'] = $class->query($query, ['user_id' => Auth::getUser_id()]);
+
+    $data['student_classes'] = array();
+
+    if($data['stud_classes']) {
+        foreach ($data['stud_classes'] as $key => $arow) {
+            $data['student_classes'][] = $class->first('class_id', $arow->class_id);
+        }
+    }
+
+    //collect class id's
+    $class_ids = [];
+    foreach ($data['student_classes'] as $key => $class_row) {
+        $class_ids[] = $class_row->class_id;
+    }
+
+    $id_str = "'" . implode("','", $class_ids) . "'";
+    $query = "SELECT * FROM tests WHERE class_id IN ($id_str)";
+
+    $tests_model = new Tests_model();
+    $tests = $tests_model->query($query);
+
+    $data['test_rows'] = $tests;
+
+    var_dump($tests);
     return false;
 }

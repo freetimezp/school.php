@@ -42,6 +42,39 @@ class Profile extends Controller
                     $data['student_classes'][] = $class->first('class_id', $arow->class_id);
                 }
             }
+        }elseif($data['page_tab'] == 'tests' && $row) {
+            $class = new Classes_model();
+
+            $myTable = "class_students";
+
+            if($row->rank == 'lecturer') {
+                $myTable = "class_lecturers";
+            }
+
+            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0";
+            $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
+
+            $data['student_classes'] = array();
+
+            if($data['stud_classes']) {
+                foreach ($data['stud_classes'] as $key => $arow) {
+                    $data['student_classes'][] = $class->first('class_id', $arow->class_id);
+                }
+            }
+
+            //collect class id's
+            $class_ids = [];
+            foreach ($data['student_classes'] as $key => $class_row) {
+                $class_ids[] = $class_row->class_id;
+            }
+
+            $id_str = "'" . implode("','", $class_ids) . "'";
+            $query = "SELECT * FROM tests WHERE class_id IN ($id_str)";
+
+            $tests_model = new Tests_model();
+            $tests = $tests_model->query($query);
+
+            $data['test_rows'] = $tests;
         }
 
         $data['row'] = $row;
