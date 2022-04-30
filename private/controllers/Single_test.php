@@ -148,7 +148,11 @@ class Single_test extends Controller
         $question = $quest->first('id', $quest_id);
 
         if(count($_POST) > 0) {
-            if($quest->validate($_POST)) {
+            if(!$row->editable) {
+                $errors[] = 'This test is disabled for editing!';
+            }
+
+            if($quest->validate($_POST) && count($errors) == 0) {
                 //check for uploaded files
                 if($myImage = upload_image($_FILES)) {
                     $_POST['image'] = $myImage;
@@ -189,7 +193,7 @@ class Single_test extends Controller
 
                 $this->redirect('single_test/editquestion/' . $id . '/' . $quest_id . $type);
             }else{
-                $errors = $quest->errors;
+                $errors = array_merge($errors, $quest->errors);
             }
         }
 
