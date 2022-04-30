@@ -29,7 +29,7 @@ class Take_test extends Controller
         $results = false;
 
         $quest = new Questions_model();
-        $questions = $quest->where('test_id', $id);
+        $questions = $quest->where('test_id', $id, 'ASC');
         $total_questions = is_array($questions) ? count($questions) : 0;
 
         $data['row'] = $row;
