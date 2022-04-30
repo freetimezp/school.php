@@ -8,14 +8,16 @@
         </div>
     </form>
 
-    <div>
-        <a href="<?=ROOT;?>/single_class/lectureradd/<?=$row->class_id;?>?select=true">
-            <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
-        </a>
-        <a href="<?=ROOT;?>/single_class/lecturerremove/<?=$row->class_id;?>?select=true">
-            <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i>Remove</button>
-        </a>
-    </div>
+    <?php if(Auth::access('lecturer')): ?>
+        <div>
+            <a href="<?=ROOT;?>/single_class/lectureradd/<?=$row->class_id;?>?select=true">
+                <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add new</button>
+            </a>
+            <a href="<?=ROOT;?>/single_class/lecturerremove/<?=$row->class_id;?>?select=true">
+                <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i>Remove</button>
+            </a>
+        </div>
+    <?php endif; ?>
 </nav>
 
 <hr class="clearfix">

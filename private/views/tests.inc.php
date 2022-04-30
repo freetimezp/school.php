@@ -11,9 +11,11 @@
             <?php foreach ($test_rows as $test_row): ?>
                 <tr>
                     <td>
-                        <a href="<?=ROOT;?>/single_test/<?=$test_row->test_id;?>">
-                            <button class="btn btn-sm btn-primary">Details <i class="fa fa-chevron-right"></i></button>
-                        </a>
+                        <?php if(Auth::access('lecturer')): ?>
+                            <a href="<?=ROOT;?>/single_test/<?=$test_row->test_id;?>">
+                                <button class="btn btn-sm btn-primary">Details <i class="fa fa-chevron-right"></i></button>
+                            </a>
+                        <?php endif; ?>
                     </td>
                     <td><?=$test_row->test;?></td><td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td><td><?=$test_row->disabled?'no':'yes';?></td><td><?=get_date($test_row->date);?></td>
                     <td>

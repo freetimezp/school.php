@@ -13,11 +13,9 @@ $this->view('includes/nav');
             <div class="col-sm-8 col-md-9 p-2">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <th>Go to class:</th>
+                        <th>Class:</th>
                         <td>
-                            <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
-                                <button class="btn btn-sm btn-success">VIEW CLASS</button>
-                            </a>
+                            <?=$row->class->class;?>
                         </td>
                     </tr>
                     <tr>
