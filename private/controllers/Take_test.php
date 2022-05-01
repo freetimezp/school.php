@@ -19,8 +19,10 @@ class Take_test extends Controller
         if($row) {
             $crumbs[] = [$row->test, ''];
 
-            $query = "UPDATE tests SET editable = 0 WHERE id = :id LIMIT 1";
-            $tests->query($query, ['id' => $row->id]);
+            if(!$row->disabled) {
+                $query = "UPDATE tests SET editable = 0 WHERE id = :id LIMIT 1";
+                $tests->query($query, ['id' => $row->id]);
+            }
         }
 
         $limit = 10;

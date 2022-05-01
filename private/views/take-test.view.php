@@ -6,7 +6,7 @@ $this->view('includes/nav');
 <div class="container-fluid p-4 profile mx-auto shadow">
     <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
 
-    <?php if($row): ?>
+    <?php if($row && !($row->disabled && Auth::access('student'))): ?>
         <h4><?=esc(ucwords($row->test));?> page</h4>
 
         <div class="row mb-4">
