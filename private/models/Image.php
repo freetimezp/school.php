@@ -2,7 +2,7 @@
 
 //crop and resize images
 
-class image
+class Image
 {
     public function crop($src_image_path, $dest_image_path, $max_size = 600)
     {

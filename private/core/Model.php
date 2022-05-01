@@ -11,10 +11,24 @@ class Model extends Database
         }
     }
 
+    protected function get_primary_key($table) {
+        $query = "SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'";
+
+        $db = new Database();
+        $data = $db->query($query);
+
+        if(!empty($data[0])) {
+            return $data[0]->Column_name;
+        }
+
+        return 'id';
+    }
+
     public function where($column, $value, $order = 'desc') {
         $column = addslashes($column);
+        $primary_key = $this->get_primary_key($this->table);
 
-        $query = "SELECT * FROM $this->table WHERE $column = :value ORDER BY id $order";
+        $query = "SELECT * FROM $this->table WHERE $column = :value ORDER BY $primary_key $order";
         $data = $this->query($query, [
             'value' => $value
         ]);
@@ -32,10 +46,11 @@ class Model extends Database
 
     }
 
-    public function first($column, $value) {
+    public function first($column, $value, $orderby = 'DESC') {
         $column = addslashes($column);
+        $primary_key = $this->get_primary_key($this->table);
 
-        $query = "SELECT * FROM $this->table WHERE $column = :value";
+        $query = "SELECT * FROM $this->table WHERE $column = :value ORDER BY $primary_key $orderby";
         $data = $this->query($query, [
             'value' => $value
         ]);
@@ -56,8 +71,9 @@ class Model extends Database
     }
 
     public function findAll($order = 'desc') {
-        $query = "SELECT * FROM $this->table ORDER BY id $order";
+        $primary_key = $this->get_primary_key($this->table);
 
+        $query = "SELECT * FROM $this->table ORDER BY $primary_key $order";
         $data = $this->query($query);
 
         //run function after select

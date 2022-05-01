@@ -28,27 +28,30 @@
                         <?php $type = ''; ?>
                         <?php if($question->question_type == 'objective'): ?>
                             <?php $type = '?type=objective'; ?>
-                            <input class="form-control" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
                         <?php elseif($question->question_type == 'subjective'): ?>
                             <?php $type = '?type=subjective'; ?>
-                            <input class="form-control" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
+                        <?php endif; ?>
+
+                        <?php $myanswer = $this->get_answer($saved_answers, $question->id); ?>
+
+                        <?php if($question->question_type != 'multiple'): ?>
+                            <input class="form-control" value="<?=$myanswer;?>" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
                         <?php endif; ?>
 
                         <?php if($question->question_type == 'multiple'): ?>
                             <?php $type = '?type=multiple'; ?>
 
                             <div class="card">
-                                <div class="card-header">
-                                    Select your answer
-                                </div>
+                                <div class="card-header">Select your answer</div>
                                 <ul class="list-group list-group-flush">
                                     <?php $choices = json_decode($question->choices); ?>
 
                                     <?php foreach ($choices as $letter => $answer): ?>
-                                        <li class="list-group-item w-25 d-flex align-items-center justify-content-between">
+                                        <li class="list-group-item d-flex align-items-center justify-content-between" style="width:400px;">
                                             <span style="vertical-align: center;"><?=$letter;?>: <?=$answer;?></span>
-                                            <input type="radio" style="transform: scale(1.5); cursor: pointer;" name="<?=$question->id;?>" class="float-end" value="<?=$letter;?>">
-                                            <span class="clearfix"></span>
+                                            <input type="radio" style="transform: scale(1.5); cursor: pointer;"
+                                                   name="<?=$question->id;?>" class="float-end" 
+                                                <?=$myanswer==$letter?' checked ':'';?> value="<?=$letter;?>">
                                         </li>
                                     <?php endforeach;?>
                                 </ul>
