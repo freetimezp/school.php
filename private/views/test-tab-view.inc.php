@@ -81,12 +81,14 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer p-3">
-                    <a href="<?=ROOT;?>/single_test/editquestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
-                        <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
-                    </a>
-                    <a href="<?=ROOT;?>/single_test/deletequestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i>Delete</button>
-                    </a>
+                    <?php if($row->editable): ?>
+                        <a href="<?=ROOT;?>/single_test/editquestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
+                            <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
+                        </a>
+                        <a href="<?=ROOT;?>/single_test/deletequestion/<?=$row->test_id;?>/<?=$question->id;?><?=$type;?>">
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i>Delete</button>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

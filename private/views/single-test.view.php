@@ -36,7 +36,17 @@ $this->view('includes/nav');
                         <th>Date Created:</th><td><?=get_date($row->date);?></td>
                     </tr>
                     <tr>
-                        <th>Active:</th><td><?=$row->disabled?'No':'Yes';?></td>
+                        <th>Publish:</th>
+                        <td>
+                            <span class="me-2"><?=$row->disabled?'No':'Yes';?></span>
+                            <a href="<?=ROOT;?>/single_test/<?=$row->test_id?>?disable=true">
+                                <?php if($row->disabled): ?>
+                                    <button class="btn btn-sm btn-success p-0">Publish</button>
+                                <?php else: ?>
+                                    <button class="btn btn-sm btn-danger p-0">Unpublish</button>
+                                <?php endif; ?>
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </div>

@@ -20,6 +20,16 @@ class Single_test extends Controller
             $crumbs[] = [$row->test, ''];
         }
 
+        if(isset($_GET['disable'])) {
+            if($row->disabled) {
+                $disable = 0;
+            }else {
+                $disable = 1;
+            }
+            $query = "UPDATE tests SET disabled = $disable WHERE id = :id LIMIT 1";
+            $tests->query($query, ['id' => $row->id]);
+        }
+
         $limit = 10;
         $pager = new Pager($limit);
         $offset = $pager->offset;
@@ -149,7 +159,7 @@ class Single_test extends Controller
 
         if(count($_POST) > 0) {
             if(!$row->editable) {
-                $errors[] = 'This test is disabled for editing!';
+                $errors[] = 'This test question is disabled for editing!';
             }
 
             if($quest->validate($_POST) && count($errors) == 0) {
@@ -237,7 +247,11 @@ class Single_test extends Controller
         $quest = new Questions_model();
         $question = $quest->first('id', $quest_id);
 
-        if(count($_POST) > 0) {
+        if(!$row->editable) {
+            $errors[] = 'This test question can not be deleted!';
+        }
+
+        if(count($_POST) > 0 && count($errors) == 0) {
             if(Auth::access('lecturer')) {
                 $old_image = $question->image;
 
