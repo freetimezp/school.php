@@ -70,9 +70,14 @@
             <hr>
 
             <div class="text-center">
+                <p class="text-danger"><b><i class="fa fa-smile text-success"></i>Click save before going to another page!</b></p>
                 <button class="btn btn-primary">Save answers</button>
             </div>
         </form>
     <?php endif; ?>
+
+    <div>
+        <?php $pager->display(); ?>
+    </div>
 </div>
 

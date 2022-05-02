@@ -71,7 +71,7 @@ class Take_test extends Controller
             $this->redirect('take_test/' . $id);
         }
 
-        $limit = 10;
+        $limit = 3;
         $pager = new Pager($limit);
         $offset = $pager->offset;
 
@@ -80,7 +80,7 @@ class Take_test extends Controller
         $results = false;
 
         $quest = new Questions_model();
-        $questions = $quest->where('test_id', $id, 'ASC');
+        $questions = $quest->where('test_id', $id, 'ASC', $limit, $offset);
         $total_questions = is_array($questions) ? count($questions) : 0;
 
         $data['row'] = $row;
@@ -96,7 +96,7 @@ class Take_test extends Controller
         $this->view('take-test', $data);
     }
 
-    public function get_answer($saved_answers, $id) {
+    protected function get_answer($saved_answers, $id) {
         if(!empty($saved_answers)) {
             foreach ($saved_answers as $row) {
                 if($id == $row->question_id) {
@@ -108,7 +108,7 @@ class Take_test extends Controller
         return '';
     }
 
-    public function get_answer_percentage($questions, $saved_answers) {
+    protected function get_answer_percentage($questions, $saved_answers) {
         $total_answer_count = 0;
 
         if(!empty($questions)) {

@@ -24,11 +24,11 @@ class Model extends Database
         return 'id';
     }
 
-    public function where($column, $value, $order = 'desc') {
+    public function where($column, $value, $orderby = 'desc', $limit = 10, $offset = 0) {
         $column = addslashes($column);
         $primary_key = $this->get_primary_key($this->table);
 
-        $query = "SELECT * FROM $this->table WHERE $column = :value ORDER BY $primary_key $order";
+        $query = "SELECT * FROM $this->table WHERE $column = :value ORDER BY $primary_key $orderby LIMIT $limit OFFSET $offset ";
         $data = $this->query($query, [
             'value' => $value
         ]);
@@ -70,10 +70,10 @@ class Model extends Database
 
     }
 
-    public function findAll($order = 'desc') {
+    public function findAll($orderby = 'desc', $limit = 10, $offset = 0) {
         $primary_key = $this->get_primary_key($this->table);
 
-        $query = "SELECT * FROM $this->table ORDER BY $primary_key $order";
+        $query = "SELECT * FROM $this->table ORDER BY $primary_key $orderby LIMIT $limit OFFSET $offset";
         $data = $this->query($query);
 
         //run function after select

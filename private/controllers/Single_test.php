@@ -40,7 +40,7 @@ class Single_test extends Controller
 
         $quest = new Questions_model();
         $questions = $quest->where('test_id', $id);
-        $total_questions = count($questions);
+        $total_questions = is_array($questions) ? count($questions) : 0;
 
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
