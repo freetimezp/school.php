@@ -3,6 +3,13 @@
         <h4 class="text-center">Test questions</h4>
     </nav>
 
+    <div>
+        <?php $percentage = $this->get_answer_percentage($questions, $saved_answers); ?>
+        <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
+        <div style="height: 5px; width: 100%; background: #abc7e9;">
+            <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
+        </div>
+    </div>
     <hr>
 
     <?php if(isset($questions) && is_array($questions)): ?>
