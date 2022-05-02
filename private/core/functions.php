@@ -134,3 +134,37 @@ function can_take_test($my_test_id) {
 
     return false;
 }
+
+function get_answer($saved_answers, $id) {
+    if(!empty($saved_answers)) {
+        foreach ($saved_answers as $row) {
+            if($id == $row->question_id) {
+                return $row->answer;
+            }
+        }
+    }
+
+    return '';
+}
+
+function get_answer_percentage($questions, $saved_answers) {
+    $total_answer_count = 0;
+
+    if(!empty($questions)) {
+        foreach ($questions as $quest) {
+            $answer = get_answer($saved_answers, $quest->id);
+
+            if(trim($answer) != "") {
+                $total_answer_count++;
+            }
+        }
+    }
+
+    if($total_answer_count > 0) {
+        $total_questions = count($questions);
+
+        return ($total_answer_count / $total_questions) * 100;
+    }
+
+    return 0;
+}

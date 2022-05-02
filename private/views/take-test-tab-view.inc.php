@@ -4,7 +4,7 @@
     </nav>
 
     <div>
-        <?php $percentage = $this->get_answer_percentage($questions, $saved_answers); ?>
+        <?php $percentage = get_answer_percentage($all_questions, $saved_answers); ?>
         <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
         <div style="height: 5px; width: 100%; background: #abc7e9;">
             <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
@@ -39,7 +39,7 @@
                             <?php $type = '?type=subjective'; ?>
                         <?php endif; ?>
 
-                        <?php $myanswer = $this->get_answer($saved_answers, $question->id); ?>
+                        <?php $myanswer = get_answer($saved_answers, $question->id); ?>
 
                         <?php if($question->question_type != 'multiple'): ?>
                             <input class="form-control" value="<?=$myanswer;?>" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
