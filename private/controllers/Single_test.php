@@ -20,6 +20,7 @@ class Single_test extends Controller
             $crumbs[] = [$row->test, ''];
         }
 
+        //disable
         if(isset($_GET['disable'])) {
             if($row->disabled) {
                 $disable = 0;

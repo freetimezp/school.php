@@ -31,10 +31,23 @@ class Take_test extends Controller
             }
         }
 
+        $db = new Database();
+
         //if something was posted
         if(count($_POST) > 0) {
             //save answers to db
-            $arr = [];
+            $arr = []; // table answers
+            $arr1 = []; // table answered_tests
+
+            $arr1['user_id'] = Auth::getUser_id();
+            $arr1['test_id'] = $id;
+
+            $check = $db->query("SELECT id FROM answered_tests WHERE user_id = :user_id AND test_id = :test_id LIMIT 1", $arr1);
+            if(!$check) {
+                $arr1['date'] = date("Y-m-d H:i:s");
+                $query = "INSERT INTO answered_tests (user_id, test_id, date) VALUES (:user_id, :test_id, :date)";
+                $db->query($query, $arr1);
+            }
 
             foreach ($_POST as $key => $value) {
                 if(is_numeric($key)) {
@@ -89,6 +102,24 @@ class Take_test extends Controller
         $all_questions = $quest->query("SELECT * FROM tests_questions WHERE test_id = :test_id", ['test_id' => $id]);
         $total_questions = is_array($all_questions) ? count($all_questions) : 0;
 
+        //get answered test row
+        $arr1 = [];
+        $arr1['user_id'] = Auth::getUser_id();
+        $arr1['test_id'] = $id;
+
+        $answered_test_row = $db->query("SELECT * FROM answered_tests WHERE user_id = :user_id AND test_id = :test_id LIMIT 1", $arr1);
+
+        if(is_array($answered_test_row)) {
+            $answered_test_row = $answered_test_row[0];
+        }
+
+        //submit test
+        if(isset($_GET['submit'])) {
+            $query = "UPDATE answered_tests SET submitted = 1 WHERE test_id = :test_id AND user_id = :user_id";
+            $tests->query($query, ['test_id' => $id, 'user_id' => Auth::getUser_id()]);
+
+        }
+
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
         $data['crumbs'] = $crumbs;
@@ -99,6 +130,7 @@ class Take_test extends Controller
         $data['total_questions'] = $total_questions;
         $data['all_questions'] = $all_questions;
         $data['saved_answers'] = $saved_answers;
+        $data['answered_test_row'] = $answered_test_row;
 
         $this->view('take-test', $data);
     }

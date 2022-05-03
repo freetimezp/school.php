@@ -9,12 +9,25 @@
         <div style="height: 5px; width: 100%; background: #abc7e9;">
             <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
         </div>
+
+        <?php if($answered_test_row): ?>
+            <?php if($answered_test_row->submitted): ?>
+                <div class="text-center text-success">this test has been submitted</div>
+            <?php else: ?>
+                <div class="d-flex align-items-center justify-content-center m-1">
+                    <div class="text-center text-danger me-2">this test has not yet submitted</div>
+                    <a onclick="submit_test(event)" href="<?=ROOT;?>/take_test/<?=$row->test_id;?>?submit=true">
+                        <button class="btn btn-primary p-1">Submit</button>
+                    </a>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
     </div>
     <hr>
 
     <?php if(isset($questions) && is_array($questions)): ?>
         <form method="post">
-            <?php $num = 0; ?>
+            <?php $num = $pager->offset; ?>
             <?php foreach($questions as $question): ?>
                 <?php $num++; ?>
                 <div class="card mb-3 shadow">
@@ -80,4 +93,23 @@
         <?php $pager->display(); ?>
     </div>
 </div>
+
+<script>
+    let percent = <?=$percentage;?>;
+
+    function submit_test(e) {
+        if(!confirm("Are you sure you want to submit test?")) {
+            e.preventDefault();
+            return;
+        }
+
+        if(percent < 100) {
+            if(!confirm("You have answered only " + percent + " % of test question! Submit now?")) {
+                e.preventDefault();
+                return;
+            }
+        }
+
+    }
+</script>
 
