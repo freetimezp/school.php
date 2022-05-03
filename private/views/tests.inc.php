@@ -18,7 +18,10 @@
                     </td>
                     <td><?=$test_row->test;?></td><td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td><td><?=$test_row->disabled?'no':'yes';?></td><td><?=get_date($test_row->date);?></td>
                     <td>
-                        <?php $percentage = get_answer_percentage($test_row->test_id, Auth::getUser_id()); ?>
+                        <?php
+                            $myid = (strtolower(get_class($this)) == 'profile') ? $row->user_id : Auth::getUser_id();
+                            $percentage = get_answer_percentage($test_row->test_id, $myid);
+                        ?>
                         <span><?=$percentage . ' %';?></span>
                     </td>
                     <td>
