@@ -147,7 +147,39 @@ function get_answer($saved_answers, $id) {
     return '';
 }
 
-function get_answer_percentage($questions, $saved_answers) {
+function get_answer_percentage1($questions, $saved_answers) {
+    $total_answer_count = 0;
+
+    if(!empty($questions)) {
+        foreach ($questions as $quest) {
+            $answer = get_answer($saved_answers, $quest->id);
+
+            if(trim($answer) != "") {
+                $total_answer_count++;
+            }
+        }
+    }
+
+    if($total_answer_count > 0) {
+        $total_questions = count($questions);
+
+        return ($total_answer_count / $total_questions) * 100;
+    }
+
+    return 0;
+}
+
+function get_answer_percentage($test_id, $user_id) {
+    $quest = new Questions_model();
+    $questions = $quest->query("SELECT * FROM tests_questions WHERE test_id = :test_id", ['test_id' => $test_id]);
+
+    $answers = new Answers_model();
+    $query = "SELECT question_id, answer FROM answers WHERE user_id = :user_id AND test_id = :test_id";
+    $saved_answers = $answers->query($query, [
+        'user_id' => $user_id,
+        'test_id' => $test_id
+    ]);
+
     $total_answer_count = 0;
 
     if(!empty($questions)) {

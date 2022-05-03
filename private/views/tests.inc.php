@@ -2,9 +2,8 @@
     <table class="table table-striped table-hover">
         <tr>
             <th></th><th>Test name</th><th>Created by</th><th>Active</th><th>Date</th>
-            <th>
-
-            </th>
+            <th>Answered</th>
+            <th></th>
         </tr>
 
         <?php if(isset($test_rows) && $test_rows): ?>
@@ -18,6 +17,10 @@
                         <?php endif; ?>
                     </td>
                     <td><?=$test_row->test;?></td><td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td><td><?=$test_row->disabled?'no':'yes';?></td><td><?=get_date($test_row->date);?></td>
+                    <td>
+                        <?php $percentage = get_answer_percentage($test_row->test_id, Auth::getUser_id()); ?>
+                        <span><?=$percentage . ' %';?></span>
+                    </td>
                     <td>
                         <?php if(can_take_test($test_row->test_id)): ?>
                             <a href="<?=ROOT;?>/take_test/<?=$test_row->test_id;?>">

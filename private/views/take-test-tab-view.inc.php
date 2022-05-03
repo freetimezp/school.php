@@ -4,7 +4,7 @@
     </nav>
 
     <div>
-        <?php $percentage = get_answer_percentage($all_questions, $saved_answers); ?>
+        <?php $percentage = get_answer_percentage($row->test_id, Auth::getUser_id()); ?>
         <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
         <div style="height: 5px; width: 100%; background: #abc7e9;">
             <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
