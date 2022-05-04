@@ -102,22 +102,17 @@ class Take_test extends Controller
         $all_questions = $quest->query("SELECT * FROM tests_questions WHERE test_id = :test_id", ['test_id' => $id]);
         $total_questions = is_array($all_questions) ? count($all_questions) : 0;
 
-        //get answered test row
-        $arr1 = [];
-        $arr1['user_id'] = Auth::getUser_id();
-        $arr1['test_id'] = $id;
-
-        $answered_test_row = $db->query("SELECT * FROM answered_tests WHERE user_id = :user_id AND test_id = :test_id LIMIT 1", $arr1);
-
-        if(is_array($answered_test_row)) {
-            $answered_test_row = $answered_test_row[0];
-        }
-
         //submit test
         if(isset($_GET['submit'])) {
             $query = "UPDATE answered_tests SET submitted = 1 WHERE test_id = :test_id AND user_id = :user_id";
             $tests->query($query, ['test_id' => $id, 'user_id' => Auth::getUser_id()]);
+        }
 
+        //get answered test
+        $data['answered_test_row'] = $tests->get_answered_test($id, Auth::getUser_id());
+        $data['submitted'] = false;
+        if(isset($data['answered_test_row']->submitted) && $data['answered_test_row'] == 1) {
+            $data['submitted'] = true;
         }
 
         $data['row'] = $row;
@@ -130,7 +125,6 @@ class Take_test extends Controller
         $data['total_questions'] = $total_questions;
         $data['all_questions'] = $all_questions;
         $data['saved_answers'] = $saved_answers;
-        $data['answered_test_row'] = $answered_test_row;
 
         $this->view('take-test', $data);
     }

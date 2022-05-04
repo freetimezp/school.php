@@ -55,7 +55,11 @@
                         <?php $myanswer = get_answer($saved_answers, $question->id); ?>
 
                         <?php if($question->question_type != 'multiple'): ?>
-                            <input class="form-control" value="<?=$myanswer;?>" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
+                            <?php if(!$submitted):?>
+                                <input class="form-control" value="<?=$myanswer;?>" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
+                            <?php else: ?>
+                                <div>Answer: <?=$myanswer;?></div>
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <?php if($question->question_type == 'multiple'): ?>
@@ -69,9 +73,15 @@
                                     <?php foreach ($choices as $letter => $answer): ?>
                                         <li class="list-group-item d-flex align-items-center justify-content-between" style="width:400px;">
                                             <span style="vertical-align: center;"><?=$letter;?>: <?=$answer;?></span>
-                                            <input type="radio" style="transform: scale(1.5); cursor: pointer;"
-                                                   name="<?=$question->id;?>" class="float-end" 
-                                                <?=$myanswer==$letter?' checked ':'';?> value="<?=$letter;?>">
+                                            <?php if(!$submitted):?>
+                                                <input type="radio" style="transform: scale(1.5); cursor: pointer;"
+                                                       name="<?=$question->id;?>" class="float-end"
+                                                    <?=$myanswer==$letter?' checked ':'';?> value="<?=$letter;?>">
+                                            <?php else: ?>
+                                                <?php if($myanswer == $letter): ?>
+                                                    <i class="fa fa-check"></i>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                         </li>
                                     <?php endforeach;?>
                                 </ul>
@@ -82,10 +92,12 @@
             <?php endforeach; ?>
             <hr>
 
-            <div class="text-center">
-                <p class="text-danger"><b><i class="fa fa-smile text-success"></i>Click save before going to another page!</b></p>
-                <button class="btn btn-primary">Save answers</button>
-            </div>
+            <?php if(!$submitted):?>
+                <div class="text-center">
+                    <p class="text-danger"><b><i class="fa fa-smile text-success"></i>Click save before going to another page!</b></p>
+                    <button class="btn btn-primary">Save answers</button>
+                </div>
+            <?php endif; ?>
         </form>
     <?php endif; ?>
 
