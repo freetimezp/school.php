@@ -12,7 +12,7 @@ class Marked extends Controller
         $school_id = Auth::getSchool_id();
 
         $crumbs[] = ['Dashboard', ''];
-        $crumbs[] = ['To-mark', 'to-mark'];
+        $crumbs[] = ['Marked', 'marked'];
 
         if(Auth::access('admin')) {
             $query = "SELECT * FROM tests WHERE school_id = :school_id ORDER BY id DESC";

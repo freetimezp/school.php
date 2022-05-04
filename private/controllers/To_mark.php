@@ -12,7 +12,7 @@ class To_mark extends Controller
         $school_id = Auth::getSchool_id();
 
         $crumbs[] = ['Dashboard', ''];
-        $crumbs[] = ['To-mark', 'to-mark'];
+        $crumbs[] = ['To_mark', 'to_mark'];
 
         if(Auth::access('admin')) {
             $query = "SELECT * FROM tests WHERE school_id = :school_id ORDER BY id DESC";
@@ -60,6 +60,8 @@ class To_mark extends Controller
                 $query = "SELECT * FROM answered_tests WHERE test_id = :test_id AND submitted = 1 AND marked = 0 LIMIT 1";
                 $a = $tests->query($query, ['test_id' => $arow->test_id]);
                 if(is_array($a)) {
+                    $test_details = $tests->first('test_id', $a[0]->test_id);
+                    $a[0]->test_details = $test_details;
                     $to_mark = array_merge($to_mark, $a);
                 }
             }

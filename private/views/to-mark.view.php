@@ -3,7 +3,7 @@ $this->view('includes/header');
 $this->view('includes/nav');
 ?>
 <div class="container-fluid p-4 profile mx-auto shadow">
-    <h4>Tests room</h4>
+    <h4>Tests to mark</h4>
     <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
 
     <nav class="navbar navbar-light bg-light">
@@ -17,9 +17,10 @@ $this->view('includes/nav');
         </form>
     </nav>
 
-    <?php include (views_path('tests')); ?>
+    <?php include (views_path('to-mark')); ?>
 
 </div>
 
 <?php $this->view('includes/footer'); ?>
+
 
