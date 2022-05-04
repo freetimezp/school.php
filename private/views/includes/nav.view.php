@@ -33,9 +33,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?=ROOT?>/classes">CLASSES</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="<?=ROOT?>/tests">TESTS</a>
             </li>
+
+            <?php if(Auth::access('lecturer')): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="<?=ROOT?>/to_mark">TESTS TO MARK</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=ROOT?>/marked">MARKED TESTS</a>
+                </li>
+            <?php endif; ?>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
