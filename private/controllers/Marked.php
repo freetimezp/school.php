@@ -60,6 +60,8 @@ class Marked extends Controller
                 $query = "SELECT * FROM answered_tests WHERE test_id = :test_id AND submitted = 1 AND marked = 1 LIMIT 1";
                 $a = $tests->query($query, ['test_id' => $arow->test_id]);
                 if(is_array($a)) {
+                    $test_details = $tests->first('test_id', $a[0]->test_id);
+                    $a[0]->test_details = $test_details;
                     $marked = array_merge($marked, $a);
                 }
             }
