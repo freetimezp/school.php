@@ -11,7 +11,7 @@
                 <tr>
                     <td>
                         <?php if(Auth::access('lecturer')): ?>
-                            <a href="<?=ROOT;?>/single_test/<?=$test_row->test_id;?>">
+                            <a href="<?=ROOT;?>/mark_test/<?=$test_row->test_id;?>/<?=$test_row->user->user_id;?>">
                                 <button class="btn btn-sm btn-primary">Mark test <i class="fa fa-chevron-right"></i></button>
                             </a>
                         <?php endif; ?>

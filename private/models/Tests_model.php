@@ -99,6 +99,8 @@ class Tests_model extends Model
     }
 
     public function get_to_mark_count() {
+        $school_id = Auth::getSchool_id();
+
         if(Auth::access('admin')) {
             $query = "SELECT * FROM tests WHERE school_id = :school_id ORDER BY id DESC";
             $arr['school_id'] = $school_id;
