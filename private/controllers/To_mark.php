@@ -26,7 +26,6 @@ class To_mark extends Controller
 
             $data = $tests->query($query, $arr);
         }else{
-            $test = new Tests_model();
             $myTable = "class_lecturers";
 
             $query = "SELECT * FROM $myTable WHERE user_id = :user_id";
@@ -40,7 +39,7 @@ class To_mark extends Controller
             }
 
             //read all tests from the selected classes
-            $arr['stud_classes'] = $test->query($query, $arr);
+            $arr['stud_classes'] = $tests->query($query, $arr);
             $data = array();
             if($arr['stud_classes']) {
                 foreach ($arr['stud_classes'] as $key => $arow) {

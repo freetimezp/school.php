@@ -40,10 +40,19 @@
 
             <?php if(Auth::access('lecturer')): ?>
                 <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="<?=ROOT?>/to_mark">TESTS TO MARK</a>
+                    <a class="nav-link" href="<?=ROOT?>/to_mark">
+                        <span>TO MARK</span>
+                        <?php
+                            $tests = new Tests_model();
+                            $to_mark_count = $tests->get_to_mark_count();
+                        ?>
+                        <?php if($to_mark_count): ?>
+                            <span class="badge text-white border rounded-circle border-primary bg-primary"><?=$to_mark_count;?></span>
+                        <?php endif; ?>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/marked">MARKED TESTS</a>
+                    <a class="nav-link" href="<?=ROOT?>/marked">MARKED</a>
                 </li>
             <?php endif; ?>
         </ul>
