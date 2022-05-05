@@ -26,4 +26,8 @@ class Controller
         header("Location: " . ROOT . "/" . trim($link, "/"));
         die;
     }
+
+    public function controller_name() {
+        return get_class($this);
+    }
 }

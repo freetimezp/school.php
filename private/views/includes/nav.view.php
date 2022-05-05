@@ -8,39 +8,39 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?=ROOT;?>">DASHBOARD</a>
+            <li class="nav-item">
+                <a class="nav-link <?=($this->controller_name() == 'Home')?'active bg-secondary text-white':'';?>" href="<?=ROOT;?>">DASHBOARD</a>
             </li>
 
             <?php if(Auth::access('super_admin')): ?>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?=ROOT?>/schools">SCHOOLS</a>
+                <li class="nav-item">
+                    <a class="nav-link  <?=($this->controller_name() == 'Schools')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/schools">SCHOOLS</a>
                 </li>
             <?php endif; ?>
 
             <?php if(Auth::access('admin')): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/users">STAFF</a>
+                    <a class="nav-link  <?=($this->controller_name() == 'Users')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/users">STAFF</a>
                 </li>
             <?php endif; ?>
 
             <?php if(Auth::access('reception')): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/students">STUDENTS</a>
+                    <a class="nav-link <?=($this->controller_name() == 'Students')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/students">STUDENTS</a>
                 </li>
             <?php endif; ?>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?=ROOT?>/classes">CLASSES</a>
+                <a class="nav-link <?=($this->controller_name() == 'Classes')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/classes">CLASSES</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?=ROOT?>/tests">TESTS</a>
+                <a class="nav-link <?=($this->controller_name() == 'Tests')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/tests">TESTS</a>
             </li>
 
             <?php if(Auth::access('lecturer')): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/to_mark">
+                    <a class="nav-link <?=($this->controller_name() == 'To_mark')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/to_mark">
                         <span>TO MARK</span>
                         <?php
                             $tests = new Tests_model();
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=ROOT?>/marked">MARKED</a>
+                    <a class="nav-link <?=($this->controller_name() == 'Marked')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/marked">MARKED</a>
                 </li>
             <?php endif; ?>
         </ul>
