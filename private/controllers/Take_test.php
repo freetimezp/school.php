@@ -104,8 +104,12 @@ class Take_test extends Controller
 
         //submit test
         if(isset($_GET['submit'])) {
-            $query = "UPDATE answered_tests SET submitted = 1 WHERE test_id = :test_id AND user_id = :user_id";
-            $tests->query($query, ['test_id' => $id, 'user_id' => Auth::getUser_id()]);
+            $query = "UPDATE answered_tests SET submitted = 1, submitted_date = :sub_date WHERE test_id = :test_id AND user_id = :user_id";
+            $tests->query($query, [
+                'test_id' => $id,
+                'user_id' => Auth::getUser_id(),
+                'sub_date' => date("Y-m-d H:i:s")
+            ]);
         }
 
         //get answered test

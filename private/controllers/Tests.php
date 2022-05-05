@@ -38,21 +38,24 @@ class Tests extends Controller
 
             $arr['user_id'] = Auth::getUser_id();
 
-            if(isset($_GET['find'])) {
-                $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT tests.test, {$myTable}.* FROM $myTable JOIN tests ON tests.test_id = {$myTable}.test_id WHERE {$myTable}.user_id = :user_id AND {$myTable}.disabled = 0 AND tests.test LIKE :find";
-                $arr['find'] = $find;
-            }
-
             $arr['stud_classes'] = $test->query($query, $arr);
 
             $data = array();
+            $arr2 = array();
 
             if($arr['stud_classes']) {
                 foreach ($arr['stud_classes'] as $key => $arow) {
-                    //$a = $test->where('class_id', $arow->class_id);
                     $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id";
-                    $a = $tests->query($query, ['class_id' => $arow->class_id]);
+                    $arr2['class_id'] = $arow->class_id;
+
+                    //search
+                    if(isset($_GET['find'])) {
+                        $find = '%' . $_GET['find'] . '%';
+                        $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id AND test LIKE :find";
+                        $arr2['find'] = $find;
+                    }
+
+                    $a = $tests->query($query, $arr2);
                     if(is_array($a)) {
                         $data = array_merge($data, $a);
                     }

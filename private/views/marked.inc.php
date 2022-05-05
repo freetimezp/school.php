@@ -19,7 +19,7 @@
                     <td><?=$test_row->test_details->test;?></td>
                     <td><?=$test_row->test_details->class->class;?></td>
                     <td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td>
-                    <td><?=get_date($test_row->submitted_date);?></td>
+                    <td><?=get_date($test_row->test_details->submitted_date);?></td>
                     <td>
                         <?php $percentage = get_answer_percentage($test_row->test_id, $test_row->user_id); ?>
                         <span><?=$percentage . ' %';?></span>
@@ -40,5 +40,6 @@
         <?php endif; ?>
     </table>
 </div>
+
 
 
