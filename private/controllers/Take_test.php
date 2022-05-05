@@ -119,6 +119,10 @@ class Take_test extends Controller
             $data['submitted'] = true;
         }
 
+        //get student information
+        $user = new User();
+        $student_row = $user->first('user_id', $data['answered_test_row']->user_id);
+
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
         $data['crumbs'] = $crumbs;
@@ -129,6 +133,7 @@ class Take_test extends Controller
         $data['total_questions'] = $total_questions;
         $data['all_questions'] = $all_questions;
         $data['saved_answers'] = $saved_answers;
+        $data['student_row'] = $student_row;
 
         $this->view('take-test', $data);
     }

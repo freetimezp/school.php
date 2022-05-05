@@ -13,10 +13,10 @@ $this->view('includes/nav');
             <div class="col-sm-8 col-md-9 p-2">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <th>Class:</th>
-                        <td>
-                            <?=$row->class->class;?>
-                        </td>
+                        <th>Class:</th><td><?=$row->class->class;?></td>
+                    </tr>
+                    <tr>
+                        <th>Student:</th><td><?=$student_row->firstname . ' ' . $student_row->lastname;?></td>
                     </tr>
                     <tr>
                         <th>Test Name:</th><td><?=esc($row->test);?></td>
