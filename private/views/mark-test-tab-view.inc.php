@@ -11,11 +11,22 @@
         </div>
 
         <?php if($answered_test_row): ?>
-            <?php if($answered_test_row->submitted): ?>
+            <?php if($answered_test_row->submitted && !$marked): ?>
                 <div class="d-flex align-items-center justify-content-center m-1">
                     <div class="text-center text-success me-2">this test has been submitted</div>
-                    <a onclick="unsubmit_test(event)" href="<?=ROOT;?>/mark_test/<?=$row->test_id;?>/<?=$answered_test_row->user_id;?>?unsubmit=true">
-                        <button class="btn btn-primary p-1">unSubmit</button>
+                    <a onclick="unsubmit_test(event)"
+                       class="me-2"
+                       href="<?=ROOT;?>/mark_test/<?=$row->test_id;?>/<?=$answered_test_row->user_id;?>?unsubmit=true">
+                        <button class="btn btn-danger p-1">unSubmit</button>
+                    </a>
+                    <a onclick="set_test_as_marked(event)"
+                       class="me-2"
+                       href="<?=ROOT;?>/mark_test/<?=$row->test_id;?>/<?=$answered_test_row->user_id;?>?set_marked=true">
+                        <button class="btn btn-primary p-1">Set as marked</button>
+                    </a>
+                    <a onclick="auto_mark(event)"
+                       href="<?=ROOT;?>/mark_test/<?=$row->test_id;?>/<?=$answered_test_row->user_id;?>?auto_mark=true">
+                        <button class="btn btn-success p-1">Automark</button>
                     </a>
                 </div>
             <?php endif; ?>
@@ -112,10 +123,10 @@
             <?php endforeach; ?>
             <hr>
 
-            <?php if(!$submitted):?>
+            <?php if(!$marked):?>
                 <div class="text-center">
-                    <p class="text-danger"><b><i class="fa fa-smile text-success"></i>Click save before going to another page!</b></p>
-                    <button class="btn btn-primary">Save answers</button>
+                    <p class="text-danger"><b><i class="fa fa-smile text-success"></i>Click save marks before going to another page!</b></p>
+                    <button class="btn btn-primary">Save marks</button>
                 </div>
             <?php endif; ?>
         </form>
@@ -129,6 +140,20 @@
 <script>
     function unsubmit_test(e) {
         if(!confirm("Are you sure you want to unsubmit test?")) {
+            e.preventDefault();
+            return;
+        }
+    }
+
+    function set_test_as_marked(e) {
+        if(!confirm("You wont be able to mark questions after this action, continue?")) {
+            e.preventDefault();
+            return;
+        }
+    }
+
+    function auto_mark(e) {
+        if(!confirm("This override your marks saved before. Are you sure you want to auto mark test?")) {
             e.preventDefault();
             return;
         }

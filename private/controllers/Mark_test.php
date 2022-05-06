@@ -113,11 +113,30 @@ class Mark_test extends Controller
             ]);
         }
 
+        //marked test
+        if(isset($_GET['set_marked'])) {
+            $query = "UPDATE answered_tests SET marked = 1, marked_by = :marked_by , marked_date = :marked_date WHERE test_id = :test_id AND user_id = :user_id";
+            $tests->query($query, [
+                'test_id' => $id,
+                'user_id' => $user_id,
+                'marked_by' => Auth::getUser_id(),
+                'marked_date' => date("Y-m-d H:i:s")
+            ]);
+        }
+
         //get answered test
         $data['answered_test_row'] = $tests->get_answered_test($id, $user_id);
+
+        //set submitted
         $data['submitted'] = false;
-        if(isset($data['answered_test_row']->submitted) && $data['answered_test_row'] == 1) {
+        if(isset($data['answered_test_row']->submitted) && $data['answered_test_row']->submitted == 1) {
             $data['submitted'] = true;
+        }
+
+        //set marked
+        $data['marked'] = false;
+        if(isset($data['answered_test_row']->marked) && $data['answered_test_row']->marked == 1) {
+            $data['marked'] = true;
         }
 
         //get student information
