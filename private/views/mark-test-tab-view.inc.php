@@ -54,6 +54,20 @@
 
                         <?php if($question->question_type != 'multiple'): ?>
                             <div>Answer: <?=$myanswer;?></div>
+                            <hr>
+                            <h6>Teachers mark:</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                <label class="form-check-label" for="radiocorrect<?=$num;?>">
+                                    Correct
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                <label class="form-check-label" for="radiowrong<?=$num;?>">
+                                    Wrong
+                                </label>
+                            </div>
                         <?php endif; ?>
 
                         <?php if($question->question_type == 'multiple'): ?>
@@ -74,6 +88,23 @@
                                         </li>
                                     <?php endforeach;?>
                                 </ul>
+                                <hr>
+
+                                <div class="ps-3">
+                                    <h6>Teachers mark:</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                        <label class="form-check-label" for="radiocorrect<?=$num;?>">
+                                            Correct
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                        <label class="form-check-label" for="radiowrong<?=$num;?>">
+                                            Wrong
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         <?php endif; ?>
                     </div>
