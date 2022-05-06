@@ -36,28 +36,13 @@ class Mark_test extends Controller
 
         //if something was posted
         if(count($_POST) > 0) {
-            //save answers to db
-            $arr = []; // table answers
-            $arr1 = []; // table answered_tests
-
-            $arr1['user_id'] = $user_id;
-            $arr1['test_id'] = $id;
-
-            $check = $db->query("SELECT id FROM answered_tests WHERE user_id = :user_id AND test_id = :test_id LIMIT 1", $arr1);
-            if(!$check) {
-                $arr1['date'] = date("Y-m-d H:i:s");
-                $query = "INSERT INTO answered_tests (user_id, test_id, date) VALUES (:user_id, :test_id, :date)";
-                $db->query($query, $arr1);
-            }
-
             foreach ($_POST as $key => $value) {
                 if(is_numeric($key)) {
                     //save
                     $arr['user_id'] = $user_id;
                     $arr['question_id'] = $key;
-                    $arr['date'] = date("Y-m-d H:i:s");
                     $arr['test_id'] = $id;
-                    $arr['answer'] = trim($value);
+                    $arr['answer_mark'] = trim($value);
 
                     //check if answer already exists
                     $query = "SELECT id FROM answers WHERE user_id = :user_id AND test_id = :test_id AND question_id = :question_id LIMIT 1";
@@ -67,9 +52,7 @@ class Mark_test extends Controller
                         'test_id' => $arr['test_id']
                     ]);
 
-                    if(!$check) {
-                        $answers->insert($arr);
-                    }else{
+                    if($check) {
                         $answer_id = $check[0]->id;
 
                         unset($arr['user_id']);
@@ -86,7 +69,7 @@ class Mark_test extends Controller
             if(!empty($_GET['page'])) {
                 $page_number = "&page=" . $_GET['page'];
             }
-            $this->redirect('take_test/' . $id . $page_number);
+            $this->redirect('mark_test/' . $id . '/' . $user_id . $page_number);
         }
 
         $limit = 3;

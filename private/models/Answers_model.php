@@ -9,6 +9,8 @@ class Answers_model extends Model
         'test_id',
         'question_id',
         'answer',
+        'answer_mark',
+        'answer_comment',
         'date'
     ];
 
