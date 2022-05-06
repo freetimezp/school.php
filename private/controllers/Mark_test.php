@@ -7,7 +7,7 @@ class Mark_test extends Controller
     {
         $errors = array();
 
-        if(!Auth::access('student')) {
+        if(!Auth::access('lecturer')) {
             $this->redirect('access_denied');
         }
 
@@ -103,13 +103,13 @@ class Mark_test extends Controller
         $all_questions = $quest->query("SELECT * FROM tests_questions WHERE test_id = :test_id", ['test_id' => $id]);
         $total_questions = is_array($all_questions) ? count($all_questions) : 0;
 
-        //submit test
-        if(isset($_GET['submit'])) {
-            $query = "UPDATE answered_tests SET submitted = 1, submitted_date = :sub_date WHERE test_id = :test_id AND user_id = :user_id";
+        //unsubmit test
+        if(isset($_GET['unsubmit'])) {
+            $query = "UPDATE answered_tests SET submitted = 0, submitted_date = :sub_date WHERE test_id = :test_id AND user_id = :user_id";
             $tests->query($query, [
                 'test_id' => $id,
                 'user_id' => $user_id,
-                'sub_date' => date("Y-m-d H:i:s")
+                'sub_date' => NULL
             ]);
         }
 
@@ -121,8 +121,10 @@ class Mark_test extends Controller
         }
 
         //get student information
-        $user = new User();
-        $student_row = $user->first('user_id', $data['answered_test_row']->user_id);
+        if($data['answered_test_row']) {
+            $user = new User();
+            $student_row = $user->first('user_id', $data['answered_test_row']->user_id);
+        }
 
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
@@ -135,6 +137,7 @@ class Mark_test extends Controller
         $data['all_questions'] = $all_questions;
         $data['saved_answers'] = $saved_answers;
         $data['student_row'] = $student_row;
+        $data['user_id'] = $user_id;
 
         $this->view('mark-test', $data);
     }

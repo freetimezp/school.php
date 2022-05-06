@@ -4,7 +4,7 @@
     </nav>
 
     <div>
-        <?php $percentage = get_answer_percentage($row->test_id, Auth::getUser_id()); ?>
+        <?php $percentage = get_answer_percentage($row->test_id, $user_id); ?>
         <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
         <div style="height: 5px; width: 100%; background: #abc7e9;">
             <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
@@ -12,12 +12,10 @@
 
         <?php if($answered_test_row): ?>
             <?php if($answered_test_row->submitted): ?>
-                <div class="text-center text-success">this test has been submitted</div>
-            <?php else: ?>
                 <div class="d-flex align-items-center justify-content-center m-1">
-                    <div class="text-center text-danger me-2">this test has not yet submitted</div>
-                    <a onclick="submit_test(event)" href="<?=ROOT;?>/take_test/<?=$row->test_id;?>?submit=true">
-                        <button class="btn btn-primary p-1">Submit</button>
+                    <div class="text-center text-success me-2">this test has been submitted</div>
+                    <a onclick="unsubmit_test(event)" href="<?=ROOT;?>/mark_test/<?=$row->test_id;?>/<?=$answered_test_row->user_id;?>?unsubmit=true">
+                        <button class="btn btn-primary p-1">unSubmit</button>
                     </a>
                 </div>
             <?php endif; ?>
@@ -55,11 +53,7 @@
                         <?php $myanswer = get_answer($saved_answers, $question->id); ?>
 
                         <?php if($question->question_type != 'multiple'): ?>
-                            <?php if(!$submitted):?>
-                                <input class="form-control" value="<?=$myanswer;?>" type="text" name="<?=$question->id;?>" placeholder="Type your answer here">
-                            <?php else: ?>
-                                <div>Answer: <?=$myanswer;?></div>
-                            <?php endif; ?>
+                            <div>Answer: <?=$myanswer;?></div>
                         <?php endif; ?>
 
                         <?php if($question->question_type == 'multiple'): ?>
@@ -73,14 +67,9 @@
                                     <?php foreach ($choices as $letter => $answer): ?>
                                         <li class="list-group-item d-flex align-items-center justify-content-between" style="width:400px;">
                                             <span style="vertical-align: center;"><?=$letter;?>: <?=$answer;?></span>
-                                            <?php if(!$submitted):?>
-                                                <input type="radio" style="transform: scale(1.5); cursor: pointer;"
-                                                       name="<?=$question->id;?>" class="float-end"
-                                                    <?=$myanswer==$letter?' checked ':'';?> value="<?=$letter;?>">
-                                            <?php else: ?>
-                                                <?php if($myanswer == $letter): ?>
-                                                    <i class="fa fa-check"></i>
-                                                <?php endif; ?>
+
+                                            <?php if($myanswer == $letter): ?>
+                                                <i class="fa fa-check"></i>
                                             <?php endif; ?>
                                         </li>
                                     <?php endforeach;?>
@@ -107,21 +96,11 @@
 </div>
 
 <script>
-    let percent = <?=$percentage;?>;
-
-    function submit_test(e) {
-        if(!confirm("Are you sure you want to submit test?")) {
+    function unsubmit_test(e) {
+        if(!confirm("Are you sure you want to unsubmit test?")) {
             e.preventDefault();
             return;
         }
-
-        if(percent < 100) {
-            if(!confirm("You have answered only " + percent + " % of test question! Submit now?")) {
-                e.preventDefault();
-                return;
-            }
-        }
-
     }
 </script>
 
