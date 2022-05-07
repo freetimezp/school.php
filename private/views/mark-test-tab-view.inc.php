@@ -14,7 +14,7 @@
             </div>
 
             <div class="text-center text-dark"><b><?=$marked_percentage;?>% questions has marked</b></div>
-            <div style="height: 5px; width: 100%; background: #868688;">
+            <div style="height: 5px; width: 100%; background: #bababe;">
                 <div class="bg-dark" style="height: 5px; width: <?=$marked_percentage;?>%"></div>
             </div>
         </div>
@@ -47,7 +47,18 @@
             <?php $num = $pager->offset; ?>
             <?php foreach($questions as $question): ?>
                 <?php $num++; ?>
-                <div class="card mb-3 shadow">
+                <?php
+                    $mymark = get_answer_mark($saved_answers, $question->id);
+                    $border = '';
+                    if($mymark == 1) {
+                        $border = ' border-success border-1 ';
+                    }elseif($mymark == 2) {
+                        $border = ' border-danger border-1 ';
+                    }else{
+                        $border = ' border-warning border-1 ';
+                    }
+                ?>
+                <div class="card mb-3 shadow <?=$border;?>">
                     <div class="card-header text-center p-3">
                         <span class="bg-secondary col-3 p-2 rounded-1 text-white">Question #<?=$num;?></span>
                         <span class="bg-success p-2 rounded-1 text-white"><?=date('F jS, Y H:i:s a', strtotime($question->date));?></span>
@@ -76,18 +87,24 @@
                             <div>Answer: <?=$myanswer;?></div>
                             <hr>
                             <h6>Teachers mark:</h6>
-                            <div class="form-check">
-                                <input <?=($mymark==1)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
-                                <label class="form-check-label" for="radiocorrect<?=$num;?>">
-                                    Correct
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input <?=($mymark==2)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
-                                <label class="form-check-label" for="radiowrong<?=$num;?>">
-                                    Wrong
-                                </label>
-                            </div>
+                            <?php if(!$marked):?>
+                                <div class="form-check">
+                                    <input <?=($mymark==1)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                    <label class="form-check-label" for="radiocorrect<?=$num;?>">
+                                        Correct
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input <?=($mymark==2)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                    <label class="form-check-label" for="radiowrong<?=$num;?>">
+                                        Wrong
+                                    </label>
+                                </div>
+                            <?php else: ?>
+                                <div style="font-size: 50px;" class="text-center">
+                                    <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <?php if($question->question_type == 'multiple'): ?>
@@ -112,18 +129,24 @@
 
                                 <div class="ps-3">
                                     <h6>Teachers mark:</h6>
-                                    <div class="form-check">
-                                        <input  <?=($mymark==1)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
-                                        <label class="form-check-label" for="radiocorrect<?=$num;?>">
-                                            Correct
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input  <?=($mymark==2)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
-                                        <label class="form-check-label" for="radiowrong<?=$num;?>">
-                                            Wrong
-                                        </label>
-                                    </div>
+                                    <?php if(!$marked):?>
+                                        <div class="form-check">
+                                            <input  <?=($mymark==1)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                            <label class="form-check-label" for="radiocorrect<?=$num;?>">
+                                                Correct
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input  <?=($mymark==2)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                            <label class="form-check-label" for="radiowrong<?=$num;?>">
+                                                Wrong
+                                            </label>
+                                        </div>
+                                    <?php else: ?>
+                                        <div style="font-size: 50px;" class="text-center">
+                                            <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -155,6 +178,13 @@
     }
 
     function set_test_as_marked(e) {
+        let percent = <?=$marked_percentage;?>;
+        if(percent < 100) {
+            e.preventDefault();
+            alert("You have only mark " + percent + "% of questions. You must check all questions for mark!");
+            return;
+        }
+
         if(!confirm("You wont be able to mark questions after this action, continue?")) {
             e.preventDefault();
             return;

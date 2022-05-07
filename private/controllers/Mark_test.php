@@ -97,7 +97,7 @@ class Mark_test extends Controller
         }
 
         //marked test
-        if(isset($_GET['set_marked'])) {
+        if(isset($_GET['set_marked']) && (get_mark_percentage($id, $user_id) >= 100)) {
             $query = "UPDATE answered_tests SET marked = 1, marked_by = :marked_by , marked_date = :marked_date WHERE test_id = :test_id AND user_id = :user_id";
             $tests->query($query, [
                 'test_id' => $id,
