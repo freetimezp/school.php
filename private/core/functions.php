@@ -147,26 +147,28 @@ function get_answer($saved_answers, $id) {
     return '';
 }
 
-function get_answer_percentage1($questions, $saved_answers) {
-    $total_answer_count = 0;
-
-    if(!empty($questions)) {
-        foreach ($questions as $quest) {
-            $answer = get_answer($saved_answers, $quest->id);
-
-            if(trim($answer) != "") {
-                $total_answer_count++;
+function get_mark($saved_answers, $id) {
+    if(!empty($saved_answers)) {
+        foreach ($saved_answers as $row) {
+            if($id == $row->question_id) {
+                return $row->answer_mark;
             }
         }
     }
 
-    if($total_answer_count > 0) {
-        $total_questions = count($questions);
+    return '';
+}
 
-        return ($total_answer_count / $total_questions) * 100;
+function get_answer_mark($saved_answers, $id) {
+    if(!empty($saved_answers)) {
+        foreach ($saved_answers as $row) {
+            if($id == $row->question_id) {
+                return $row->answer_mark;
+            }
+        }
     }
 
-    return 0;
+    return '';
 }
 
 function get_answer_percentage($test_id, $user_id) {
@@ -187,6 +189,37 @@ function get_answer_percentage($test_id, $user_id) {
             $answer = get_answer($saved_answers, $quest->id);
 
             if(trim($answer) != "") {
+                $total_answer_count++;
+            }
+        }
+    }
+
+    if($total_answer_count > 0) {
+        $total_questions = count($questions);
+
+        return ($total_answer_count / $total_questions) * 100;
+    }
+
+    return 0;
+}
+function get_mark_percentage($test_id, $user_id) {
+    $quest = new Questions_model();
+    $questions = $quest->query("SELECT * FROM tests_questions WHERE test_id = :test_id", ['test_id' => $test_id]);
+
+    $answers = new Answers_model();
+    $query = "SELECT question_id, answer, answer_mark FROM answers WHERE user_id = :user_id AND test_id = :test_id";
+    $saved_answers = $answers->query($query, [
+        'user_id' => $user_id,
+        'test_id' => $test_id
+    ]);
+
+    $total_answer_count = 0;
+
+    if(!empty($questions)) {
+        foreach ($questions as $quest) {
+            $answer = get_mark($saved_answers, $quest->id);
+
+            if(trim($answer) > 0) {
                 $total_answer_count++;
             }
         }

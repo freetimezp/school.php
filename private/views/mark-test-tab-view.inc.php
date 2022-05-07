@@ -5,11 +5,19 @@
 
     <div>
         <?php $percentage = get_answer_percentage($row->test_id, $user_id); ?>
-        <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
-        <div style="height: 5px; width: 100%; background: #abc7e9;">
-            <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
-        </div>
+        <?php $marked_percentage = get_mark_percentage($row->test_id, $user_id); ?>
 
+        <div class="p-2 m-3">
+            <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
+            <div class="mb-2" style="height: 5px; width: 100%; background: #abc7e9;">
+                <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
+            </div>
+
+            <div class="text-center text-dark"><b><?=$marked_percentage;?>% questions has marked</b></div>
+            <div style="height: 5px; width: 100%; background: #868688;">
+                <div class="bg-dark" style="height: 5px; width: <?=$marked_percentage;?>%"></div>
+            </div>
+        </div>
         <?php if($answered_test_row): ?>
             <?php if($answered_test_row->submitted && !$marked): ?>
                 <div class="d-flex align-items-center justify-content-center m-1">
@@ -62,19 +70,20 @@
                         <?php endif; ?>
 
                         <?php $myanswer = get_answer($saved_answers, $question->id); ?>
+                        <?php $mymark = get_answer_mark($saved_answers, $question->id); ?>
 
                         <?php if($question->question_type != 'multiple'): ?>
                             <div>Answer: <?=$myanswer;?></div>
                             <hr>
                             <h6>Teachers mark:</h6>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                <input <?=($mymark==1)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
                                 <label class="form-check-label" for="radiocorrect<?=$num;?>">
                                     Correct
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                <input <?=($mymark==2)?'checked':'';?> class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
                                 <label class="form-check-label" for="radiowrong<?=$num;?>">
                                     Wrong
                                 </label>
@@ -104,13 +113,13 @@
                                 <div class="ps-3">
                                     <h6>Teachers mark:</h6>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
+                                        <input  <?=($mymark==1)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="1" id="radiocorrect<?=$num;?>">
                                         <label class="form-check-label" for="radiocorrect<?=$num;?>">
                                             Correct
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
+                                        <input  <?=($mymark==2)?'checked':'';?>  class="form-check-input" type="radio" name="<?=$question->id;?>" value="2" id="radiowrong<?=$num;?>">
                                         <label class="form-check-label" for="radiowrong<?=$num;?>">
                                             Wrong
                                         </label>

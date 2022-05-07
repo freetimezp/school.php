@@ -15,7 +15,7 @@ class Mark_test extends Controller
         $row = $tests->first('test_id', $id);
 
         $answers = new Answers_model();
-        $query = "SELECT question_id, answer FROM answers WHERE user_id = :user_id AND test_id = :test_id";
+        $query = "SELECT question_id, answer, answer_mark FROM answers WHERE user_id = :user_id AND test_id = :test_id";
         $saved_answers = $answers->query($query, [
             'user_id' => $user_id,
             'test_id' => $id
