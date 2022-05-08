@@ -15,7 +15,7 @@
                 <tr>
                     <td>
                         <?php if(Auth::access('lecturer')): ?>
-                            <a href="<?=ROOT;?>/single_test/<?=$test_row->test_id;?>">
+                            <a href="<?=ROOT;?>/marked_single/<?=$test_row->test_id;?>/<?=$test_row->user->user_id;?>">
                                 <button class="btn btn-sm btn-primary">View</i></button>
                             </a>
                         <?php endif; ?>

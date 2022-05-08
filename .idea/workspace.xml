@@ -14,9 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/private/controllers/Marked_single.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/marked-single-tab-view.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/private/views/marked-single.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/core/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/views/mark-test-tab-view.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/mark-test-tab-view.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/views/marked.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/marked.inc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +115,7 @@
       <workItem from="1651743778852" duration="14900000" />
       <workItem from="1651828628708" duration="12996000" />
       <workItem from="1651919572187" duration="6871000" />
-      <workItem from="1652000831639" duration="4335000" />
+      <workItem from="1652000831639" duration="7213000" />
     </task>
     <servers />
   </component>
@@ -202,14 +203,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="433" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1652021291524" />
-    <state x="712" y="243" key="NewPhpClassDialog" timestamp="1651772151850">
+    <state x="712" y="243" key="NewPhpClassDialog" timestamp="1652022818156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1651772151850" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1651774497320">
+    <state x="712" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1652022818156" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1652024216456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1651774497320" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1652024216456" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1648922607708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
