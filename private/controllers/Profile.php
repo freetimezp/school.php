@@ -44,39 +44,54 @@ class Profile extends Controller
             }
         }elseif($data['page_tab'] == 'tests' && $row) {
             $class = new Classes_model();
-
             $disabled = " disabled = 0 AND ";
             $myTable = "class_students";
 
-            if($row->rank == 'lecturer') {
-                $myTable = "class_lecturers";
-                $disabled = "";
-            }
-
-            $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id";
-            $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
-
-            $data['student_classes'] = array();
-
-            if($data['stud_classes']) {
-                foreach ($data['stud_classes'] as $key => $arow) {
-                    $data['student_classes'][] = $class->first('class_id', $arow->class_id);
+            if($row->rank != 'student') {
+                if($row->rank == 'lecturer') {
+                    $myTable = "class_lecturers";
+                    $disabled = "";
                 }
+
+                $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id";
+                $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
+
+                $data['student_classes'] = array();
+
+                if($data['stud_classes']) {
+                    foreach ($data['stud_classes'] as $key => $arow) {
+                        $data['student_classes'][] = $class->first('class_id', $arow->class_id);
+                    }
+                }
+
+                //collect class id's
+                $class_ids = [];
+                foreach ($data['student_classes'] as $key => $class_row) {
+                    $class_ids[] = $class_row->class_id;
+                }
+
+                $id_str = "'" . implode("','", $class_ids) . "'";
+                $query = "SELECT * FROM tests WHERE $disabled class_id IN ($id_str)";
+
+                $tests_model = new Tests_model();
+                $tests = $tests_model->query($query);
+
+                $data['test_rows'] = $tests;
+            }else {
+                //get all submitted tests
+                $marked = array();
+                $tests = new Tests_model();
+                $query = "SELECT * FROM answered_tests WHERE user_id = :user_id AND submitted = 1 AND marked = 1";
+                $answered_tests = $tests->query($query, ['user_id' => $id]);
+                if (is_array($answered_tests)) {
+                    foreach ($answered_tests as $key => $item) {
+                        $test_details = $tests->first('test_id', $answered_tests[$key]->test_id);
+                        $answered_tests[$key]->test_details = $test_details;
+                        $marked = array_merge($marked, $answered_tests);
+                    }
+                }
+                $data['test_rows'] = $marked;
             }
-
-            //collect class id's
-            $class_ids = [];
-            foreach ($data['student_classes'] as $key => $class_row) {
-                $class_ids[] = $class_row->class_id;
-            }
-
-            $id_str = "'" . implode("','", $class_ids) . "'";
-            $query = "SELECT * FROM tests WHERE $disabled class_id IN ($id_str)";
-
-            $tests_model = new Tests_model();
-            $tests = $tests_model->query($query);
-
-            $data['test_rows'] = $tests;
         }
 
         $data['row'] = $row;

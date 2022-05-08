@@ -6,17 +6,19 @@ $this->view('includes/nav');
 <div class="container-fluid p-4 profile mx-auto shadow">
     <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
 
-    <?php if($row && $answered_test_row && $answered_test_row->submitted && !($row->disabled && Auth::access('student'))): ?>
+    <?php if($row && $answered_test_row && $answered_test_row->submitted): ?>
         <h4><?=esc(ucwords($row->test));?> page</h4>
 
         <div class="row mb-4">
             <div class="col-sm-8 col-md-9 p-2">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <th>Class:</th><td><?=$row->class->class;?></td>
+                        <th>Class:</th>
+                        <td><a href="<?=ROOT;?>/single_class/<?=$row->class->class_id;?>"><?=$row->class->class;?></a></td>
                     </tr>
                     <tr>
-                        <th>Student:</th><td><?=$student_row->firstname . ' ' . $student_row->lastname;?></td>
+                        <th>Student:</th>
+                        <td><a href="<?=ROOT;?>/profile/<?=$student_row->user_id;?>"><?=$student_row->firstname . ' ' . $student_row->lastname;?></a></td>
                     </tr>
                     <tr>
                         <th>Test Name:</th><td><?=esc($row->test);?></td>
@@ -28,7 +30,8 @@ $this->view('includes/nav');
                         <th>Total questions:</th><td><?=$total_questions;?></td>
                     </tr>
                     <tr>
-                        <th>Created by:</th><td><?=esc($row->user->firstname);?> <?=esc($row->user->lastname);?></td>
+                        <th>Created by:</th>
+                        <td><a href="<?=ROOT;?>/profile/<?=$row->user->user_id;?>"><?=esc($row->user->firstname);?> <?=esc($row->user->lastname);?></a></td>
                     </tr>
                     <tr>
                         <th>Date Created:</th><td><?=get_date($row->date);?></td>

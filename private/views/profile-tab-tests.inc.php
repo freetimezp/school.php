@@ -12,6 +12,10 @@
 
 <hr>
 
-<?php include (views_path('tests')); ?>
+<?php if($row->rank == 'student'): ?>
+    <?php include (views_path('marked')); ?>
+<?php else: ?>
+    <?php include (views_path('tests')); ?>
+<?php endif; ?>
 
 

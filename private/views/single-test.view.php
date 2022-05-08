@@ -36,7 +36,7 @@ $this->view('includes/nav');
                         <th>Date Created:</th><td><?=get_date($row->date);?></td>
                     </tr>
                     <tr>
-                        <th>Publish:</th>
+                        <th>Published:</th>
                         <td>
                             <span class="me-2"><?=$row->disabled?'No':'Yes';?></span>
                             <a href="<?=ROOT;?>/single_test/<?=$row->test_id?>?disable=true">
