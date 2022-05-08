@@ -40,6 +40,13 @@
             <?php endif; ?>
         <?php endif; ?>
     </div>
+
+    <?php if($marked): ?>
+        <div class="text-center">
+            <?php $score_percentage = get_score_percentage($row->test_id, $user_id); ?>
+            <span>Score: </span><span style="font-size: 40px;"><?=$score_percentage;?>%</span>
+        </div>
+    <?php endif; ?>
     <hr>
 
     <?php if(isset($questions) && is_array($questions)): ?>
