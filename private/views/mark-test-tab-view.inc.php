@@ -4,8 +4,8 @@
     </nav>
 
     <div>
-        <?php $percentage = get_answer_percentage($row->test_id, $user_id); ?>
-        <?php $marked_percentage = get_mark_percentage($row->test_id, $user_id); ?>
+        <?php $percentage = round(get_answer_percentage($row->test_id, $user_id),2); ?>
+        <?php $marked_percentage = round(get_mark_percentage($row->test_id, $user_id),2); ?>
 
         <div class="p-2 m-3">
             <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>

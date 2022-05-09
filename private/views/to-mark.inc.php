@@ -3,6 +3,7 @@
         <tr>
             <th></th><th>Test name</th><th>Class</th><th>Student</th><th>Date submitted</th>
             <th>Answered</th>
+            <th>Marked</th>
             <th></th>
         </tr>
 
@@ -21,8 +22,12 @@
                     <td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td>
                     <td><?=get_date($test_row->submitted_date);?></td>
                     <td>
-                        <?php $percentage = get_answer_percentage($test_row->test_id, $test_row->user_id); ?>
+                        <?php $percentage = round(get_answer_percentage($test_row->test_id, $test_row->user_id),2); ?>
                         <span><?=$percentage . ' %';?></span>
+                    </td>
+                    <td>
+                        <?php $marked_percentage = round(get_mark_percentage($test_row->test_id, $test_row->user_id),2); ?>
+                        <span><?=$marked_percentage . ' %';?></span>
                     </td>
                     <td>
                         <?php if(can_take_test($test_row->test_id)): ?>
