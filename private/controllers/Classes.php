@@ -45,8 +45,13 @@ class Classes extends Controller
 
             $arr['stud_classes'] = $class->query($query, $arr);
 
-            $data = array();
+            //get class ids from classes that dont have members
+            $classes_i_own = $class->where('user_id', Auth::getUser_id());
+            if($classes_i_own && $arr['stud_classes']) {
+                $arr['stud_classes'] = array_merge($classes_i_own, $arr['stud_classes']);
+            }
 
+            $data = array();
             if($arr['stud_classes']) {
                 foreach ($arr['stud_classes'] as $key => $arow) {
                     $data[] = $class->first('class_id', $arow->class_id);
