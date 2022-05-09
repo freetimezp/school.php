@@ -25,7 +25,7 @@
 
     <label class="mb-1">Upload your image for question if you need  (option):</label>
     <div class="input-group mb-3">
-        <label class="input-group-text btn-success"><i class="fa fa-image"></i>Image</label>
+        <label class="input-group-text btn-success"><i class="fa fa-image"></i>Image:</label>
         <input type="file" name="image" class="form-control">
     </div>
 

@@ -52,9 +52,18 @@ class Classes extends Controller
             }
 
             $data = array();
+            $all_classes = array();
             if($arr['stud_classes']) {
-                foreach ($arr['stud_classes'] as $key => $arow) {
-                    $data[] = $class->first('class_id', $arow->class_id);
+                //choose all class_id from array
+                //dont work---->>>> $all_classes = array_column($arr['stud_classes'], 'class_id');
+                foreach ($arr['stud_classes'] as $key => $value) {
+                    $all_classes[] = $value->class_id;
+                }
+                
+                //delete duplicate from array
+                $all_classes = array_unique($all_classes);
+                foreach ($all_classes as $class_id) {
+                    $data[] = $class->first('class_id', $class_id);
                 }
             }
         }

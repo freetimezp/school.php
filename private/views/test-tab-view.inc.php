@@ -20,7 +20,7 @@
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>">
+                        <a class="dropdown-item" href="<?=ROOT;?>/single_test/addquestion/<?=$row->test_id;?>?type=subjective">
                             Add subjective question
                         </a>
                     </li>

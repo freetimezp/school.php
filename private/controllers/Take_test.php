@@ -115,13 +115,17 @@ class Take_test extends Controller
         //get answered test
         $data['answered_test_row'] = $tests->get_answered_test($id, Auth::getUser_id());
         $data['submitted'] = false;
-        if(isset($data['answered_test_row']->submitted) && $data['answered_test_row'] == 1) {
+        if(isset($data['answered_test_row']->submitted) && $data['answered_test_row']->submitted == 1) {
             $data['submitted'] = true;
         }
 
         //get student information
         $user = new User();
-        $student_row = $user->first('user_id', $data['answered_test_row']->user_id);
+        if($data['answered_test_row']) {
+            $student_row = $user->first('user_id', $data['answered_test_row']->user_id);
+        }else{
+            $student_row = $user->first('user_id', Auth::getUser_id());
+        }
 
         $data['row'] = $row;
         $data['page_tab'] = $page_tab;
