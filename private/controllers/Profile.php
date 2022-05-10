@@ -87,10 +87,9 @@ class Profile extends Controller
                     foreach ($answered_tests as $key => $item) {
                         $test_details = $tests->first('test_id', $answered_tests[$key]->test_id);
                         $answered_tests[$key]->test_details = $test_details;
-                        $marked = array_merge($marked, $answered_tests);
                     }
                 }
-                $data['test_rows'] = $marked;
+                $data['test_rows'] = $answered_tests;
             }
         }
 

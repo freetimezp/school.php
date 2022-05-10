@@ -7,7 +7,7 @@ $this->view('includes/nav');
     <?php $this->view('includes/crumbs',['crumbs' => $crumbs]); ?>
 
     <?php if($row): ?>
-        <h4><?=esc(ucwords($row->test));?> page</h4>
+        <h4><?=esc(ucwords($row->test));?></h4>
 
         <div class="row mb-4">
             <div class="col-sm-8 col-md-9 p-2">
@@ -17,6 +17,14 @@ $this->view('includes/nav');
                         <td>
                             <a href="<?=ROOT;?>/single_class/<?=$row->class_id;?>?tab=tests">
                                 <button class="btn btn-sm btn-success">VIEW CLASS</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>See all scores:</th>
+                        <td>
+                            <a href="<?=ROOT;?>/single_test/<?=$row->test_id;?>?tab=scores">
+                                <button class="btn btn-sm btn-success">VIEW SCORES</button>
                             </a>
                         </td>
                     </tr>
@@ -71,6 +79,9 @@ $this->view('includes/nav');
                     break;
                 case 'delete':
                     include(views_path('test-tab-delete'));
+                    break;
+                case 'scores':
+                    include(views_path('test-tab-scores'));
                     break;
                 default:
                     break;

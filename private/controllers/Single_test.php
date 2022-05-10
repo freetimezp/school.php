@@ -37,6 +37,9 @@ class Single_test extends Controller
         $offset = $pager->offset;
 
         $page_tab = 'view';
+        if(isset($_GET['tab']) && $_GET['tab'] == 'scores') {
+            $page_tab = 'scores';
+        }
 
         $results = false;
 
