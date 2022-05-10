@@ -34,7 +34,7 @@ class Tests extends Controller
                 $disabled = "";
             }
 
-            $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id";
+            $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id ORDER BY id DESC";
 
             $arr['user_id'] = Auth::getUser_id();
 
@@ -45,7 +45,7 @@ class Tests extends Controller
 
             if($arr['stud_classes']) {
                 foreach ($arr['stud_classes'] as $key => $arow) {
-                    $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id";
+                    $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id ORDER BY id DESC";
                     $arr2['class_id'] = $arow->class_id;
 
                     //search
