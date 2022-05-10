@@ -37,8 +37,12 @@ class Single_test extends Controller
         $offset = $pager->offset;
 
         $page_tab = 'view';
+
+        $student_scores = false;
         if(isset($_GET['tab']) && $_GET['tab'] == 'scores') {
             $page_tab = 'scores';
+            $answered_tests = new Answered_tests();
+            $student_scores = $answered_tests->query("SELECT * FROM answered_tests WHERE test_id = :test_id ORDER BY score DESC", ['test_id' => $id]);
         }
 
         $results = false;
@@ -57,6 +61,7 @@ class Single_test extends Controller
         $data['pager'] = $pager;
         $data['questions'] = $questions;
         $data['total_questions'] = $total_questions;
+        $data['student_scores'] = $student_scores;
 
         $this->view('single-test', $data);
     }
