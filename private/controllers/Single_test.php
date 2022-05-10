@@ -42,7 +42,7 @@ class Single_test extends Controller
         if(isset($_GET['tab']) && $_GET['tab'] == 'scores') {
             $page_tab = 'scores';
             $answered_tests = new Answered_tests();
-            $student_scores = $answered_tests->query("SELECT * FROM answered_tests WHERE test_id = :test_id ORDER BY score DESC", ['test_id' => $id]);
+            $student_scores = $answered_tests->query("SELECT * FROM answered_tests WHERE submitted = 1 AND marked = 1 AND test_id = :test_id ORDER BY score DESC", ['test_id' => $id]);
         }
 
         $results = false;

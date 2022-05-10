@@ -57,11 +57,13 @@ class Marked extends Controller
         $marked = array();
         if(count($data) > 0) {
             foreach ($data as $key => $arow) {
-                $query = "SELECT * FROM answered_tests WHERE test_id = :test_id AND submitted = 1 AND marked = 1 LIMIT 1";
+                $query = "SELECT * FROM answered_tests WHERE test_id = :test_id AND submitted = 1 AND marked = 1";
                 $a = $tests->query($query, ['test_id' => $arow->test_id]);
                 if(is_array($a)) {
-                    $test_details = $tests->first('test_id', $a[0]->test_id);
-                    $a[0]->test_details = $test_details;
+                    foreach ($a as $aKey => $brow) {
+                        $test_details = $tests->first('test_id', $a[$aKey]->test_id);
+                        $a[$aKey]->test_details = $test_details;
+                    }
                     $marked = array_merge($marked, $a);
                 }
             }

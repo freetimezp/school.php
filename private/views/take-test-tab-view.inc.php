@@ -1,10 +1,11 @@
 <div>
-    <nav class="navbar">
+    <div class="navbar">
         <h4 class="text-center">Test questions</h4>
-    </nav>
+    </div>
+    <div>Click submit after you answered all questions!</div>
 
     <div>
-        <?php $percentage = get_answer_percentage($row->test_id, Auth::getUser_id()); ?>
+        <?php $percentage = round(get_answer_percentage($row->test_id, Auth::getUser_id()), 2); ?>
         <div class="text-center text-success"><b><?=$percentage;?>% questions has answer</b></div>
         <div style="height: 5px; width: 100%; background: #abc7e9;">
             <div class="bg-primary" style="height: 5px; width: <?=$percentage;?>%"></div>
