@@ -53,6 +53,23 @@ class Profile extends Controller
                     $disabled = "";
                 }
 
+                $tests_model = new Tests_model();
+                $query = "SELECT * FROM tests WHERE $disabled class_id IN 
+                            (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) ORDER BY id DESC";
+                $arr['user_id'] = $id;
+
+                //search
+                if(isset($_GET['find'])) {
+                    $find = '%' . $_GET['find'] . '%';
+                    $query = "SELECT * FROM tests WHERE $disabled class_id IN 
+                                (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) 
+                                    AND test LIKE :find ORDER BY id DESC";
+                    $arr['find'] = $find;
+                }
+
+                $data['test_rows'] = $tests_model->query($query, $arr);
+
+                /*
                 $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id";
                 $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
 
@@ -75,8 +92,9 @@ class Profile extends Controller
 
                 $tests_model = new Tests_model();
                 $tests = $tests_model->query($query);
+                */
 
-                $data['test_rows'] = $tests;
+                //$data['test_rows'] = $tests;
             }else {
                 //get all submitted tests
                 $marked = array();
