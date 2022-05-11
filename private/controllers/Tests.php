@@ -28,39 +28,29 @@ class Tests extends Controller
             $test = new Tests_model();
             $myTable = "class_students";
             $disabled = " disabled = 0 AND";
+            $data = array();
 
             if(Auth::getRank() == 'lecturer') {
                 $myTable = "class_lecturers";
                 $disabled = "";
             }
 
-            $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id ORDER BY id DESC";
-
+            //use nested queries
+            $query = "SELECT * FROM tests WHERE $disabled class_id IN 
+                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) 
+                            ORDER BY id DESC";
             $arr['user_id'] = Auth::getUser_id();
 
-            $arr['stud_classes'] = $test->query($query, $arr);
-
-            $data = array();
-            $arr2 = array();
-
-            if($arr['stud_classes']) {
-                foreach ($arr['stud_classes'] as $key => $arow) {
-                    $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id ORDER BY id DESC";
-                    $arr2['class_id'] = $arow->class_id;
-
-                    //search
-                    if(isset($_GET['find'])) {
-                        $find = '%' . $_GET['find'] . '%';
-                        $query = "SELECT * FROM tests WHERE $disabled class_id = :class_id AND test LIKE :find";
-                        $arr2['find'] = $find;
-                    }
-
-                    $a = $tests->query($query, $arr2);
-                    if(is_array($a)) {
-                        $data = array_merge($data, $a);
-                    }
-                }
+            //search
+            if(isset($_GET['find'])) {
+                $find = '%' . $_GET['find'] . '%';
+                $query = "SELECT * FROM tests WHERE $disabled class_id IN 
+                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id)
+                            AND test LIKE :find ORDER BY id DESC";
+                $arr['find'] = $find;
             }
+
+            $data = $test->query($query, $arr);
         }
 
         $this->view('tests', [
