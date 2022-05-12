@@ -1,7 +1,7 @@
 <div class="card-group">
     <table class="table table-striped table-hover">
         <tr>
-            <th></th><th>Test name</th><th>Class</th>
+            <th>Test name</th><th>Class</th>
             <th>Student</th><th>Date submitted</th>
             <th>Marked by</th>
             <th>Date marked</th>
@@ -12,14 +12,7 @@
 
         <?php if(isset($test_rows) && $test_rows): ?>
             <?php foreach ($test_rows as $test_row): ?>
-                <tr>
-                    <td>
-                        <?php if(Auth::access('lecturer')): ?>
-                            <a href="<?=ROOT;?>/marked_single/<?=$test_row->test_id;?>/<?=$test_row->user->user_id;?>">
-                                <button class="btn btn-sm btn-primary">View</i></button>
-                            </a>
-                        <?php endif; ?>
-                    </td>
+                <tr class="align-middle">
                     <td><?=$test_row->test_details->test;?></td>
                     <td><?=$test_row->test_details->class->class;?></td>
                     <td><?=$test_row->user->firstname . ' ' . $test_row->user->lastname;?></td>
@@ -42,11 +35,9 @@
                         <?=get_score_percentage($test_row->test_id, $test_row->user_id).' %'; ?>
                     </td>
                     <td>
-                        <?php if(can_take_test($test_row->test_id)): ?>
-                            <a href="<?=ROOT;?>/take_test/<?=$test_row->test_id;?>">
-                                <button class="btn btn-sm btn-primary">Start test</button>
-                            </a>
-                        <?php endif; ?>
+                        <a href="<?=ROOT;?>/marked_single/<?=$test_row->test_id;?>/<?=$test_row->user->user_id;?>">
+                            <button class="btn btn-primary">View</button>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -106,7 +106,7 @@ class Tests_model extends Model
         if(Auth::access('admin')) {
             $query = "SELECT * FROM answered_tests WHERE test_id IN 
                         (SELECT test_id FROM tests WHERE school_id = :school_id) AND submitted = 1 AND marked = 0 ORDER BY id DESC";
-            $arr['school_id'] = $school_id;
+            $arr['school_id'] = Auth::getSchool_id();
 
             $to_mark = $this->query($query, $arr);
         }else{
