@@ -87,7 +87,7 @@ class Make_pdf extends Controller
                 table, .marked_single {
                     padding: 20px;
                     width: 100%;
-                    max-width: 1000px;
+                    max-width: 800px;
                     margin: auto;
                 }
 
@@ -159,6 +159,60 @@ class Make_pdf extends Controller
                     font-size: 40px;
                     color: #167247;
                 }
+
+                .row_question {
+                    padding: 10px 20px;
+                }
+
+                .d-questions {
+                    padding: 10px;
+                    border: 1px solid #0c4128;
+                    border-radius: 5px;
+                    margin-bottom: 30px;
+                    transition: all 0.5s ease;
+                    box-shadow: 0 0 0 #0c4128;
+                }
+
+                .row_question .tab-1 {
+                    background: #86b7fe;
+                    padding: 5px 10px;
+                    margin-right: 5px;
+                    transition: all 0.5s ease;
+                }
+
+                .row_question .tab-2 {
+                    background: #a6fe86;
+                    padding: 5px 10px;
+                    margin-right: 5px;
+                    transition: all 0.5s ease;
+                }
+
+                .row_question .tab-3 {
+                    background: #fe86e4;
+                    padding: 5px 10px;
+                    transition: all 0.5s ease;
+                }
+
+                .d-questions:hover {
+                    box-shadow: 0 0 15px #0c4128;
+                }
+
+                .d-questions:hover .row_question .tab-1 {
+                    background: #5b96ec;
+                }
+
+                .d-questions:hover .row_question .tab-2 {
+                    background: #5ee22f;
+                }
+
+                .d-questions:hover .row_question .tab-3 {
+                    background: #ef45ca;
+                }
+
+                .d-questions img {
+                    width: 400px;
+                    height: 250px;
+                }
             </style>
 
             <table>
@@ -215,7 +269,7 @@ class Make_pdf extends Controller
                     <?php $score_percentage = get_score_percentage($row->test_id, $user_id); ?>
                     <span>Score: </span><span class="text_score"><?=$score_percentage;?>%</span>
                 </div>
-                <hr>
+
 
                 <?php if(isset($questions) && is_array($questions)): ?>
                     <form method="post">
@@ -233,11 +287,11 @@ class Make_pdf extends Controller
                                 $border = ' border-warning border-1 ';
                             }
                             ?>
-                            <div class="card mb-3 shadow <?=$border;?>">
-                                <div class="card-header text-center p-3">
-                                    <span class="bg-secondary col-3 p-2 rounded-1 text-white">Question #<?=$num;?></span>
-                                    <span class="bg-success p-2 rounded-1 text-white"><?=date('F jS, Y H:i:s a', strtotime($question->date));?></span>
-                                    <span class="bg-primary col-3 p-2 rounded-1 text-white"><?=$question->question_type;?></span>
+                            <div class="d-questions card mb-3 shadow <?=$border;?>">
+                                <div class="row_question">
+                                    <span class="tab-1">Question #<?=$num;?></span>
+                                    <span class="tab-2"><?=date('F jS, Y H:i:s a', strtotime($question->date));?></span>
+                                    <span class="tab-3"><?=$question->question_type;?></span>
                                 </div>
                                 <div class="card-body mb-3">
                                     <h5 class="card-title mb-3"><?=esc($question->question);?></h5>
@@ -246,8 +300,8 @@ class Make_pdf extends Controller
                                         <img src="<?=ROOT . '/' .$question->image;?>" class="col-6 mb-3" alt="question">
                                     <?php endif; ?>
 
-                                    <p class="card-text"><?=esc($question->comment);?></p>
-
+                                    <p class="card-text">Comment: <?=esc($question->comment);?></p>
+                                    <hr>
                                     <?php $type = ''; ?>
                                     <?php if($question->question_type == 'objective'): ?>
                                         <?php $type = '?type=objective'; ?>
@@ -259,20 +313,26 @@ class Make_pdf extends Controller
                                     <?php $mymark = get_answer_mark($saved_answers, $question->id); ?>
 
                                     <?php if($question->question_type != 'multiple'): ?>
-                                        <div>Answer: <?=$myanswer;?></div>
-                                        <hr>
-                                        <h6>Teachers mark:</h6>
-                                        <div style="font-size: 50px;" class="text-center">
-                                            <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                        <div>
+                                            <span style="font-weight: 700;">Student answer: </span>
+                                            <span><?=$myanswer;?></span>
+                                        </div>
+                                        <div style="display: flex; align-items: center;">
+                                            <span style="font-weight: 700;">Teachers mark: </span>
+                                            <div style="font-size: 50px; margin-left: 20px;">
+                                                <?=($mymark==1)?
+                                                    '<span style="color: green; font-weight: 700;">TRUE</span>':
+                                                    '<span style="color: red; font-weight: 700;">FALSE</span>';?>
+                                            </div>
                                         </div>
                                     <?php endif; ?>
 
                                     <?php if($question->question_type == 'multiple'): ?>
                                         <?php $type = '?type=multiple'; ?>
 
-                                        <div class="card">
-                                            <div class="card-header">Select your answer</div>
-                                            <ul class="list-group list-group-flush">
+                                        <div>
+                                            <div style="font-weight: bold;">Student answer:</div>
+                                            <ul>
                                                 <?php $choices = json_decode($question->choices); ?>
 
                                                 <?php foreach ($choices as $letter => $answer): ?>
@@ -280,17 +340,18 @@ class Make_pdf extends Controller
                                                         <span style="vertical-align: center;"><?=$letter;?>: <?=$answer;?></span>
 
                                                         <?php if($myanswer == $letter): ?>
-                                                            <i class="fa fa-check"></i>
+                                                            <span style="margin-left: 40px">V (selected)</span>
                                                         <?php endif; ?>
                                                     </li>
                                                 <?php endforeach;?>
                                             </ul>
-                                            <hr>
 
-                                            <div class="ps-3">
-                                                <h6>Teachers mark:</h6>
-                                                <div style="font-size: 50px;" class="text-center">
-                                                    <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="font-weight: 700;">Teachers mark: </span>
+                                                <div style="font-size: 50px; margin-left: 20px;">
+                                                    <?=($mymark==1)?
+                                                        '<span style="color: green; font-weight: 700;">TRUE</span>':
+                                                        '<span style="color: red; font-weight: 700;">FALSE</span>';?>
                                                 </div>
                                             </div>
                                         </div>

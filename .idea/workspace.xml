@@ -14,8 +14,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/school.php.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/school.php.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Make_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Make_pdf.php" afterDir="false" />
     </list>
@@ -121,7 +119,7 @@
       <workItem from="1652172981983" duration="18536000" />
       <workItem from="1652263649935" duration="11049000" />
       <workItem from="1652361651210" duration="9774000" />
-      <workItem from="1652442049468" duration="4235000" />
+      <workItem from="1652442049468" duration="7468000" />
     </task>
     <servers />
   </component>
@@ -149,10 +147,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648921221035" />
-    <state x="720" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1649087668038">
+    <state x="720" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1652455207588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="720" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1649087668038" />
+    <state x="720" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1652455207588" />
     <state x="780" y="327" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1649090776740">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
