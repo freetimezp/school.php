@@ -44,7 +44,7 @@ class Make_pdf extends Controller
 
         $db = new Database();
 
-        $limit = 3;
+        $limit = 3000;
         $pager = new Pager($limit);
         $offset = $pager->offset;
 
@@ -83,6 +83,84 @@ class Make_pdf extends Controller
         ?>
 
         <?php if($row && $answered_test_row && $answered_test_row->submitted): ?>
+            <style>
+                table, .marked_single {
+                    padding: 20px;
+                    width: 100%;
+                    max-width: 1000px;
+                    margin: auto;
+                }
+
+                table tr {
+                    width: 100%;
+                    transition: all 0.5s ease;
+                    background: #fff;
+                }
+
+                table tr th {
+                    width: 200px;
+                    text-align: left;
+                    padding: 5px 10px;
+                    border: 1px solid #cbd3d9;
+                    font-weight: 700;
+                    transition: all 0.5s ease;
+                    background: #fff;
+                }
+
+                table tr td {
+                    text-align: left;
+                    padding: 5px 20px;
+                    border: 1px solid #cbd3d9;
+                    transition: all 0.5s ease;
+                    background: #fff;
+                }
+
+                table tr:hover th, table tr:hover td {
+                    background: #cbd3d9;
+                }
+
+                .marked_single nav h4 {
+                    font-size: 30px;
+                    text-align: center;
+                }
+
+                .text_answer, .text_marked {
+                    text-align: center;
+                }
+
+                .row_answer {
+                    height: 5px;
+                    width: 100%;
+                    background: #abc7e9;
+                    margin-bottom: 10px;
+                }
+
+                .row_marked {
+                    height: 5px;
+                    width: 100%;
+                    background: #bababe;
+                }
+
+                .row_answer_success {
+                    background: #2a5fa0;
+                }
+
+                .row_marked_success {
+                    background: #373753;
+                }
+
+                .row_score {
+                    padding: 10px 0;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                .text_score {
+                    font-size: 40px;
+                    color: #167247;
+                }
+            </style>
+
             <table>
                 <tr>
                     <th>Class:</th><td><?=$row->class->class;?></td>
@@ -110,8 +188,122 @@ class Make_pdf extends Controller
                     <th>Active:</th><td><?=$row->disabled?'No':'Yes';?></td>
                 </tr>
             </table>
-        <?php endif; ?>
 
+            <div class="marked_single">
+                <nav>
+                    <h4>Test questions</h4>
+                </nav>
+
+                <div>
+                    <?php $percentage = get_answer_percentage($row->test_id, $user_id); ?>
+                    <?php $marked_percentage = get_mark_percentage($row->test_id, $user_id); ?>
+
+                    <div>
+                        <div class="text_answer"><b><?=$percentage;?>% questions has answer</b></div>
+                        <div class="row_answer">
+                            <div class="row_answer_success"  style="height: 5px; width: <?=$percentage;?>%;"></div>
+                        </div>
+
+                        <div class="text_marked"><b><?=$marked_percentage;?>% questions has marked</b></div>
+                        <div class="row_marked">
+                            <div class="row_marked_success"  style="height: 5px; width: <?=$marked_percentage;?>%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row_score">
+                    <?php $score_percentage = get_score_percentage($row->test_id, $user_id); ?>
+                    <span>Score: </span><span class="text_score"><?=$score_percentage;?>%</span>
+                </div>
+                <hr>
+
+                <?php if(isset($questions) && is_array($questions)): ?>
+                    <form method="post">
+                        <?php $num = $pager->offset; ?>
+                        <?php foreach($questions as $question): ?>
+                            <?php $num++; ?>
+                            <?php
+                            $mymark = get_answer_mark($saved_answers, $question->id);
+                            $border = '';
+                            if($mymark == 1) {
+                                $border = ' border-success border-1 ';
+                            }elseif($mymark == 2) {
+                                $border = ' border-danger border-1 ';
+                            }else{
+                                $border = ' border-warning border-1 ';
+                            }
+                            ?>
+                            <div class="card mb-3 shadow <?=$border;?>">
+                                <div class="card-header text-center p-3">
+                                    <span class="bg-secondary col-3 p-2 rounded-1 text-white">Question #<?=$num;?></span>
+                                    <span class="bg-success p-2 rounded-1 text-white"><?=date('F jS, Y H:i:s a', strtotime($question->date));?></span>
+                                    <span class="bg-primary col-3 p-2 rounded-1 text-white"><?=$question->question_type;?></span>
+                                </div>
+                                <div class="card-body mb-3">
+                                    <h5 class="card-title mb-3"><?=esc($question->question);?></h5>
+
+                                    <?php if(file_exists($question->image)):?>
+                                        <img src="<?=ROOT . '/' .$question->image;?>" class="col-6 mb-3" alt="question">
+                                    <?php endif; ?>
+
+                                    <p class="card-text"><?=esc($question->comment);?></p>
+
+                                    <?php $type = ''; ?>
+                                    <?php if($question->question_type == 'objective'): ?>
+                                        <?php $type = '?type=objective'; ?>
+                                    <?php elseif($question->question_type == 'subjective'): ?>
+                                        <?php $type = '?type=subjective'; ?>
+                                    <?php endif; ?>
+
+                                    <?php $myanswer = get_answer($saved_answers, $question->id); ?>
+                                    <?php $mymark = get_answer_mark($saved_answers, $question->id); ?>
+
+                                    <?php if($question->question_type != 'multiple'): ?>
+                                        <div>Answer: <?=$myanswer;?></div>
+                                        <hr>
+                                        <h6>Teachers mark:</h6>
+                                        <div style="font-size: 50px;" class="text-center">
+                                            <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if($question->question_type == 'multiple'): ?>
+                                        <?php $type = '?type=multiple'; ?>
+
+                                        <div class="card">
+                                            <div class="card-header">Select your answer</div>
+                                            <ul class="list-group list-group-flush">
+                                                <?php $choices = json_decode($question->choices); ?>
+
+                                                <?php foreach ($choices as $letter => $answer): ?>
+                                                    <li class="list-group-item d-flex align-items-center justify-content-between" style="width:400px;">
+                                                        <span style="vertical-align: center;"><?=$letter;?>: <?=$answer;?></span>
+
+                                                        <?php if($myanswer == $letter): ?>
+                                                            <i class="fa fa-check"></i>
+                                                        <?php endif; ?>
+                                                    </li>
+                                                <?php endforeach;?>
+                                            </ul>
+                                            <hr>
+
+                                            <div class="ps-3">
+                                                <h6>Teachers mark:</h6>
+                                                <div style="font-size: 50px;" class="text-center">
+                                                    <?=($mymark==1)?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <hr>
+                    </form>
+                <?php endif; ?>
+            </div>
+
+    <?php endif; ?>
 
         <?php
     }
