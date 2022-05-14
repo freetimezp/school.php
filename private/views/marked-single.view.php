@@ -8,6 +8,9 @@ $this->view('includes/nav');
 
     <?php if($row && $answered_test_row && $answered_test_row->submitted): ?>
         <h4><?=esc(ucwords($row->test));?> page</h4>
+        <a href="<?=ROOT . '/make_pdf/' . $row->test_id . '/' . $student_row->user_id;?>?type=test">
+            <button class="btn btn-success">Download as PDF</button>
+        </a>
 
         <div class="row mb-4">
             <div class="col-sm-8 col-md-9 p-2">

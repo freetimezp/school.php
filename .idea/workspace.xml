@@ -14,17 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2684b367-0e1f-401c-9e93-00eca1a0717b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/controllers/Make_test_pdf.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/controllers/Make_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/controllers/Make_pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/pdf/mypdf.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/views/marked-single.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/views/marked-single.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/pdf/mypdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/pdf/mypdf.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -122,6 +122,7 @@
       <workItem from="1652263649935" duration="11049000" />
       <workItem from="1652361651210" duration="9774000" />
       <workItem from="1652442049468" duration="9983000" />
+      <workItem from="1652521057183" duration="3023000" />
     </task>
     <servers />
   </component>
