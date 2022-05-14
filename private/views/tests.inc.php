@@ -8,7 +8,17 @@
 
         <?php if(isset($test_rows) && $test_rows): ?>
             <?php foreach ($test_rows as $test_row): ?>
-                <tr>
+                <?php
+                    $bg = '';
+                    if(Auth::getRank() == 'student') {
+                        if(in_array($test_row->test_id, $unsubmitted)) {
+                            $bg = 'style="background: #e1ef62;"';
+                        }else{
+                            $bg = 'style="background: #84ef6d"';
+                        }
+                    }
+                ?>
+                <tr <?=$bg;?>>
                     <td>
                         <?php if(Auth::access('lecturer')): ?>
                             <a href="<?=ROOT;?>/single_test/<?=$test_row->test_id;?>">

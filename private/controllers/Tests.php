@@ -55,7 +55,9 @@ class Tests extends Controller
 
         $this->view('tests', [
             'test_rows' => $data,
+            'unsubmitted' => get_unsubmitted_test_rows(),
             'crumbs' => $crumbs
         ]);
     }
 }
+

@@ -266,3 +266,34 @@ function get_score_percentage($test_id, $user_id) {
 
     return 0;
 }
+
+function get_unsubmitted_test() {
+    $tests_class = new Tests_model();
+    $query = "SELECT id FROM tests WHERE class_id IN 
+                (SELECT class_id FROM class_students WHERE user_id = :user_id) AND test_id NOT IN 
+                    (SELECT test_id FROM answered_tests WHERE user_id = :user_id AND submitted = 1)";
+
+    $data = $tests_class->query($query, ['user_id' => Auth::getUser_id()]);
+
+    if($data) {
+        return count($data);
+    }
+    return [];
+}
+
+function get_unsubmitted_test_rows() {
+    $tests_class = new Tests_model();
+    $query = "SELECT test_id FROM tests WHERE class_id IN 
+                (SELECT class_id FROM class_students WHERE user_id = :user_id) AND test_id NOT IN 
+                    (SELECT test_id FROM answered_tests WHERE user_id = :user_id AND submitted = 1)";
+
+    $data = $tests_class->query($query, ['user_id' => Auth::getUser_id()]);
+
+    if($data) {
+        foreach ($data as $key => $value) {
+            $arr[] = $value->test_id;
+        }
+        return $arr;
+    }
+    return [];
+}

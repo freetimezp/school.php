@@ -34,9 +34,27 @@
                 <a class="nav-link <?=($this->controller_name() == 'Classes')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/classes">CLASSES</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link <?=($this->controller_name() == 'Tests')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/tests">TESTS</a>
-            </li>
+            <?php if(Auth::getRank() == 'student'): ?>
+                <li class="nav-item">
+                    <a class="nav-link <?=($this->controller_name() == 'Tests')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/tests">
+                        <span>TESTS</span>
+                        <?php
+                            $tests = new Tests_model();
+                            $to_submit_count = get_unsubmitted_test();
+                        ?>
+                        <?php if($to_submit_count): ?>
+                            <span class="badge text-white border rounded-circle border-primary bg-primary"><?=$to_submit_count;?></span>
+                        <?php endif; ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?=($this->controller_name() == 'Marked')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/marked">MARKED</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a class="nav-link <?=($this->controller_name() == 'Tests')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/tests">TESTS</a>
+                </li>
+            <?php endif; ?>
 
             <?php if(Auth::access('lecturer')): ?>
                 <li class="nav-item">
