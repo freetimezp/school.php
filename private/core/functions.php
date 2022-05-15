@@ -6,9 +6,14 @@ function show($data) {
     echo '</pre>';
 }
 
-function get_var($key, $default = '') {
-    if(isset($_POST[$key])) {
-        return $_POST[$key];
+function get_var($key, $default = '', $method = 'post') {
+    $data = $_POST;
+    if($method == 'get') {
+        $data = $_GET;
+    }
+
+    if(isset($data[$key])) {
+        return $data[$key];
     }
 
     return $default;
@@ -321,4 +326,15 @@ function get_years() {
     rsort($arr);
 
     return $arr;
+}
+
+//if this page load switch_year() must run
+switch_year();
+function switch_year() {
+    if(!empty($_GET['school_year'])) {
+        $year = (int)$_GET['school_year'];
+        $_SESSION['USER']->year = $year;
+    }else{
+        $_SESSION['USER']->year = date("Y", time());
+    }
 }

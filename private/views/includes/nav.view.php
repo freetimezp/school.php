@@ -88,15 +88,27 @@
             </li>
         </ul>
 
-        <?php $years = get_years(); ?>
-
-        <select class="form-control ms-1 bg-secondary text-white p-2" style="max-width: 100px;">
-            <?php if($years): ?>
-                <?php foreach($years as $key => $year): ?>
-                    <option value=""><?=$year;?></option>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </select>
+        <form class="form-inline ms-1">
+            <div class="input-group">
+                <?php $years = get_years(); ?>
+                <select name="school_year" class="form-select me-1">
+                    <?php if($years): ?>
+                        <option><?=get_var(
+                                'school_year',
+                                !empty($_SESSION['USER']->year) ? $_SESSION['USER']->year : date("Y", time()),
+                                'get');?>
+                        </option>
+                        <?php $selected_year = $_SESSION['USER']->year; ?>
+                        <?php foreach($years as $key => $year): ?>
+                            <option class="<?=($selected_year == $year)?'bg-warning':'';?>"><?=$year;?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+                <div class="input-group-prepend">
+                    <button class="input-group-text p-2 bg-success text-white">GO</button>
+                </div>
+            </div>
+        </form>
     </div>
 </nav>
 
