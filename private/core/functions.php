@@ -297,3 +297,28 @@ function get_unsubmitted_test_rows() {
     }
     return [];
 }
+
+function get_years() {
+    $arr = array();
+    $db = new Database();
+    $query = "SELECT * FROM classes ORDER BY id ASC LIMIT 1";
+
+    $row = $db->query($query);
+    if($row) {
+        $year = date("Y", strtotime($row[0]->date));
+        $arr[] = $year;
+
+        $cur_year = date("Y", time());
+        while($year < $cur_year) {
+            $year += 1;
+            $arr[] = $year;
+        }
+    }else{
+        $arr[] = date("Y", time());
+    }
+
+    //reverse sort
+    rsort($arr);
+
+    return $arr;
+}

@@ -87,6 +87,16 @@
                 </div>
             </li>
         </ul>
+
+        <?php $years = get_years(); ?>
+
+        <select class="form-control ms-1 bg-secondary text-white p-2" style="max-width: 100px;">
+            <?php if($years): ?>
+                <?php foreach($years as $key => $year): ?>
+                    <option value=""><?=$year;?></option>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
     </div>
 </nav>
 
