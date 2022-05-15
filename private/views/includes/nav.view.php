@@ -95,10 +95,10 @@
                     <?php if($years): ?>
                         <option><?=get_var(
                                 'school_year',
-                                !empty($_SESSION['USER']->year) ? $_SESSION['USER']->year : date("Y", time()),
+                                !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time()),
                                 'get');?>
                         </option>
-                        <?php $selected_year = $_SESSION['USER']->year; ?>
+                        <?php $selected_year = $_SESSION['SCHOOL_YEAR']->year; ?>
                         <?php foreach($years as $key => $year): ?>
                             <option class="<?=($selected_year == $year)?'bg-warning':'';?>"><?=$year;?></option>
                         <?php endforeach; ?>

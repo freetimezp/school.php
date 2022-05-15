@@ -18,12 +18,15 @@ class To_mark extends Controller
 
         if(Auth::access('admin')) {
             $query = "SELECT * FROM answered_tests WHERE test_id IN 
-                        (SELECT test_id FROM tests WHERE school_id = :school_id) AND submitted = 1 AND marked = 0 ORDER BY id DESC";
+                        (SELECT test_id FROM tests WHERE school_id = :school_id) 
+                            AND submitted = 1 AND marked = 0 AND year(date) = :school_year ORDER BY id DESC";
             $arr['school_id'] = $school_id;
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find ORDER BY id DESC";
+                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find 
+                            AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 
@@ -31,12 +34,13 @@ class To_mark extends Controller
         }else{
             $myTable = "class_lecturers";
             $arr['user_id'] = Auth::getUser_id();
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             //use nested queries
             $query = "SELECT * FROM answered_tests WHERE test_id IN 
                         (SELECT test_id FROM tests WHERE class_id IN 
                             (SELECT class_id FROM `class_lecturers` WHERE user_id = :user_id)) 
-                                AND submitted = 1 AND marked = 0 ORDER BY id DESC";
+                                AND submitted = 1 AND marked = 0 AND year(date) = :school_year ORDER BY id DESC";
 
             $to_mark = $tests->query($query, $arr);
 

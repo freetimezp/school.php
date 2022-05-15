@@ -105,23 +105,31 @@ class Tests_model extends Model
 
         if(Auth::access('admin')) {
             $query = "SELECT * FROM answered_tests WHERE test_id IN 
-                        (SELECT test_id FROM tests WHERE school_id = :school_id) AND submitted = 1 AND marked = 0 ORDER BY id DESC";
+                        (SELECT test_id FROM tests WHERE school_id = :school_id) 
+                            AND submitted = 1 AND marked = 0 AND year(date) = :school_year ORDER BY id DESC";
             $arr['school_id'] = Auth::getSchool_id();
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             $to_mark = $this->query($query, $arr);
         }else{
             $myTable = "class_lecturers";
             $arr['user_id'] = Auth::getUser_id();
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             //use nested queries
             $query = "SELECT * FROM answered_tests WHERE test_id IN 
                         (SELECT test_id FROM tests WHERE class_id IN 
                             (SELECT class_id FROM `class_lecturers` WHERE user_id = :user_id)) 
-                                AND submitted = 1 AND marked = 0 ORDER BY id DESC";
+                                AND submitted = 1 AND marked = 0 AND year(date) = :school_year ORDER BY id DESC";
 
             $to_mark = $this->query($query, $arr);
         }
 
-        return count($to_mark);
+        if($to_mark) {
+            return count($to_mark);
+        }else{
+            return 0;
+        }
+
     }
 }

@@ -14,12 +14,13 @@ class Tests extends Controller
         $crumbs[] = ['Tests', 'tests'];
 
         if(Auth::access('admin')) {
-            $query = "SELECT * FROM tests WHERE school_id = :school_id ORDER BY id DESC";
+            $query = "SELECT * FROM tests WHERE school_id = :school_id AND year(date) = :school_year ORDER BY id DESC";
             $arr['school_id'] = $school_id;
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find ORDER BY id DESC";
+                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 
@@ -37,16 +38,17 @@ class Tests extends Controller
 
             //use nested queries
             $query = "SELECT * FROM tests WHERE $disabled class_id IN 
-                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) 
+                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) AND year(date) = :school_year
                             ORDER BY id DESC";
             $arr['user_id'] = Auth::getUser_id();
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             //search
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
                 $query = "SELECT * FROM tests WHERE $disabled class_id IN 
                         (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id)
-                            AND test LIKE :find ORDER BY id DESC";
+                            AND test LIKE :find AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 

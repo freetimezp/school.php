@@ -15,12 +15,14 @@ class Marked extends Controller
         $crumbs[] = ['Marked', 'marked'];
 
         if(Auth::access('admin')) {
-            $query = "SELECT * FROM tests WHERE school_id = :school_id ORDER BY id DESC";
+            $query = "SELECT * FROM tests WHERE school_id = :school_id AND year(date) = :school_year ORDER BY id DESC";
             $arr['school_id'] = $school_id;
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find ORDER BY id DESC";
+                $query = "SELECT * FROM tests WHERE school_id = :school_id AND test LIKE :find 
+                            AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 
@@ -29,13 +31,16 @@ class Marked extends Controller
             $test = new Tests_model();
             $myTable = "class_lecturers";
 
-            $query = "SELECT * FROM $myTable WHERE user_id = :user_id";
+            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND year(date) = :school_year";
 
             $arr['user_id'] = Auth::getUser_id();
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT tests.test, {$myTable}.* FROM $myTable JOIN tests ON tests.test_id = {$myTable}.test_id WHERE {$myTable}.user_id = :user_id AND {$myTable}.disabled = 0 AND tests.test LIKE :find";
+                $query = "SELECT tests.test, {$myTable}.* FROM $myTable JOIN tests ON tests.test_id = {$myTable}.test_id 
+                            WHERE {$myTable}.user_id = :user_id AND {$myTable}.disabled = 0 AND tests.test LIKE :find
+                                AND year(tests.date) = :school_year";
                 $arr['find'] = $find;
             }
 

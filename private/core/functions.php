@@ -331,10 +331,13 @@ function get_years() {
 //if this page load switch_year() must run
 switch_year();
 function switch_year() {
+    if(!isset($_SESSION['SCHOOL_YEAR'])) {
+        $_SESSION['SCHOOL_YEAR'] = (object)[];
+        $_SESSION['SCHOOL_YEAR']->year = date("Y", time());
+    }
+
     if(!empty($_GET['school_year'])) {
         $year = (int)$_GET['school_year'];
-        $_SESSION['USER']->year = $year;
-    }else{
-        $_SESSION['USER']->year = date("Y", time());
+        $_SESSION['SCHOOL_YEAR']->year = $year;
     }
 }
