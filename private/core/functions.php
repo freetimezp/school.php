@@ -341,3 +341,21 @@ function switch_year() {
         $_SESSION['SCHOOL_YEAR']->year = $year;
     }
 }
+
+//func get values of $_GET and create hidden inputs
+function add_get_vars() {
+    $text = '';
+
+    if(!empty($_GET)) {
+        foreach ($_GET as $key => $value) {
+            if($key == 'school_year') {
+                continue;
+            }
+            if($key != 'url') {
+                $text .= "<input type='hidden' name='$key' value='$value' />";
+            }
+        }
+    }
+
+    return $text;
+}

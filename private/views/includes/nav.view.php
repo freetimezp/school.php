@@ -104,6 +104,9 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
+
+                <?=add_get_vars();?>
+
                 <div class="input-group-prepend">
                     <button class="input-group-text p-2 bg-success text-white">GO</button>
                 </div>

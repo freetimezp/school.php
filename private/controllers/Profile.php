@@ -32,8 +32,11 @@ class Profile extends Controller
                 $myTable = "class_lecturers";
             }
 
-            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0";
-            $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
+            $query = "SELECT * FROM $myTable WHERE user_id = :user_id AND disabled = 0 AND year(date) = :school_year ";
+            $arr['user_id'] = $id;
+            $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
+
+            $data['stud_classes'] = $class->query($query, $arr);
 
             $data['student_classes'] = array();
 
@@ -55,8 +58,10 @@ class Profile extends Controller
 
                 $tests_model = new Tests_model();
                 $query = "SELECT * FROM tests WHERE $disabled class_id IN 
-                            (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) ORDER BY id DESC";
+                            (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) AND year(date) = :school_year
+                                ORDER BY id DESC";
                 $arr['user_id'] = $id;
+                $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
                 //search
                 if(isset($_GET['find'])) {
@@ -68,33 +73,6 @@ class Profile extends Controller
                 }
 
                 $data['test_rows'] = $tests_model->query($query, $arr);
-
-                /*
-                $query = "SELECT * FROM $myTable WHERE $disabled user_id = :user_id";
-                $data['stud_classes'] = $class->query($query, ['user_id' => $id]);
-
-                $data['student_classes'] = array();
-
-                if($data['stud_classes']) {
-                    foreach ($data['stud_classes'] as $key => $arow) {
-                        $data['student_classes'][] = $class->first('class_id', $arow->class_id);
-                    }
-                }
-
-                //collect class id's
-                $class_ids = [];
-                foreach ($data['student_classes'] as $key => $class_row) {
-                    $class_ids[] = $class_row->class_id;
-                }
-
-                $id_str = "'" . implode("','", $class_ids) . "'";
-                $query = "SELECT * FROM tests WHERE $disabled class_id IN ($id_str)";
-
-                $tests_model = new Tests_model();
-                $tests = $tests_model->query($query);
-                */
-
-                //$data['test_rows'] = $tests;
             }else {
                 //get all submitted tests
                 $marked = array();
@@ -112,6 +90,7 @@ class Profile extends Controller
         }
 
         $data['row'] = $row;
+        $data['unsubmitted'] = get_unsubmitted_test_rows();
         $data['crumbs'] = $crumbs;
 
         if(Auth::access('reception') || Auth::i_own_content($row)) {
