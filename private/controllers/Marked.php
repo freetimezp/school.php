@@ -60,7 +60,7 @@ class Marked extends Controller
 
         //get all submitted tests
         $marked = array();
-        if(count($data) > 0) {
+        if(count($data) > 0 && !empty($data)) {
             foreach ($data as $key => $arow) {
                 $query = "SELECT * FROM answered_tests WHERE test_id = :test_id AND submitted = 1 AND marked = 1";
                 $a = $tests->query($query, ['test_id' => $arow->test_id]);

@@ -23,7 +23,8 @@ class Users extends Controller
 
         if(isset($_GET['find'])) {
             $find = '%' . $_GET['find'] . '%';
-            $query = "SELECT * FROM users WHERE school_id = :school_id AND rank NOT IN ('student') AND (firstname LIKE :find OR lastname LIKE :find)  ORDER BY id DESC LIMIT $limit OFFSET $offset";
+            $query = "SELECT * FROM users WHERE school_id = :school_id AND rank NOT IN ('student') 
+                        AND (firstname LIKE :find OR lastname LIKE :find) ORDER BY id DESC LIMIT $limit OFFSET $offset";
             $arr['find'] = $find;
         }
 

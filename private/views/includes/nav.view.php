@@ -47,9 +47,6 @@
                         <?php endif; ?>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?=($this->controller_name() == 'Marked')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/marked">MARKED</a>
-                </li>
             <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link <?=($this->controller_name() == 'Tests')?'active bg-secondary text-white':'';?>" href="<?=ROOT?>/tests">TESTS</a>

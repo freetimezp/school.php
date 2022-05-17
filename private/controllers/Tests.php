@@ -38,8 +38,8 @@ class Tests extends Controller
 
             //use nested queries
             $query = "SELECT * FROM tests WHERE $disabled class_id IN 
-                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) AND year(date) = :school_year
-                            ORDER BY id DESC";
+                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id) 
+                            AND year(date) = :school_year ORDER BY id DESC";
             $arr['user_id'] = Auth::getUser_id();
             $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
@@ -47,8 +47,8 @@ class Tests extends Controller
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
                 $query = "SELECT * FROM tests WHERE $disabled class_id IN 
-                        (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id)
-                            AND test LIKE :find AND year(date) = :school_year ORDER BY id DESC";
+                            (SELECT class_id FROM $myTable WHERE $disabled user_id = :user_id)
+                                AND test LIKE :find AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 

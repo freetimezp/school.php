@@ -276,7 +276,8 @@ function get_unsubmitted_test() {
     $tests_class = new Tests_model();
     $query = "SELECT id FROM tests WHERE class_id IN 
                 (SELECT class_id FROM class_students WHERE user_id = :user_id) AND test_id NOT IN 
-                    (SELECT test_id FROM answered_tests WHERE user_id = :user_id AND submitted = 1)";
+                    (SELECT test_id FROM answered_tests WHERE user_id = :user_id AND submitted = 1)
+                        AND disabled = 0";
 
     $data = $tests_class->query($query, ['user_id' => Auth::getUser_id()]);
 

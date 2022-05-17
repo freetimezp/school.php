@@ -21,7 +21,8 @@ class Classes extends Controller
 
             if(isset($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT * FROM classes WHERE school_id = :school_id AND class LIKE :find AND year(date) = :school_year ORDER BY id DESC";
+                $query = "SELECT * FROM classes WHERE school_id = :school_id 
+                            AND class LIKE :find AND year(date) = :school_year ORDER BY id DESC";
                 $arr['find'] = $find;
             }
 
@@ -34,18 +35,17 @@ class Classes extends Controller
                 $myTable = "class_lecturers";
             }
 
-            $query = "SELECT * FROM classes WHERE (class_id IN (SELECT class_id FROM $myTable WHERE 
-                        user_id = :user_id AND disabled = 0) AND year(date) = :school_year) OR 
-                            (user_id = :user_id AND year(date) = :school_year)";
+            $query = "SELECT * FROM classes WHERE (class_id IN (SELECT class_id FROM $myTable 
+                        WHERE user_id = :user_id AND disabled = 0) AND year(date) = :school_year) 
+                            OR (user_id = :user_id AND year(date) = :school_year)";
             $arr['user_id'] = Auth::getUser_id();
             $arr['school_year'] = !empty($_SESSION['SCHOOL_YEAR']->year) ? $_SESSION['SCHOOL_YEAR']->year : date("Y", time());
 
-            if(isset($_GET['find'])) {
+            if(isset($_GET['find']) && !empty($_GET['find'])) {
                 $find = '%' . $_GET['find'] . '%';
-                $query = "SELECT classes.class, {$myTable}.* FROM $myTable 
-                            JOIN classes ON classes.class_id = {$myTable}.class_id 
-                                WHERE {$myTable}.user_id = :user_id AND {$myTable}.disabled = 0 AND classes.class LIKE :find 
-                                    AND year(classes.date) = :school_year";
+                $query = "SELECT * FROM classes WHERE (class_id IN (SELECT class_id FROM $myTable 
+                            WHERE user_id = :user_id AND disabled = 0) AND year(date) = :school_year AND class LIKE :find) 
+                                OR (user_id = :user_id AND year(date) = :school_year AND class LIKE :find)";
                 $arr['find'] = $find;
             }
 
@@ -130,7 +130,6 @@ class Classes extends Controller
         $errors = array();
 
         $classes = new Classes_model();
-
         $row = $classes->where('id', $id);
 
         if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row)) {

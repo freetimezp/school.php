@@ -90,10 +90,12 @@ class Auth
             return false;
         }
 
+        if(is_array($row)) {
+            $row = $row[0];
+        }
+
         if(isset($row->user_id)) {
             if($_SESSION['USER']->user_id == $row->user_id) {
-
-
                 return true;
             }
         }
